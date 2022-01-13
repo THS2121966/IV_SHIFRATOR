@@ -16,7 +16,7 @@ namespace IV_SHIFRATOR_MAIN
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SH_Loading_Window());
+            Application.Run(SH_Loading_Window.SH_RELEASE_CORE());
         }
     }
 }
