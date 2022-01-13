@@ -23,6 +23,32 @@ namespace IV_SHIFRATOR_MAIN
         public SH_Loading_Window()
         {
             InitializeComponent();
+            SH_Realise_Think(sh_time01_fps);
+        }
+
+        public static SH_Main_Menu sh_m_m = new SH_Main_Menu();
+
+        private readonly Timer sh_time_to_next = new Timer();
+        private const int sh_time01_fps = 150;
+
+        private void SH_Realise_Think(int fps)
+        {
+            sh_time_to_next.Interval = fps;
+            sh_time_to_next.Tick += SH_Load_Think;
+            sh_time_to_next.Enabled = true;
+        }
+
+        private void SH_Load_Think(object sender, EventArgs e)
+        {
+            if(sh_loading_w_p_bar.Value != 100)
+                sh_loading_w_p_bar.Value += 10;
+            else
+            {
+                sh_time_to_next.Enabled = false;
+                this.Visible = false;
+                if(sh_m_m.sh_m_m_loaded)
+                    sh_m_m.Visible = true;
+            }
         }
     }
 }
