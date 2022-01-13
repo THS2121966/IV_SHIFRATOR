@@ -1,7 +1,7 @@
 ﻿
 namespace IV_SHIFRATOR_MAIN
 {
-    partial class Form1
+    partial class SH_Loading_Window
     {
         /// <summary>
         /// Обязательная переменная конструктора.

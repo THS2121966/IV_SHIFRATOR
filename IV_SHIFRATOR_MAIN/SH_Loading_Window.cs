@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace IV_SHIFRATOR_MAIN
 {
-    public partial class Form1 : Form
+    public partial class SH_Loading_Window : Form
     {
-        public Form1()
+        public SH_Loading_Window()
         {
             InitializeComponent();
         }
