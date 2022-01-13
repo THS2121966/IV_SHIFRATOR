@@ -29,7 +29,32 @@ namespace IV_SHIFRATOR_MAIN
         /// </summary>
         private void InitializeComponent()
         {
+            this.sh_name_label01 = new System.Windows.Forms.Label();
+            this.sh_loading_w_p_bar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
+            // 
+            // sh_name_label01
+            // 
+            this.sh_name_label01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_name_label01.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.sh_name_label01.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sh_name_label01.Location = new System.Drawing.Point(150, 80);
+            this.sh_name_label01.Name = "sh_name_label01";
+            this.sh_name_label01.Size = new System.Drawing.Size(450, 50);
+            this.sh_name_label01.TabIndex = 0;
+            this.sh_name_label01.Text = "SHIFRATOR";
+            this.sh_name_label01.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // sh_loading_w_p_bar
+            // 
+            this.sh_loading_w_p_bar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_loading_w_p_bar.ForeColor = System.Drawing.Color.LawnGreen;
+            this.sh_loading_w_p_bar.Location = new System.Drawing.Point(0, 150);
+            this.sh_loading_w_p_bar.Name = "sh_loading_w_p_bar";
+            this.sh_loading_w_p_bar.Size = new System.Drawing.Size(800, 25);
+            this.sh_loading_w_p_bar.TabIndex = 1;
             // 
             // SH_Loading_Window
             // 
@@ -37,6 +62,8 @@ namespace IV_SHIFRATOR_MAIN
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_loading_w_p_bar);
+            this.Controls.Add(this.sh_name_label01);
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -51,6 +78,9 @@ namespace IV_SHIFRATOR_MAIN
         }
 
         #endregion
+
+        private System.Windows.Forms.Label sh_name_label01;
+        private System.Windows.Forms.ProgressBar sh_loading_w_p_bar;
     }
 }
 
