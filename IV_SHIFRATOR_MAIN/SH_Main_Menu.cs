@@ -41,9 +41,9 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_B_DEShifrate_Hook(object sender, EventArgs e)
         {
-            var dlg_result = MessageBox.Show("If you want to deshifrate correctly, please delete other sign or ' ' for correctly replacing!!!", "Warning!!!", 
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (dlg_result == DialogResult.OK)
+            /*var dlg_result = MessageBox.Show("If you want to deshifrate correctly, please delete other sign or ' ' for correctly replacing!!!", "Warning!!!", 
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);*/
+            //if (dlg_result == DialogResult.OK)
             {
                 SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text, true);
                 sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();

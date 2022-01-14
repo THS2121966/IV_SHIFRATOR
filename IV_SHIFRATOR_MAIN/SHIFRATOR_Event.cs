@@ -48,8 +48,8 @@ namespace IV_SHIFRATOR_MAIN
 
         private static readonly string[] sh_normal_kirill = new string[33] { "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я" };
         private static readonly string[] sh_normal_kirill_2 = new string[33] { "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Щ", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я" };
-        private static readonly string[] sh_shifrated_kirill = new string[33] { "tck", "ghm", "gsg", "rsa", "xna", "zya", "rty", "sxi", "zag", "klc", "sse", "hfy",
-            "sde", "efg", "nng", "xxc", "hgj", "yhj", "ilm", "opw", "kls", "uio", "jkb", "llm", "tyc", "hkg", "gty", "tfr", "esb", "hjt", "hgb", "vgh", "uim" };
+        private static readonly string[] sh_shifrated_kirill = new string[33] { "5", "3", "2", "7", "8", "9", "1", "4", "6", "g", "h", "k",
+            "a", "v", "w", "x", "z", "y", "u", "o", "c", "t", "j", "b", "d", "r", "i", "f", "l", "R", "T", "Z", "A" };
 
         private static bool sh_show_replacing_sign = false;
 
@@ -64,6 +64,7 @@ namespace IV_SHIFRATOR_MAIN
                 if(!sh_deshifrate)
                 {
                     string[] sh_step_array = new string[sh_sended_text.Length];
+
                     for(int step = 0; step < sh_step_array.Length; step++)
                     {
                         sh_step_array[step] = sh_sended_text.Substring(step, 1);
@@ -86,43 +87,23 @@ namespace IV_SHIFRATOR_MAIN
                 }
                 else
                 {
-                    int invaid_signs_count = 0;
-                    for(int sign_index = 0; sign_index < sh_sended_text.Length; sign_index++)
-                    {
-                        if (sh_sended_text.Substring(sign_index, 1) == " " || sh_sended_text.Substring(sign_index, 1) == "!" 
-                            || sh_sended_text.Substring(sign_index, 1) == "." || sh_sended_text.Substring(sign_index, 1) == "," 
-                            || sh_sended_text.Substring(sign_index, 1) == ";" || sh_sended_text.Substring(sign_index, 1) == ":")
-                        {
-                            invaid_signs_count++;
-                        }
-                    }
-
-                    string[] sh_step_array = new string[(sh_sended_text.Length - invaid_signs_count) / 3 ];
-                    int next_modify = 0;
+                    string[] sh_step_array = new string[sh_sended_text.Length];
 
                     for (int step = 0; step < sh_step_array.Length; step++)
                     {
-                        if(sh_sended_text.Substring((step - next_modify) * 3, 1) != " " || sh_sended_text.Substring((step - next_modify) * 3, 1) != "!" 
-                            || sh_sended_text.Substring((step - next_modify) * 3, 1) != "." || sh_sended_text.Substring((step - next_modify) * 3, 1) != "," 
-                            || sh_sended_text.Substring((step - next_modify) * 3, 1) != ";" || sh_sended_text.Substring((step - next_modify) * 3, 1) != ":")
-                        {
-                            sh_step_array[step] = sh_sended_text.Substring((step - next_modify) * 3, 3);
-                        }
-                        else
-                        {
-                            sh_step_array[step] = sh_sended_text.Substring(step, 1);
-                            next_modify++;
-                        }
+                        sh_step_array[step] = sh_sended_text.Substring(step, 1);
                         if (sh_show_replacing_sign)
-                            MessageBox.Show(step+1+") sended sign = "+sh_step_array[step]);
+                            MessageBox.Show(step + 1 + ") sended sign = " + sh_step_array[step]);
                     }
                     foreach (string sign in sh_step_array)
                     {
-                        for (int i = 0; i < sh_shifrated_kirill.Length; i++)
+                        for (int i = 0; i < sh_normal_kirill.Length; i++)
                             if (sign == sh_shifrated_kirill[i])
                                 for (int next = 0; next < sh_step_array.Length; next++)
-                                    if (sign == sh_step_array[next])
+                                    if (sign == sh_step_array[next] && next != 0)
                                         sh_step_array[next] = sh_normal_kirill[i];
+                                    else if(sign == sh_step_array[next] && next == 0)
+                                        sh_step_array[next] = sh_normal_kirill_2[i];
                     }
                     foreach (string step in sh_step_array)
                     {
