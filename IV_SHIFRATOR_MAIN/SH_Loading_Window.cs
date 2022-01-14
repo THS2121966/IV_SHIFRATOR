@@ -14,16 +14,17 @@ namespace IV_SHIFRATOR_MAIN
     {
         public static SH_Loading_Window sh_loading_core;
 
-        public static SH_Loading_Window SH_RELEASE_CORE()
+        /*public static SH_Loading_Window SH_RELEASE_CORE()
         {
             sh_loading_core = new SH_Loading_Window();
             return sh_loading_core;
-        }
+        }*/
 
         public SH_Loading_Window()
         {
             InitializeComponent();
             SH_Realise_Think(sh_time01_fps);
+            sh_loading_core = this;
         }
 
         public static SH_Main_Menu sh_m_m = new SH_Main_Menu();
