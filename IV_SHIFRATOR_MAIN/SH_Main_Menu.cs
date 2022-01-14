@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,12 @@ namespace IV_SHIFRATOR_MAIN
             sh_sended_msg_box_01.Text = sh_ds_box_text_empty;
             sh_button_deshifrate.Visible = false;
             sh_button_shifrate.Visible = false;
+            sh_b_save_text01.Visible = false;
+            sh_b_write_created_file.Visible = false;
             sh_cb_logic_show_signs_op.Visible = false;
+            sh_cb_num_text_for_file.Visible = false;
+
+            SH_Save_Text_To_File_DLG.Filter = "Текстовый документ (*.txt)|*.txt|Все файлы (*.*)|*.*";
         }
 
         private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
@@ -57,13 +63,19 @@ namespace IV_SHIFRATOR_MAIN
             {
                 sh_button_deshifrate.Visible = true;
                 sh_button_shifrate.Visible = true;
+                sh_b_save_text01.Visible = true;
+                sh_b_write_created_file.Visible = true;
                 sh_cb_logic_show_signs_op.Visible = true;
+                sh_cb_num_text_for_file.Visible = true;
             }
             else
             {
                 sh_button_deshifrate.Visible = false;
                 sh_button_shifrate.Visible = false;
+                sh_b_save_text01.Visible = false;
+                sh_b_write_created_file.Visible = false;
                 sh_cb_logic_show_signs_op.Visible = false;
+                sh_cb_num_text_for_file.Visible = false;
             }
         }
 
@@ -85,6 +97,62 @@ namespace IV_SHIFRATOR_MAIN
                 SHIFRATOR_Event.SH_Change_Sigh_Show_Replacing_State(true);
             else
                 SHIFRATOR_Event.SH_Change_Sigh_Show_Replacing_State(false);
+        }
+
+        private void SH_DLG_Text_Saved_Hook(object sender, CancelEventArgs e)
+        {
+            StreamWriter sh_write_file = new StreamWriter(SH_Save_Text_To_File_DLG.FileName);
+            if(!sh_num_text_f)
+                sh_write_file.WriteLine(sh_sended_msg_box_01.Text);
+            else
+            {
+                int length = sh_sended_msg_box_01.Text.Length;
+                sh_write_file.WriteLine(length+") "+sh_sended_msg_box_01.Text);
+            }
+            sh_write_file.Close();
+
+            MessageBox.Show("Current text saved to new file Successfully!!! File Name - "+ SH_Save_Text_To_File_DLG.FileName, "SHIFRATOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void SH_B_Save_To_File_Hook(object sender, EventArgs e)
+        {
+            SH_Save_Text_To_File_DLG.ShowDialog();
+        }
+
+        private void SH_B_Write_FIle_Hook(object sender, EventArgs e)
+        {
+            OpenFileDialog open_f_dlg = new OpenFileDialog
+            {
+                Title = "Shifrator Open File Dialog",
+                Filter = "Текстовый документ (*.txt)|*.txt|Все файлы (*.*)|*.*"
+            };
+            if (open_f_dlg.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader sh_read_file = new StreamReader(open_f_dlg.FileName);
+                string sh_get_text_from_file;
+                if (!sh_num_text_f)
+                    sh_get_text_from_file = sh_read_file.ReadToEnd();
+                else
+                {
+                    int length = sh_read_file.ReadToEnd().Length;
+                    sh_get_text_from_file = length+") "+sh_read_file.ReadToEnd();
+                }
+                sh_read_file.Close();
+                StreamWriter sh_write_file = new StreamWriter(open_f_dlg.FileName);
+                sh_write_file.WriteLine(sh_get_text_from_file+sh_sended_msg_box_01.Text);
+                sh_write_file.Close();
+                MessageBox.Show("Current changes are saved Successfully!!! File Name - " + open_f_dlg.FileName, "SHIFRATOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private bool sh_num_text_f = true;
+
+        private void SH_CB_Num_Text_F_Hook(object sender, EventArgs e)
+        {
+            if (sh_cb_num_text_for_file.Checked)
+                sh_num_text_f = true;
+            else
+                sh_num_text_f = false;
         }
     }
 }

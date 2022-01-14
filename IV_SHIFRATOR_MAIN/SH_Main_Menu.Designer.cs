@@ -34,6 +34,10 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_button_shifrate = new System.Windows.Forms.Button();
             this.sh_button_deshifrate = new System.Windows.Forms.Button();
             this.sh_cb_logic_show_signs_op = new System.Windows.Forms.CheckBox();
+            this.SH_Save_Text_To_File_DLG = new System.Windows.Forms.SaveFileDialog();
+            this.sh_b_save_text01 = new System.Windows.Forms.Button();
+            this.sh_b_write_created_file = new System.Windows.Forms.Button();
+            this.sh_cb_num_text_for_file = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // sh_sended_msg_box_01
@@ -89,12 +93,61 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_cb_logic_show_signs_op.UseVisualStyleBackColor = false;
             this.sh_cb_logic_show_signs_op.CheckedChanged += new System.EventHandler(this.SH_Check_Sign_S_R_Hook);
             // 
+            // SH_Save_Text_To_File_DLG
+            // 
+            this.SH_Save_Text_To_File_DLG.Title = "Shifrator Save Dialog";
+            this.SH_Save_Text_To_File_DLG.FileOk += new System.ComponentModel.CancelEventHandler(this.SH_DLG_Text_Saved_Hook);
+            // 
+            // sh_b_save_text01
+            // 
+            this.sh_b_save_text01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_b_save_text01.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.sh_b_save_text01.Location = new System.Drawing.Point(482, 415);
+            this.sh_b_save_text01.Name = "sh_b_save_text01";
+            this.sh_b_save_text01.Size = new System.Drawing.Size(50, 23);
+            this.sh_b_save_text01.TabIndex = 4;
+            this.sh_b_save_text01.Text = "Save";
+            this.sh_b_save_text01.UseVisualStyleBackColor = false;
+            this.sh_b_save_text01.Click += new System.EventHandler(this.SH_B_Save_To_File_Hook);
+            // 
+            // sh_b_write_created_file
+            // 
+            this.sh_b_write_created_file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_b_write_created_file.BackColor = System.Drawing.Color.OrangeRed;
+            this.sh_b_write_created_file.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.sh_b_write_created_file.Location = new System.Drawing.Point(482, 386);
+            this.sh_b_write_created_file.Name = "sh_b_write_created_file";
+            this.sh_b_write_created_file.Size = new System.Drawing.Size(50, 23);
+            this.sh_b_write_created_file.TabIndex = 5;
+            this.sh_b_write_created_file.Text = "Write";
+            this.sh_b_write_created_file.UseVisualStyleBackColor = false;
+            this.sh_b_write_created_file.Click += new System.EventHandler(this.SH_B_Write_FIle_Hook);
+            // 
+            // sh_cb_num_text_for_file
+            // 
+            this.sh_cb_num_text_for_file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_cb_num_text_for_file.AutoSize = true;
+            this.sh_cb_num_text_for_file.BackColor = System.Drawing.SystemColors.Info;
+            this.sh_cb_num_text_for_file.Checked = true;
+            this.sh_cb_num_text_for_file.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.sh_cb_num_text_for_file.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sh_cb_num_text_for_file.Location = new System.Drawing.Point(404, 403);
+            this.sh_cb_num_text_for_file.Name = "sh_cb_num_text_for_file";
+            this.sh_cb_num_text_for_file.Size = new System.Drawing.Size(72, 17);
+            this.sh_cb_num_text_for_file.TabIndex = 6;
+            this.sh_cb_num_text_for_file.Text = "Num Text";
+            this.sh_cb_num_text_for_file.UseVisualStyleBackColor = false;
+            this.sh_cb_num_text_for_file.CheckedChanged += new System.EventHandler(this.SH_CB_Num_Text_F_Hook);
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_cb_num_text_for_file);
+            this.Controls.Add(this.sh_b_write_created_file);
+            this.Controls.Add(this.sh_b_save_text01);
             this.Controls.Add(this.sh_cb_logic_show_signs_op);
             this.Controls.Add(this.sh_button_deshifrate);
             this.Controls.Add(this.sh_button_shifrate);
@@ -116,5 +169,9 @@ namespace IV_SHIFRATOR_MAIN
         private System.Windows.Forms.Button sh_button_shifrate;
         private System.Windows.Forms.Button sh_button_deshifrate;
         private System.Windows.Forms.CheckBox sh_cb_logic_show_signs_op;
+        private System.Windows.Forms.SaveFileDialog SH_Save_Text_To_File_DLG;
+        private System.Windows.Forms.Button sh_b_save_text01;
+        private System.Windows.Forms.Button sh_b_write_created_file;
+        private System.Windows.Forms.CheckBox sh_cb_num_text_for_file;
     }
 }
