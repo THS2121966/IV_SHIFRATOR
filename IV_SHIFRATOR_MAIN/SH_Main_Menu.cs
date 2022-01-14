@@ -23,6 +23,7 @@ namespace IV_SHIFRATOR_MAIN
             sh_sended_msg_box_01.Text = sh_ds_box_text_empty;
             sh_button_deshifrate.Visible = false;
             sh_button_shifrate.Visible = false;
+            sh_cb_logic_show_signs_op.Visible = false;
         }
 
         private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
@@ -40,9 +41,14 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_B_DEShifrate_Hook(object sender, EventArgs e)
         {
-            SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text, true);
-            sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();
-            sh_send.Dispose();
+            var dlg_result = MessageBox.Show("If you want to deshifrate correctly, please delete other sign or ' ' for correctly replacing!!!", "Warning!!!", 
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dlg_result == DialogResult.OK)
+            {
+                SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text, true);
+                sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();
+                sh_send.Dispose();
+            }
         }
 
         private void SH_DES_Bar_Text_Changed_Hook(object sender, EventArgs e)
@@ -51,11 +57,13 @@ namespace IV_SHIFRATOR_MAIN
             {
                 sh_button_deshifrate.Visible = true;
                 sh_button_shifrate.Visible = true;
+                sh_cb_logic_show_signs_op.Visible = true;
             }
             else
             {
                 sh_button_deshifrate.Visible = false;
                 sh_button_shifrate.Visible = false;
+                sh_cb_logic_show_signs_op.Visible = false;
             }
         }
 
@@ -69,6 +77,14 @@ namespace IV_SHIFRATOR_MAIN
         {
             if (sh_sended_msg_box_01.Text == String.Empty)
                 sh_sended_msg_box_01.Text = sh_ds_box_text_empty;
+        }
+
+        private void SH_Check_Sign_S_R_Hook(object sender, EventArgs e)
+        {
+            if (sh_cb_logic_show_signs_op.Checked)
+                SHIFRATOR_Event.SH_Change_Sigh_Show_Replacing_State(true);
+            else
+                SHIFRATOR_Event.SH_Change_Sigh_Show_Replacing_State(false);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define SIGN_PROTECT
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,6 +51,8 @@ namespace IV_SHIFRATOR_MAIN
         private static readonly string[] sh_shifrated_kirill = new string[33] { "tck", "ghm", "gsg", "rsa", "xna", "zya", "rty", "sxi", "zag", "klc", "sse", "hfy",
             "sde", "efg", "nng", "xxc", "hgj", "yhj", "ilm", "opw", "kls", "uio", "jkb", "llm", "tyc", "hkg", "gty", "tfr", "esb", "hjt", "hgb", "vgh", "uim" };
 
+        private static bool sh_show_replacing_sign = false;
+
         private string sh_sended_text;
         private string sh_created_text;
         private bool sh_deshifrate;
@@ -63,15 +67,16 @@ namespace IV_SHIFRATOR_MAIN
                     for(int step = 0; step < sh_step_array.Length; step++)
                     {
                         sh_step_array[step] = sh_sended_text.Substring(step, 1);
+                        if (sh_show_replacing_sign)
+                            MessageBox.Show(step + 1 + ") sended sign = " + sh_step_array[step]);
                     }
-                    for(int step = 0; step < sh_step_array.Length; step++)
+                    foreach(string sign in sh_step_array)
                     {
-                        foreach (string founded in sh_normal_kirill)
-                            if (founded == sh_step_array[step])
-                                sh_step_array[step] = sh_shifrated_kirill[step];
-                        foreach (string founded in sh_normal_kirill_2)
-                            if (founded == sh_step_array[step])
-                                sh_step_array[step] = sh_shifrated_kirill[step];
+                        for (int i = 0; i < sh_normal_kirill.Length; i++)
+                            if (sign == sh_normal_kirill[i] || sign == sh_normal_kirill_2[i])
+                                for (int next = 0; next < sh_step_array.Length; next++)
+                                    if (sign == sh_step_array[next])
+                                        sh_step_array[next] = sh_shifrated_kirill[i];
                     }
                     foreach (string step in sh_step_array)
                     {
@@ -84,14 +89,21 @@ namespace IV_SHIFRATOR_MAIN
                     string[] sh_step_array = new string[sh_sended_text.Length / 3];
                     for (int step = 0; step < sh_step_array.Length; step++)
                     {
-                        sh_step_array[step] = sh_sended_text.Substring(step *3, 3);
-                        //MessageBox.Show(step+") sended sign = "+sh_step_array[step]);
+                        if(sh_step_array[step] != " " || sh_step_array[step] != "!" || sh_step_array[step] != "." || sh_step_array[step] != "," 
+                            || sh_step_array[step] != ";" || sh_step_array[step] != ":")
+                        sh_step_array[step] = sh_sended_text.Substring(step * 3, 3);
+                        else
+                            sh_step_array[step] = sh_sended_text.Substring(step, 1);
+                        if(sh_show_replacing_sign)
+                            MessageBox.Show(step+1+") sended sign = "+sh_step_array[step]);
                     }
-                    for (int step = 0; step < sh_step_array.Length; step++)
+                    foreach (string sign in sh_step_array)
                     {
-                        foreach (string founded in sh_shifrated_kirill)
-                            if (founded == sh_step_array[step])
-                                sh_step_array[step] = sh_normal_kirill[step];
+                        for (int i = 0; i < sh_shifrated_kirill.Length; i++)
+                            if (sign == sh_shifrated_kirill[i])
+                                for (int next = 0; next < sh_step_array.Length; next++)
+                                    if (sign == sh_step_array[next])
+                                        sh_step_array[next] = sh_normal_kirill[i];
                     }
                     foreach (string step in sh_step_array)
                     {
@@ -101,6 +113,14 @@ namespace IV_SHIFRATOR_MAIN
                 }
             }
             return false;
+        }
+
+        public static void SH_Change_Sigh_Show_Replacing_State(bool state)
+        {
+            if (state)
+                sh_show_replacing_sign = true;
+            else
+                sh_show_replacing_sign = false;
         }
 
         public string SH_Get_Result()

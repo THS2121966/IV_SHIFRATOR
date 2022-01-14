@@ -33,6 +33,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_sended_msg_box_01 = new System.Windows.Forms.TextBox();
             this.sh_button_shifrate = new System.Windows.Forms.Button();
             this.sh_button_deshifrate = new System.Windows.Forms.Button();
+            this.sh_cb_logic_show_signs_op = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // sh_sended_msg_box_01
@@ -74,12 +75,27 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_button_deshifrate.UseVisualStyleBackColor = false;
             this.sh_button_deshifrate.Click += new System.EventHandler(this.SH_B_DEShifrate_Hook);
             // 
+            // sh_cb_logic_show_signs_op
+            // 
+            this.sh_cb_logic_show_signs_op.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_cb_logic_show_signs_op.AutoSize = true;
+            this.sh_cb_logic_show_signs_op.BackColor = System.Drawing.SystemColors.Info;
+            this.sh_cb_logic_show_signs_op.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sh_cb_logic_show_signs_op.Location = new System.Drawing.Point(645, 351);
+            this.sh_cb_logic_show_signs_op.Name = "sh_cb_logic_show_signs_op";
+            this.sh_cb_logic_show_signs_op.Size = new System.Drawing.Size(143, 17);
+            this.sh_cb_logic_show_signs_op.TabIndex = 3;
+            this.sh_cb_logic_show_signs_op.Text = "Show Sign for Replacing";
+            this.sh_cb_logic_show_signs_op.UseVisualStyleBackColor = false;
+            this.sh_cb_logic_show_signs_op.CheckedChanged += new System.EventHandler(this.SH_Check_Sign_S_R_Hook);
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_cb_logic_show_signs_op);
             this.Controls.Add(this.sh_button_deshifrate);
             this.Controls.Add(this.sh_button_shifrate);
             this.Controls.Add(this.sh_sended_msg_box_01);
@@ -99,5 +115,6 @@ namespace IV_SHIFRATOR_MAIN
         private System.Windows.Forms.TextBox sh_sended_msg_box_01;
         private System.Windows.Forms.Button sh_button_shifrate;
         private System.Windows.Forms.Button sh_button_deshifrate;
+        private System.Windows.Forms.CheckBox sh_cb_logic_show_signs_op;
     }
 }
