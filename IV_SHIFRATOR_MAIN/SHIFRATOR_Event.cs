@@ -86,15 +86,34 @@ namespace IV_SHIFRATOR_MAIN
                 }
                 else
                 {
-                    string[] sh_step_array = new string[sh_sended_text.Length / 3];
+                    int invaid_signs_count = 0;
+                    for(int sign_index = 0; sign_index < sh_sended_text.Length; sign_index++)
+                    {
+                        if (sh_sended_text.Substring(sign_index, 1) == " " || sh_sended_text.Substring(sign_index, 1) == "!" 
+                            || sh_sended_text.Substring(sign_index, 1) == "." || sh_sended_text.Substring(sign_index, 1) == "," 
+                            || sh_sended_text.Substring(sign_index, 1) == ";" || sh_sended_text.Substring(sign_index, 1) == ":")
+                        {
+                            invaid_signs_count++;
+                        }
+                    }
+
+                    string[] sh_step_array = new string[(sh_sended_text.Length - invaid_signs_count) / 3 ];
+                    int next_modify = 0;
+
                     for (int step = 0; step < sh_step_array.Length; step++)
                     {
-                        if(sh_step_array[step] != " " || sh_step_array[step] != "!" || sh_step_array[step] != "." || sh_step_array[step] != "," 
-                            || sh_step_array[step] != ";" || sh_step_array[step] != ":")
-                        sh_step_array[step] = sh_sended_text.Substring(step * 3, 3);
+                        if(sh_sended_text.Substring((step - next_modify) * 3, 1) != " " || sh_sended_text.Substring((step - next_modify) * 3, 1) != "!" 
+                            || sh_sended_text.Substring((step - next_modify) * 3, 1) != "." || sh_sended_text.Substring((step - next_modify) * 3, 1) != "," 
+                            || sh_sended_text.Substring((step - next_modify) * 3, 1) != ";" || sh_sended_text.Substring((step - next_modify) * 3, 1) != ":")
+                        {
+                            sh_step_array[step] = sh_sended_text.Substring((step - next_modify) * 3, 3);
+                        }
                         else
+                        {
                             sh_step_array[step] = sh_sended_text.Substring(step, 1);
-                        if(sh_show_replacing_sign)
+                            next_modify++;
+                        }
+                        if (sh_show_replacing_sign)
                             MessageBox.Show(step+1+") sended sign = "+sh_step_array[step]);
                     }
                     foreach (string sign in sh_step_array)

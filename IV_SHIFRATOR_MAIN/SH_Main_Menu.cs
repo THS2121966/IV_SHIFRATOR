@@ -29,7 +29,7 @@ namespace IV_SHIFRATOR_MAIN
         private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
         {
             sh_m_m_loaded = false;
-            SH_Loading_Window.sh_loading_core.Close();
+            SH_Loading_Window.sh_loading_core.SH_Send_Chose_Command();
         }
 
         private void SH_B_Shifrate_Hook(object sender, EventArgs e)
