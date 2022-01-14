@@ -46,7 +46,9 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_sended_msg_box_01.TabIndex = 0;
             this.sh_sended_msg_box_01.Text = "Type TEXT to Here!!!";
             this.sh_sended_msg_box_01.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.sh_sended_msg_box_01.Click += new System.EventHandler(this.SH_DS_Text_Clicked_Hook);
             this.sh_sended_msg_box_01.TextChanged += new System.EventHandler(this.SH_DES_Bar_Text_Changed_Hook);
+            this.sh_sended_msg_box_01.Leave += new System.EventHandler(this.SH_DS_Out_Of_Focus_Hook);
             // 
             // sh_button_shifrate
             // 
