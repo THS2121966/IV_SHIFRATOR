@@ -55,6 +55,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_loading_w_p_bar.Name = "sh_loading_w_p_bar";
             this.sh_loading_w_p_bar.Size = new System.Drawing.Size(800, 25);
             this.sh_loading_w_p_bar.TabIndex = 1;
+            this.sh_loading_w_p_bar.Visible = false;
             // 
             // SH_Loading_Window
             // 
@@ -73,6 +74,7 @@ namespace IV_SHIFRATOR_MAIN
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SH Loading Window";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.SH_L_M_Loaded);
             this.ResumeLayout(false);
 
         }

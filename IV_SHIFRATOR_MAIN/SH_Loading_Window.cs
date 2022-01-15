@@ -25,6 +25,13 @@ namespace IV_SHIFRATOR_MAIN
             InitializeComponent();
             SH_Realise_Think(sh_time01_fps);
             sh_loading_core = this;
+
+            Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow sh_loading_anim_chose = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow
+            {
+                AnimationType = Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow.AnimateWindowType.AW_CENTER,
+                Interval = 350,
+                TargetForm = this
+            };
         }
 
         public static SH_Main_Menu sh_m_m = new SH_Main_Menu();
@@ -87,6 +94,11 @@ namespace IV_SHIFRATOR_MAIN
                 sh_loading_w_p_bar.Value = 0;
                 this.Close();
             }
+        }
+
+        private void SH_L_M_Loaded(object sender, EventArgs e)
+        {
+            sh_loading_w_p_bar.Visible = true;
         }
     }
 }
