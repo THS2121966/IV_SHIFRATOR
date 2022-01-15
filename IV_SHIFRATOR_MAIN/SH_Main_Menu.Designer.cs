@@ -128,8 +128,6 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_cb_num_text_for_file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.sh_cb_num_text_for_file.AutoSize = true;
             this.sh_cb_num_text_for_file.BackColor = System.Drawing.SystemColors.Info;
-            this.sh_cb_num_text_for_file.Checked = true;
-            this.sh_cb_num_text_for_file.CheckState = System.Windows.Forms.CheckState.Checked;
             this.sh_cb_num_text_for_file.Cursor = System.Windows.Forms.Cursors.Hand;
             this.sh_cb_num_text_for_file.Location = new System.Drawing.Point(404, 403);
             this.sh_cb_num_text_for_file.Name = "sh_cb_num_text_for_file";
@@ -137,6 +135,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_cb_num_text_for_file.TabIndex = 6;
             this.sh_cb_num_text_for_file.Text = "Num Text";
             this.sh_cb_num_text_for_file.UseVisualStyleBackColor = false;
+            this.sh_cb_num_text_for_file.Visible = false;
             this.sh_cb_num_text_for_file.CheckedChanged += new System.EventHandler(this.SH_CB_Num_Text_F_Hook);
             // 
             // SH_Main_Menu
