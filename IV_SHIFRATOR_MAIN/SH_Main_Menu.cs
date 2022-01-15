@@ -27,8 +27,6 @@ namespace IV_SHIFRATOR_MAIN
             sh_b_save_text01.Visible = false;
             sh_b_write_created_file.Visible = false;
             sh_cb_logic_show_signs_op.Visible = false;
-            if (SH_Loading_Window.sh_loading_core.sh_realised_version < 0.15f)
-                sh_cb_num_text_for_file.Visible = false;
 
             SH_Save_Text_To_File_DLG.Filter = "Текстовый документ (*.txt)|*.txt|Все файлы (*.*)|*.*";
         }
