@@ -64,6 +64,7 @@
     <Compile Include="SH_Main_Menu.Designer.cs">
       <DependentUpon>SH_Main_Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="SH_Version_Control.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

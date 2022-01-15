@@ -33,6 +33,8 @@ namespace IV_SHIFRATOR_MAIN
         private readonly Timer sh_time_close = new Timer();
         private const int sh_time01_fps = 150;
 
+        public float sh_realised_version;
+
         private void SH_Realise_Think(int fps)
         {
             sh_time_to_next.Interval = fps;
@@ -45,6 +47,17 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_Load_Think(object sender, EventArgs e)
         {
+            if(sh_loading_w_p_bar.Value == 50)
+            {
+                sh_time_to_next.Enabled = false;
+                SH_Version_Control sh_ver = new SH_Version_Control(true);
+                if (sh_ver.SH_Version_State_Get())
+                    sh_realised_version = sh_ver.SH_Version_Get();
+                else
+                    sh_realised_version = 0;
+                sh_time_to_next.Enabled = true;
+            }
+
             if(sh_loading_w_p_bar.Value != 100)
                 sh_loading_w_p_bar.Value += 10;
             else
