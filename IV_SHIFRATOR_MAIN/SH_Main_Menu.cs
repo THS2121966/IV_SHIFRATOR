@@ -194,7 +194,7 @@ namespace IV_SHIFRATOR_MAIN
             }
         }
 
-        private bool sh_num_text_f = true;
+        private bool sh_num_text_f = false;
 
         private void SH_CB_Num_Text_F_Hook(object sender, EventArgs e)
         {

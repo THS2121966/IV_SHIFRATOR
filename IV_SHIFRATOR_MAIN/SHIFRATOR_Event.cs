@@ -128,9 +128,11 @@ namespace IV_SHIFRATOR_MAIN
             return sh_shifrated_kirill;
         }
 
+        private static bool sh_shifrate_changed = false;
+
         public static bool SH_Shifrated_Is_Default_Check()
         {
-            if (sh_shifrated_kirill != sh_shifrated_kirill_default)
+            if (sh_shifrate_changed)
                 return false;
             else
                 return true;
@@ -144,10 +146,12 @@ namespace IV_SHIFRATOR_MAIN
         public void SH_Set_Default_Shifrated_Kirill()
         {
             sh_shifrated_kirill = sh_shifrated_kirill_default;
+            sh_shifrate_changed = false;
         }
 
         public void SH_Set_New_Shifrated_Kirill(string set_signs)
         {
+            sh_shifrate_changed = true;
             for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
                 sh_shifrated_kirill[array_index] = set_signs.Substring(array_index, 1);
 
