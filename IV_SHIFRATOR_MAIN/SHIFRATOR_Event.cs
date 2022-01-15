@@ -145,13 +145,16 @@ namespace IV_SHIFRATOR_MAIN
 
         public void SH_Set_Default_Shifrated_Kirill()
         {
-            sh_shifrated_kirill = sh_shifrated_kirill_default;
+            Array.Resize(ref sh_shifrated_kirill, sh_shifrated_kirill_default.Length);
+            for (int sign_index = 0; sign_index < sh_shifrated_kirill.Length; sign_index++)
+                sh_shifrated_kirill[sign_index] = sh_shifrated_kirill_default[sign_index];
             sh_shifrate_changed = false;
         }
 
         public void SH_Set_New_Shifrated_Kirill(string set_signs)
         {
             sh_shifrate_changed = true;
+            Array.Resize(ref sh_shifrated_kirill, set_signs.Length);
             for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
                 sh_shifrated_kirill[array_index] = set_signs.Substring(array_index, 1);
 
