@@ -208,7 +208,7 @@ namespace IV_SHIFRATOR_MAIN
         {
             bool default_shifrate = false;
 
-            if(SHIFRATOR_Event.SH_Shifrated_Is_Default_Check())
+            if(!SHIFRATOR_Event.SH_Shifrated_Is_Default_Check())
             {
                 var msg_box_question = MessageBox.Show("Resset sign's to default state?", "Shifrator Event", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (msg_box_question == DialogResult.Yes)
