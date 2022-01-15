@@ -48,9 +48,9 @@ namespace IV_SHIFRATOR_MAIN
 
         private static readonly string[] sh_normal_kirill = new string[33] { "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я" };
         private static readonly string[] sh_normal_kirill_2 = new string[33] { "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Щ", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я" };
-        private static readonly string[] sh_shifrated_kirill = new string[33] { "5", "3", "2", "7", "8", "9", "1", "4", "6", "g", "h", "k",
+        private static readonly string[] sh_shifrated_kirill_default = new string[33] { "5", "3", "2", "7", "8", "9", "1", "4", "6", "g", "h", "k",
             "a", "v", "w", "x", "z", "y", "u", "o", "c", "t", "j", "b", "d", "r", "i", "f", "l", "R", "T", "Z", "A" };
-
+        private static string[] sh_shifrated_kirill = sh_shifrated_kirill_default;
         private static bool sh_show_replacing_sign = false;
 
         private string sh_sended_text;
@@ -126,6 +126,26 @@ namespace IV_SHIFRATOR_MAIN
         public string SH_Get_Result()
         {
             return sh_created_text;
+        }
+
+        public void SH_Set_Default_Shifrated_Kirill()
+        {
+            for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
+                sh_shifrated_kirill[array_index] = null;
+            Array.Resize(ref sh_shifrated_kirill, sh_shifrated_kirill_default.Length);
+
+            sh_shifrated_kirill = sh_shifrated_kirill_default;
+        }
+
+        public void SH_Set_New_Shifrated_Kirill(string set_signs)
+        {
+            for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
+                sh_shifrated_kirill[array_index] = null;
+            Array.Resize(ref sh_shifrated_kirill, set_signs.Length);
+            for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
+                sh_shifrated_kirill[array_index] = set_signs.Substring(array_index+1, 1);
+
+            MessageBox.Show("Sign's are replaced sucessfull!!!", "Shifrator Event", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void SH_Set_Text(string text, bool deshifrate = false)

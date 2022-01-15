@@ -38,6 +38,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_b_save_text01 = new System.Windows.Forms.Button();
             this.sh_b_write_created_file = new System.Windows.Forms.Button();
             this.sh_cb_num_text_for_file = new System.Windows.Forms.CheckBox();
+            this.sh_b_load_signs_from_f = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.SuspendLayout();
             // 
             // sh_sended_msg_box_01
@@ -138,12 +139,41 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_cb_num_text_for_file.Visible = false;
             this.sh_cb_num_text_for_file.CheckedChanged += new System.EventHandler(this.SH_CB_Num_Text_F_Hook);
             // 
+            // sh_b_load_signs_from_f
+            // 
+            this.sh_b_load_signs_from_f.Animated = true;
+            this.sh_b_load_signs_from_f.AutoRoundedCorners = true;
+            this.sh_b_load_signs_from_f.BackColor = System.Drawing.Color.Transparent;
+            this.sh_b_load_signs_from_f.BorderColor = System.Drawing.Color.White;
+            this.sh_b_load_signs_from_f.BorderRadius = 19;
+            this.sh_b_load_signs_from_f.CheckedState.Parent = this.sh_b_load_signs_from_f;
+            this.sh_b_load_signs_from_f.CustomImages.Parent = this.sh_b_load_signs_from_f;
+            this.sh_b_load_signs_from_f.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_load_signs_from_f.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_load_signs_from_f.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sh_b_load_signs_from_f.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sh_b_load_signs_from_f.DisabledState.Parent = this.sh_b_load_signs_from_f;
+            this.sh_b_load_signs_from_f.FillColor = System.Drawing.Color.Linen;
+            this.sh_b_load_signs_from_f.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.sh_b_load_signs_from_f.ForeColor = System.Drawing.Color.Black;
+            this.sh_b_load_signs_from_f.HoverState.Parent = this.sh_b_load_signs_from_f;
+            this.sh_b_load_signs_from_f.Location = new System.Drawing.Point(12, 12);
+            this.sh_b_load_signs_from_f.Name = "sh_b_load_signs_from_f";
+            this.sh_b_load_signs_from_f.ShadowDecoration.Parent = this.sh_b_load_signs_from_f;
+            this.sh_b_load_signs_from_f.Size = new System.Drawing.Size(140, 40);
+            this.sh_b_load_signs_from_f.TabIndex = 7;
+            this.sh_b_load_signs_from_f.Text = "Load Signs from File";
+            this.sh_b_load_signs_from_f.UseTransparentBackground = true;
+            this.sh_b_load_signs_from_f.Visible = false;
+            this.sh_b_load_signs_from_f.Click += new System.EventHandler(this.SH_B_Load_Signs_From_F_Hook);
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_b_load_signs_from_f);
             this.Controls.Add(this.sh_cb_num_text_for_file);
             this.Controls.Add(this.sh_b_write_created_file);
             this.Controls.Add(this.sh_b_save_text01);
@@ -157,6 +187,7 @@ namespace IV_SHIFRATOR_MAIN
             this.Name = "SH_Main_Menu";
             this.Text = "SHIFRATOR Menu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SH_M_M_Closed);
+            this.Shown += new System.EventHandler(this.SH_M_M_Showed_Hook);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +203,6 @@ namespace IV_SHIFRATOR_MAIN
         private System.Windows.Forms.Button sh_b_save_text01;
         private System.Windows.Forms.Button sh_b_write_created_file;
         private System.Windows.Forms.CheckBox sh_cb_num_text_for_file;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_load_signs_from_f;
     }
 }

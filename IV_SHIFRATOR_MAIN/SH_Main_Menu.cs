@@ -60,6 +60,7 @@ namespace IV_SHIFRATOR_MAIN
         {
             if(sh_sended_msg_box_01.Text != String.Empty && sh_sended_msg_box_01.Text != sh_ds_box_text_empty)
             {
+                SH_Realise_Panels_Anim(sh_b_load_signs_from_f, true, 2);
                 sh_button_deshifrate.Visible = true;
                 sh_button_shifrate.Visible = true;
                 sh_b_save_text01.Visible = true;
@@ -77,6 +78,34 @@ namespace IV_SHIFRATOR_MAIN
                 sh_cb_logic_show_signs_op.Visible = false;
                 if(SH_Loading_Window.sh_loading_core.sh_realised_version < 0.15f)
                     sh_cb_num_text_for_file.Visible = false;
+                SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, 3);
+            }
+        }
+
+        public void SH_Realise_Panels_Anim(Control chosed_panel, bool anim_hide, int seconds = 5, 
+            Siticone.Desktop.UI.AnimatorNS.AnimationType anim_type = Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale, bool anim_tip = false)
+        {
+            Siticone.Desktop.UI.WinForms.SiticoneTransition sh_anim_panel = new Siticone.Desktop.UI.WinForms.SiticoneTransition
+            {
+                AnimationType = anim_type,
+                Interval = seconds
+            };
+
+            if (!anim_tip)
+            {
+                if (!anim_hide)
+                {
+                    sh_anim_panel.Show(chosed_panel);
+                }
+                else
+                {
+                    sh_anim_panel.Hide(chosed_panel);
+                }
+            }
+            else
+            {
+                sh_anim_panel.HideSync(chosed_panel);
+                sh_anim_panel.Show(chosed_panel);
             }
         }
 
@@ -154,6 +183,16 @@ namespace IV_SHIFRATOR_MAIN
                 sh_num_text_f = true;
             else
                 sh_num_text_f = false;
+        }
+
+        private void SH_B_Load_Signs_From_F_Hook(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SH_M_M_Showed_Hook(object sender, EventArgs e)
+        {
+            SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
         }
     }
 }
