@@ -29,6 +29,13 @@ namespace IV_SHIFRATOR_MAIN
             sh_cb_logic_show_signs_op.Visible = false;
 
             SH_Save_Text_To_File_DLG.Filter = "Текстовый документ (*.txt)|*.txt|Все файлы (*.*)|*.*";
+
+            Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow sh_loading_anim_chose = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow
+            {
+                AnimationType = Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow.AnimateWindowType.AW_CENTER,
+                Interval = 350,
+                TargetForm = this
+            };
         }
 
         private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
@@ -204,6 +211,9 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_M_M_Showed_Hook(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SH_Main_Menu));
+            this.Icon = this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Mosaic, true);
             SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
         }

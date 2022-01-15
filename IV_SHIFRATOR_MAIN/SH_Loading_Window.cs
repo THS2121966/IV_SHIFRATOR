@@ -34,7 +34,7 @@ namespace IV_SHIFRATOR_MAIN
             };
         }
 
-        public static SH_Main_Menu sh_m_m = new SH_Main_Menu();
+        public static SH_Main_Menu sh_m_m;
 
         private readonly Timer sh_time_to_next = new Timer();
         private readonly Timer sh_time_close = new Timer();
@@ -71,6 +71,7 @@ namespace IV_SHIFRATOR_MAIN
             {
                 sh_time_to_next.Enabled = false;
                 this.Visible = false;
+                sh_m_m = new SH_Main_Menu();
                 if(sh_m_m.sh_m_m_loaded)
                     sh_m_m.Visible = true;
             }
