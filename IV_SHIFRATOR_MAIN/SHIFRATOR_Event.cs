@@ -123,6 +123,19 @@ namespace IV_SHIFRATOR_MAIN
                 sh_show_replacing_sign = false;
         }
 
+        public static string[] SH_Get_Shifrated_Signs()
+        {
+            return sh_shifrated_kirill;
+        }
+
+        public static bool SH_Shifrated_Is_Default_Check()
+        {
+            if (sh_shifrated_kirill != sh_shifrated_kirill_default)
+                return false;
+            else
+                return true;
+        }
+
         public string SH_Get_Result()
         {
             return sh_created_text;
@@ -130,20 +143,13 @@ namespace IV_SHIFRATOR_MAIN
 
         public void SH_Set_Default_Shifrated_Kirill()
         {
-            for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
-                sh_shifrated_kirill[array_index] = null;
-            Array.Resize(ref sh_shifrated_kirill, sh_shifrated_kirill_default.Length);
-
             sh_shifrated_kirill = sh_shifrated_kirill_default;
         }
 
         public void SH_Set_New_Shifrated_Kirill(string set_signs)
         {
             for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
-                sh_shifrated_kirill[array_index] = null;
-            Array.Resize(ref sh_shifrated_kirill, set_signs.Length);
-            for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
-                sh_shifrated_kirill[array_index] = set_signs.Substring(array_index+1, 1);
+                sh_shifrated_kirill[array_index] = set_signs.Substring(array_index, 1);
 
             MessageBox.Show("Sign's are replaced sucessfull!!!", "Shifrator Event", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

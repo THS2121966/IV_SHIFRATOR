@@ -206,7 +206,59 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_B_Load_Signs_From_F_Hook(object sender, EventArgs e)
         {
+            bool default_shifrate = false;
 
+            if(SHIFRATOR_Event.SH_Shifrated_Is_Default_Check())
+            {
+                var msg_box_question = MessageBox.Show("Resset sign's to default state?", "Shifrator Event", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (msg_box_question == DialogResult.Yes)
+                    default_shifrate = true;
+            }
+
+            if (!default_shifrate)
+            {
+                OpenFileDialog sh_open_sign_file = new OpenFileDialog
+                {
+                    Title = "Shifrator Open File Dialog",
+                    Filter = "Текстовый документ (*.txt)|*.txt|Все файлы (*.*)|*.*"
+                };
+                if (sh_open_sign_file.ShowDialog() == DialogResult.OK)
+                {
+                    StreamReader sh_read_from_file = new StreamReader(sh_open_sign_file.FileName);
+                    SHIFRATOR_Event sh_sign_table_replace = new SHIFRATOR_Event();
+                    sh_sign_table_replace.SH_Set_New_Shifrated_Kirill(sh_read_from_file.ReadLine());
+                    sh_sign_table_replace.Dispose();
+                    sh_read_from_file.Close();
+                    var dlg_result = MessageBox.Show("Changing shifrated table was Sucessfull!!! Show New Sign's?", "Shifrator Event", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (dlg_result == DialogResult.Yes)
+                    {
+                        var sh_shifrated_signs = SHIFRATOR_Event.SH_Get_Shifrated_Signs();
+                        int i = 1;
+                        foreach (string sign in sh_shifrated_signs)
+                        {
+                            MessageBox.Show("Shifrated string #" + i + " = " + sign);
+                            i++;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                SHIFRATOR_Event sh_to_def = new SHIFRATOR_Event();
+                sh_to_def.SH_Set_Default_Shifrated_Kirill();
+                sh_to_def.Dispose();
+                var dlg_result = MessageBox.Show("Changing shifrated table was Sucessfull!!! Show New Sign's?", "Shifrator Event", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dlg_result == DialogResult.Yes)
+                {
+                    var sh_shifrated_signs = SHIFRATOR_Event.SH_Get_Shifrated_Signs();
+                    int i = 1;
+                    foreach (string sign in sh_shifrated_signs)
+                    {
+                        MessageBox.Show("Shifrated string #" + i + " = " + sign);
+                        i++;
+                    }
+                }
+            }
         }
 
         private void SH_M_M_Showed_Hook(object sender, EventArgs e)
