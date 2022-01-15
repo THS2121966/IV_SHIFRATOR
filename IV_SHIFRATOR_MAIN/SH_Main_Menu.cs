@@ -40,7 +40,9 @@ namespace IV_SHIFRATOR_MAIN
         private void SH_B_Shifrate_Hook(object sender, EventArgs e)
         {
             SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text);
+            SH_Realise_Panels_Anim(sh_sended_msg_box_01, true, true, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
             sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();
+            SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
             sh_send.Dispose();
         }
 
@@ -51,7 +53,9 @@ namespace IV_SHIFRATOR_MAIN
             //if (dlg_result == DialogResult.OK)
             {
                 SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text, true);
+                SH_Realise_Panels_Anim(sh_sended_msg_box_01, true, true, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
                 sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();
+                SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
                 sh_send.Dispose();
             }
         }
@@ -60,7 +64,7 @@ namespace IV_SHIFRATOR_MAIN
         {
             if(sh_sended_msg_box_01.Text != String.Empty && sh_sended_msg_box_01.Text != sh_ds_box_text_empty)
             {
-                SH_Realise_Panels_Anim(sh_b_load_signs_from_f, true, 2);
+                SH_Realise_Panels_Anim(sh_b_load_signs_from_f, true, false, 2);
                 sh_button_deshifrate.Visible = true;
                 sh_button_shifrate.Visible = true;
                 sh_b_save_text01.Visible = true;
@@ -78,11 +82,11 @@ namespace IV_SHIFRATOR_MAIN
                 sh_cb_logic_show_signs_op.Visible = false;
                 if(SH_Loading_Window.sh_loading_core.sh_realised_version < 0.15f)
                     sh_cb_num_text_for_file.Visible = false;
-                SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, 3);
+                SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, false, 3);
             }
         }
 
-        public void SH_Realise_Panels_Anim(Control chosed_panel, bool anim_hide, int seconds = 5, 
+        public void SH_Realise_Panels_Anim(Control chosed_panel, bool anim_hide, bool synced = false, int seconds = 5, 
             Siticone.Desktop.UI.AnimatorNS.AnimationType anim_type = Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale, bool anim_tip = false)
         {
             Siticone.Desktop.UI.WinForms.SiticoneTransition sh_anim_panel = new Siticone.Desktop.UI.WinForms.SiticoneTransition
@@ -95,11 +99,17 @@ namespace IV_SHIFRATOR_MAIN
             {
                 if (!anim_hide)
                 {
-                    sh_anim_panel.Show(chosed_panel);
+                    if(!synced)
+                        sh_anim_panel.Show(chosed_panel);
+                    else
+                        sh_anim_panel.ShowSync(chosed_panel);
                 }
                 else
                 {
-                    sh_anim_panel.Hide(chosed_panel);
+                    if (!synced)
+                        sh_anim_panel.Hide(chosed_panel);
+                    else
+                        sh_anim_panel.HideSync(chosed_panel);
                 }
             }
             else
@@ -142,6 +152,7 @@ namespace IV_SHIFRATOR_MAIN
             sh_write_file.Close();
 
             MessageBox.Show("Current text saved to new file Successfully!!! File Name - "+ SH_Save_Text_To_File_DLG.FileName, "SHIFRATOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            SH_Realise_Panels_Anim(sh_b_save_text01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
         }
 
         private void SH_B_Save_To_File_Hook(object sender, EventArgs e)
@@ -172,6 +183,7 @@ namespace IV_SHIFRATOR_MAIN
                 sh_write_file.WriteLine(sh_get_text_from_file+sh_sended_msg_box_01.Text);
                 sh_write_file.Close();
                 MessageBox.Show("Current changes are saved Successfully!!! File Name - " + open_f_dlg.FileName, "SHIFRATOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SH_Realise_Panels_Anim(sh_b_write_created_file, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
             }
         }
 
@@ -192,7 +204,8 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_M_M_Showed_Hook(object sender, EventArgs e)
         {
-            SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Mosaic, true);
+            SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
         }
     }
 }
