@@ -40,6 +40,10 @@ namespace IV_SHIFRATOR_MAIN
         private readonly Timer sh_time_close = new Timer();
         private const int sh_time01_fps = 150;
 
+        public static readonly string sh_logo = "SHIFRATOR";
+        public static readonly string sh_logo_warning = sh_logo+" Warning!!!";
+        public static readonly string sh_logo_error = sh_logo + " Error!!!";
+
         public float sh_realised_version;
 
         private void SH_Realise_Think(int fps)

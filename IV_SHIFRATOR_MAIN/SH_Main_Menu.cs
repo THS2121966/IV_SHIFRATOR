@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using sh_loading_w = IV_SHIFRATOR_MAIN.SH_Loading_Window;
 
 namespace IV_SHIFRATOR_MAIN
 {
@@ -158,7 +159,7 @@ namespace IV_SHIFRATOR_MAIN
             }
             sh_write_file.Close();
 
-            MessageBox.Show("Current text saved to new file Successfully!!! File Name - "+ SH_Save_Text_To_File_DLG.FileName, "SHIFRATOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Current text saved to new file Successfully!!! File Name - "+ SH_Save_Text_To_File_DLG.FileName, sh_loading_w.sh_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
             SH_Realise_Panels_Anim(sh_b_save_text01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
         }
 
@@ -189,7 +190,7 @@ namespace IV_SHIFRATOR_MAIN
                 StreamWriter sh_write_file = new StreamWriter(open_f_dlg.FileName);
                 sh_write_file.WriteLine(sh_get_text_from_file+sh_sended_msg_box_01.Text);
                 sh_write_file.Close();
-                MessageBox.Show("Current changes are saved Successfully!!! File Name - " + open_f_dlg.FileName, "SHIFRATOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Current changes are saved Successfully!!! File Name - " + open_f_dlg.FileName, sh_loading_w.sh_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SH_Realise_Panels_Anim(sh_b_write_created_file, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
             }
         }
@@ -210,7 +211,7 @@ namespace IV_SHIFRATOR_MAIN
 
             if(!SHIFRATOR_Event.SH_Shifrated_Is_Default_Check())
             {
-                var msg_box_question = MessageBox.Show("Resset sign's to default state?", "Shifrator Event", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var msg_box_question = MessageBox.Show("Resset sign's to default state?", sh_loading_w.sh_logo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (msg_box_question == DialogResult.Yes)
                     default_shifrate = true;
             }
@@ -229,7 +230,7 @@ namespace IV_SHIFRATOR_MAIN
                     sh_sign_table_replace.SH_Set_New_Shifrated_Kirill(sh_read_from_file.ReadLine());
                     sh_sign_table_replace.Dispose();
                     sh_read_from_file.Close();
-                    var dlg_result = MessageBox.Show("Changing shifrated table was Sucessfull!!! Show New Sign's?", "Shifrator Event", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    var dlg_result = MessageBox.Show("Changing shifrated table was Sucessfull!!! Show New Sign's?", sh_loading_w.sh_logo, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (dlg_result == DialogResult.Yes)
                     {
                         var sh_shifrated_signs = SHIFRATOR_Event.SH_Get_Shifrated_Signs();
@@ -247,7 +248,7 @@ namespace IV_SHIFRATOR_MAIN
                 SHIFRATOR_Event sh_to_def = new SHIFRATOR_Event();
                 sh_to_def.SH_Set_Default_Shifrated_Kirill();
                 sh_to_def.Dispose();
-                var dlg_result = MessageBox.Show("Changing shifrated table was Sucessfull!!! Show New Sign's?", "Shifrator Event", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                var dlg_result = MessageBox.Show("Changing shifrated table was Sucessfull!!! Show New Sign's?", sh_loading_w.sh_logo, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (dlg_result == DialogResult.Yes)
                 {
                     var sh_shifrated_signs = SHIFRATOR_Event.SH_Get_Shifrated_Signs();
