@@ -160,7 +160,7 @@ namespace IV_SHIFRATOR_MAIN
             for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
                 sh_shifrated_kirill[array_index] = set_signs.Substring(array_index, 1);
 
-            if (SH_Loading_Window.sh_loading_core.sh_realised_version >= 0.151)
+            if (SH_Loading_Window.sh_loading_core.sh_realised_version >= 0.15)
                 if (sh_shifrated_kirill.Length != sh_shifrated_kirill_default.Length)
                 {
                     MessageBox.Show("Shifrate table sign's count less than normal sign's table!!! Adding next sign's from default shifrate table...", sh_event_logo,
