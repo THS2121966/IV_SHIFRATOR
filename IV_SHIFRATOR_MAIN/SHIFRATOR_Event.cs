@@ -11,6 +11,8 @@ namespace IV_SHIFRATOR_MAIN
 {
     public class SHIFRATOR_Event : IDisposable
     {
+        public static readonly string sh_event_logo = "Shifrator Event";
+
         public SHIFRATOR_Event()
         {
             SH_Setup_Shifrator_Event();
@@ -158,7 +160,21 @@ namespace IV_SHIFRATOR_MAIN
             for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
                 sh_shifrated_kirill[array_index] = set_signs.Substring(array_index, 1);
 
-            MessageBox.Show("Sign's are replaced sucessfull!!!", "Shifrator Event", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (SH_Loading_Window.sh_loading_core.sh_realised_version >= 0.15)
+                if (sh_shifrated_kirill.Length != sh_shifrated_kirill_default.Length)
+                {
+                    MessageBox.Show("Shifrate table sign's count less than normal sign's table!!! Adding next sign's from default shifrate table...", sh_event_logo,
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    int sh_last_added_sign = sh_shifrated_kirill.Length;
+                    Array.Resize(ref sh_shifrated_kirill, sh_shifrated_kirill_default.Length);
+                    for (int sign_add = sh_last_added_sign; sign_add < sh_shifrated_kirill.Length; sign_add++)
+                    {
+                        sh_shifrated_kirill[sign_add] = sh_shifrated_kirill_default[sign_add];
+                    }
+                }
+
+            MessageBox.Show("Sign's are replaced sucessfull!!!", sh_event_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void SH_Set_Text(string text, bool deshifrate = false)
@@ -166,9 +182,9 @@ namespace IV_SHIFRATOR_MAIN
             sh_sended_text = text;
             sh_deshifrate = deshifrate;
             if(SH_Shifrate_State())
-                MessageBox.Show("Shifrating state Was GOOD!!!", "SHIFRATOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Shifrating state Was GOOD!!!", sh_event_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-                MessageBox.Show("Shifrating state Was BAD!!! Tell a Programmer!!!", "SHIFRATOR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Shifrating state Was BAD!!! Tell a Programmer!!!", sh_event_logo, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

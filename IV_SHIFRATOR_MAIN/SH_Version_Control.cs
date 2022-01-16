@@ -12,6 +12,8 @@ namespace IV_SHIFRATOR_MAIN
     {
 #if SHIFRATOR_VERSION_015
         private static readonly float sh_programm_ver = 0.15f;
+#elif SHIFRATOR_VERSION_015_1
+        private static readonly float sh_programm_ver = 0.151f;
 #endif
         private static readonly string sh_programm_ver_text = "'Current programm ver' = '"+sh_programm_ver+"'";
 
