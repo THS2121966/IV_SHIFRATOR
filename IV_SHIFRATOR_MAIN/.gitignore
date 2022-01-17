@@ -2,3 +2,5 @@
 .vs/
 bin/
 obj/
+#IV Note: github_publish_archive_create.bat ignore folders
+IV_SHIFRATOR_MAIN_GIT_Release/
