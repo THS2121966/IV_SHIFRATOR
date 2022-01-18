@@ -31,6 +31,7 @@ namespace IV_SHIFRATOR_MAIN
         {
             this.sh_name_label01 = new System.Windows.Forms.Label();
             this.sh_loading_w_p_bar = new System.Windows.Forms.ProgressBar();
+            this.sh_l_m_button_exit = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.SuspendLayout();
             // 
             // sh_name_label01
@@ -57,12 +58,42 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_loading_w_p_bar.TabIndex = 1;
             this.sh_loading_w_p_bar.Visible = false;
             // 
+            // sh_l_m_button_exit
+            // 
+            this.sh_l_m_button_exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_l_m_button_exit.Animated = true;
+            this.sh_l_m_button_exit.AutoRoundedCorners = true;
+            this.sh_l_m_button_exit.BackColor = System.Drawing.Color.Transparent;
+            this.sh_l_m_button_exit.BorderRadius = 15;
+            this.sh_l_m_button_exit.CheckedState.Parent = this.sh_l_m_button_exit;
+            this.sh_l_m_button_exit.CustomImages.Parent = this.sh_l_m_button_exit;
+            this.sh_l_m_button_exit.DefaultAutoSize = true;
+            this.sh_l_m_button_exit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sh_l_m_button_exit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sh_l_m_button_exit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sh_l_m_button_exit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sh_l_m_button_exit.DisabledState.Parent = this.sh_l_m_button_exit;
+            this.sh_l_m_button_exit.FillColor = System.Drawing.Color.Red;
+            this.sh_l_m_button_exit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sh_l_m_button_exit.ForeColor = System.Drawing.Color.White;
+            this.sh_l_m_button_exit.HoverState.Parent = this.sh_l_m_button_exit;
+            this.sh_l_m_button_exit.Location = new System.Drawing.Point(759, 0);
+            this.sh_l_m_button_exit.Name = "sh_l_m_button_exit";
+            this.sh_l_m_button_exit.ShadowDecoration.Parent = this.sh_l_m_button_exit;
+            this.sh_l_m_button_exit.Size = new System.Drawing.Size(41, 33);
+            this.sh_l_m_button_exit.TabIndex = 2;
+            this.sh_l_m_button_exit.Text = "X";
+            this.sh_l_m_button_exit.UseTransparentBackground = true;
+            this.sh_l_m_button_exit.Visible = false;
+            this.sh_l_m_button_exit.Click += new System.EventHandler(this.SH_B_Exit_Clicked_Hook);
+            // 
             // SH_Loading_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_l_m_button_exit);
             this.Controls.Add(this.sh_loading_w_p_bar);
             this.Controls.Add(this.sh_name_label01);
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
@@ -76,6 +107,7 @@ namespace IV_SHIFRATOR_MAIN
             this.TopMost = true;
             this.Load += new System.EventHandler(this.SH_L_M_Loaded);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -83,6 +115,7 @@ namespace IV_SHIFRATOR_MAIN
 
         private System.Windows.Forms.Label sh_name_label01;
         private System.Windows.Forms.ProgressBar sh_loading_w_p_bar;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton sh_l_m_button_exit;
     }
 }
 
