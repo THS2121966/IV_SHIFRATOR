@@ -94,7 +94,6 @@ namespace IV_SHIFRATOR_MAIN
             }
         }
 
-        [MTAThread]
         public void SH_Realise_Panels_Anim(Control chosed_panel, bool anim_hide, bool synced = false, int seconds = 5, 
             Siticone.Desktop.UI.AnimatorNS.AnimationType anim_type = Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale, bool anim_tip = false)
         {

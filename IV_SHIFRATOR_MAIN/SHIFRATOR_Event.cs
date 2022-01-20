@@ -59,7 +59,6 @@ namespace IV_SHIFRATOR_MAIN
         private string sh_created_text;
         private bool sh_deshifrate;
 
-        [MTAThread]
         private bool SH_Shifrate_State()
         {
             if(sh_sended_text != String.Empty || sh_sended_text != null)
@@ -154,7 +153,6 @@ namespace IV_SHIFRATOR_MAIN
             sh_shifrate_changed = false;
         }
 
-        [MTAThread]
         public void SH_Set_New_Shifrated_Kirill(string set_signs)
         {
             sh_shifrate_changed = true;

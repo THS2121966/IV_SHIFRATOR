@@ -40,7 +40,6 @@ namespace IV_SHIFRATOR_MAIN
 
         }
 
-        [MTAThread]
         public void SH_Realise_Version()
         {
             string sh_def_path = "./";
