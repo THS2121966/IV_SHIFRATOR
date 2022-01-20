@@ -52,6 +52,8 @@ namespace IV_SHIFRATOR_MAIN
         private static readonly string[] sh_normal_kirill_2 = new string[33] { "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я" };
         private static readonly string[] sh_shifrated_kirill_default = new string[33] { "5", "3", "2", "7", "8", "9", "1", "4", "6", "g", "h", "k",
             "a", "v", "w", "x", "z", "y", "u", "o", "c", "t", "j", "b", "d", "r", "i", "f", "l", "R", "T", "Z", "A" };
+        private static readonly string sh_sign_fix_up = "^";
+        private static readonly string[] sh_sign_special_table = new string[] { sh_sign_fix_up };
         private static string[] sh_shifrated_kirill = sh_shifrated_kirill_default;
         private static bool sh_show_replacing_sign = false;
 
@@ -63,6 +65,9 @@ namespace IV_SHIFRATOR_MAIN
         {
             if(sh_sended_text != String.Empty || sh_sended_text != null)
             {
+                if (SH_Check_Special_Signs(sh_sended_text, sh_deshifrate) > 0)
+                    sh_sended_text = SH_Add_Special_Signs(sh_sended_text, sh_sign_fix_up, sh_deshifrate);
+
                 if(!sh_deshifrate)
                 {
                     string[] sh_step_array = new string[sh_sended_text.Length];
@@ -138,6 +143,87 @@ namespace IV_SHIFRATOR_MAIN
                 return false;
             else
                 return true;
+        }
+
+        private int SH_Check_Special_Signs(string text, bool text_shifrated = false)
+        {
+            int special_signs_count = 0;
+            if(!text_shifrated)
+            {
+                for (int symbol = 0; symbol < text.Length; symbol++)
+                    for (int sign_in = 0; sign_in < sh_normal_kirill_2.Length; sign_in++)
+                        if (text.Substring(symbol, 1) == sh_normal_kirill_2[sign_in])
+                            special_signs_count++;
+            }
+            else
+            {
+                for (int symbol = 0; symbol < text.Length; symbol++)
+                    for (int sign_in = 0; sign_in < sh_sign_special_table.Length; sign_in++)
+                        if (text.Substring(symbol, 1) == sh_sign_special_table[sign_in])
+                            special_signs_count++;
+            }
+
+            return special_signs_count;
+        }
+
+        private string SH_Add_Special_Signs(string text, string symbol, bool text_shifrated = false)
+        {
+            int counted_special_signs = SH_Check_Special_Signs(text, text_shifrated);
+            string[] text_table = new string[text.Length];
+            string[] text_table_next = new string[text.Length + counted_special_signs];
+            string generated_text = String.Empty;
+
+            for (int symbol_text = 0; symbol_text < text_table.Length; symbol_text++)
+                text_table[symbol_text] = text.Substring(symbol_text, 1);
+
+            if(symbol == sh_sign_fix_up)
+                if (!text_shifrated)
+                {
+                    int next = 0;
+
+                    for (int symbol_old = 0; symbol_old < text_table.Length; symbol_old++)
+                        foreach (string geted_symbol in sh_normal_kirill_2)
+                            if (text_table[symbol_old] == geted_symbol)
+                            {
+                                next += 1;
+                                int next_previous = 0;
+                                if (next != 0)
+                                    next_previous = next - 1;
+
+                                text_table_next[symbol_old + next_previous] = sh_sign_fix_up;
+                                text_table_next[symbol_old + next] = geted_symbol;
+                            }
+                            else
+                                text_table_next[symbol_old + next] = text_table[symbol_old];
+                }
+                else
+                {
+                    Array.Resize(ref text_table_next, text_table.Length - counted_special_signs);
+
+                    bool next_fixup = false;
+                    int count_next = 0;
+
+                    for (int symbol_new = 0; symbol_new < text_table.Length; symbol_new++)
+                        if (text_table[symbol_new] == sh_sign_fix_up)
+                        {
+                            next_fixup = true;
+                            count_next += 1;
+                        }
+                        else if (next_fixup)
+                        {
+                            next_fixup = false;
+                            for (int get_sign = 0; get_sign < sh_shifrated_kirill.Length; get_sign++)
+                                if (text_table[symbol_new] == sh_shifrated_kirill[get_sign])
+                                    text_table_next[symbol_new - count_next] = sh_normal_kirill_2[get_sign];
+                        }
+                        else
+                            text_table_next[symbol_new - count_next] = text_table[symbol_new];
+                }
+
+            foreach (string new_sign in text_table_next)
+                generated_text += new_sign;
+
+            return generated_text;
         }
 
         public string SH_Get_Result()
