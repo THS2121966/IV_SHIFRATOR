@@ -39,6 +39,7 @@ namespace IV_SHIFRATOR_MAIN
         public void Dispose()
         {
             sh_sended_text = null;
+            sh_created_text = null;
             sh_deshifrate = false;
         }
 
@@ -57,9 +58,17 @@ namespace IV_SHIFRATOR_MAIN
         private static string[] sh_shifrated_kirill = sh_shifrated_kirill_default;
         private static bool sh_show_replacing_sign = false;
 
+        private enum SH_Special_Symbol
+        {
+            FIX_UP = 0,
+            OTHER = 1,
+            COUNT_ALL = 2
+        }
+
         private string sh_sended_text;
         private string sh_created_text;
         private bool sh_deshifrate;
+        private static bool sh_symbol_conflict = false;
 
         private bool SH_Shifrate_State()
         {
@@ -67,13 +76,14 @@ namespace IV_SHIFRATOR_MAIN
             {
                 bool sh_special_signs_used = false;
 
-                if (SH_Check_Special_Signs(sh_sended_text, sh_deshifrate) > 0)
-                {
-                    sh_sended_text = SH_Add_Special_Signs(sh_sended_text, sh_sign_fix_up, sh_deshifrate);
-                    sh_special_signs_used = true;
-                }
+                if (SH_Loading_Window.sh_loading_core.sh_realised_version > 0.15f)
+                    if (SH_Check_Special_Signs(sh_sended_text, sh_deshifrate) > 0 && !sh_symbol_conflict)
+                    {
+                        sh_sended_text = SH_Add_Special_Signs(sh_sended_text, SH_Special_Symbol.FIX_UP, sh_deshifrate);
+                        sh_special_signs_used = true;
+                    }
 
-                if(!sh_deshifrate)
+                if (!sh_deshifrate)
                 {
                     string[] sh_step_array = new string[sh_sended_text.Length];
 
@@ -171,7 +181,7 @@ namespace IV_SHIFRATOR_MAIN
             return special_signs_count;
         }
 
-        private string SH_Add_Special_Signs(string text, string symbol, bool text_shifrated = false)
+        private string SH_Add_Special_Signs(string text, SH_Special_Symbol symbol_number, bool text_shifrated = false)
         {
             int counted_special_signs = SH_Check_Special_Signs(text, text_shifrated);
             string[] text_table = new string[text.Length];
@@ -181,7 +191,7 @@ namespace IV_SHIFRATOR_MAIN
             for (int symbol_text = 0; symbol_text < text_table.Length; symbol_text++)
                 text_table[symbol_text] = text.Substring(symbol_text, 1);
 
-            if(symbol == sh_sign_fix_up)
+            if(symbol_number == SH_Special_Symbol.FIX_UP)
                 if (!text_shifrated)
                 {
                     int next = 0;
@@ -242,6 +252,7 @@ namespace IV_SHIFRATOR_MAIN
             for (int sign_index = 0; sign_index < sh_shifrated_kirill.Length; sign_index++)
                 sh_shifrated_kirill[sign_index] = sh_shifrated_kirill_default[sign_index];
             sh_shifrate_changed = false;
+            sh_symbol_conflict = false;
         }
 
         public void SH_Set_New_Shifrated_Kirill(string set_signs)
@@ -251,11 +262,14 @@ namespace IV_SHIFRATOR_MAIN
             for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
                 sh_shifrated_kirill[array_index] = set_signs.Substring(array_index, 1);
 
-            if(SH_Check_Special_Signs(set_signs, true) > 0)
-            {
-                MessageBox.Show("In Shifrated Table founded needed special signs!!! This causes a problem with deshifrating!!!", sh_event_logo, 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            if(SH_Loading_Window.sh_loading_core.sh_realised_version > 0.15f)
+                if (SH_Check_Special_Signs(set_signs, true) > 0)
+                {
+                    MessageBox.Show("In Shifrated Table founded needed special signs!!! This causes a problem with deshifrating!!!", sh_event_logo,
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    sh_symbol_conflict = true;
+                }
 
             if (SH_Loading_Window.sh_loading_core.sh_realised_version >= 0.15)
                 if (sh_shifrated_kirill.Length < sh_shifrated_kirill_default.Length)
