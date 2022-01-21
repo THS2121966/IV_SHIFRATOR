@@ -65,8 +65,13 @@ namespace IV_SHIFRATOR_MAIN
         {
             if(sh_sended_text != String.Empty || sh_sended_text != null)
             {
+                bool sh_special_signs_used = false;
+
                 if (SH_Check_Special_Signs(sh_sended_text, sh_deshifrate) > 0)
+                {
                     sh_sended_text = SH_Add_Special_Signs(sh_sended_text, sh_sign_fix_up, sh_deshifrate);
+                    sh_special_signs_used = true;
+                }
 
                 if(!sh_deshifrate)
                 {
@@ -107,9 +112,9 @@ namespace IV_SHIFRATOR_MAIN
                         for (int i = 0; i < sh_normal_kirill.Length; i++)
                             if (sign == sh_shifrated_kirill[i])
                                 for (int next = 0; next < sh_step_array.Length; next++)
-                                    if (sign == sh_step_array[next] && next != 0)
+                                    if (sign == sh_step_array[next] && (next != 0 || sh_special_signs_used))
                                         sh_step_array[next] = sh_normal_kirill[i];
-                                    else if(sign == sh_step_array[next] && next == 0)
+                                    else if(sign == sh_step_array[next] && next == 0 && !sh_special_signs_used)
                                         sh_step_array[next] = sh_normal_kirill_2[i];
                     }
                     foreach (string step in sh_step_array)
@@ -245,6 +250,12 @@ namespace IV_SHIFRATOR_MAIN
             Array.Resize(ref sh_shifrated_kirill, set_signs.Length);
             for (int array_index = 0; array_index < sh_shifrated_kirill.Length; array_index++)
                 sh_shifrated_kirill[array_index] = set_signs.Substring(array_index, 1);
+
+            if(SH_Check_Special_Signs(set_signs, true) > 0)
+            {
+                MessageBox.Show("In Shifrated Table founded needed special signs!!! This causes a problem with deshifrating!!!", sh_event_logo, 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             if (SH_Loading_Window.sh_loading_core.sh_realised_version >= 0.15)
                 if (sh_shifrated_kirill.Length < sh_shifrated_kirill_default.Length)
