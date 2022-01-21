@@ -93,6 +93,7 @@ namespace IV_SHIFRATOR_MAIN
             else if(sh_node_showed)
             {
                 sh_time_to_next.Enabled = false;
+                sh_time_text_anim.Enabled = false;
                 sh_node_showed = false;
                 this.Visible = false;
                 sh_m_m = new SH_Main_Menu();
