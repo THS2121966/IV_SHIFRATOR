@@ -161,6 +161,9 @@ namespace IV_SHIFRATOR_MAIN
 
             MessageBox.Show("Current text saved to new file Successfully!!! File Name - "+ SH_Save_Text_To_File_DLG.FileName, sh_loading_w.sh_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
             SH_Realise_Panels_Anim(sh_b_save_text01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
+
+            var iv_save_dlg = sender as SaveFileDialog;
+            iv_save_dlg.Dispose();
         }
 
         private void SH_B_Save_To_File_Hook(object sender, EventArgs e)
@@ -193,6 +196,7 @@ namespace IV_SHIFRATOR_MAIN
                 MessageBox.Show("Current changes are saved Successfully!!! File Name - " + open_f_dlg.FileName, sh_loading_w.sh_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SH_Realise_Panels_Anim(sh_b_write_created_file, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
             }
+            open_f_dlg.Dispose();
         }
 
         private bool sh_num_text_f = false;
@@ -242,6 +246,7 @@ namespace IV_SHIFRATOR_MAIN
                         }
                     }
                 }
+                sh_open_sign_file.Dispose();
             }
             else
             {

@@ -60,6 +60,7 @@ namespace IV_SHIFRATOR_MAIN
         {
             if(sh_loading_w_p_bar.Value == 50)
             {
+                sh_l_m_button_exit.Visible = true;
                 sh_time_to_next.Enabled = false;
                 SH_Version_Control sh_ver = new SH_Version_Control(true);
                 if (sh_ver.SH_Version_State_Get())
@@ -67,6 +68,7 @@ namespace IV_SHIFRATOR_MAIN
                 else
                     sh_realised_version = 0;
                 sh_time_to_next.Enabled = true;
+                sh_l_m_button_exit.Visible = false;
             }
 
             if(sh_loading_w_p_bar.Value != 100)
@@ -104,6 +106,13 @@ namespace IV_SHIFRATOR_MAIN
         private void SH_L_M_Loaded(object sender, EventArgs e)
         {
             sh_loading_w_p_bar.Visible = true;
+        }
+
+        private void SH_B_Exit_Clicked_Hook(object sender, EventArgs e)
+        {
+            sh_time_to_next.Enabled = false;
+            sh_l_m_button_exit.Visible = false;
+            SH_Send_Chose_Command();
         }
     }
 }
