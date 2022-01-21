@@ -32,6 +32,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_name_label01 = new System.Windows.Forms.Label();
             this.sh_loading_w_p_bar = new System.Windows.Forms.ProgressBar();
             this.sh_l_m_button_exit = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.sh_nodes_label_01 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // sh_name_label01
@@ -87,12 +88,25 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_l_m_button_exit.Visible = false;
             this.sh_l_m_button_exit.Click += new System.EventHandler(this.SH_B_Exit_Clicked_Hook);
             // 
+            // sh_nodes_label_01
+            // 
+            this.sh_nodes_label_01.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sh_nodes_label_01.BackColor = System.Drawing.SystemColors.Menu;
+            this.sh_nodes_label_01.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sh_nodes_label_01.Location = new System.Drawing.Point(9, 411);
+            this.sh_nodes_label_01.Name = "sh_nodes_label_01";
+            this.sh_nodes_label_01.Size = new System.Drawing.Size(180, 30);
+            this.sh_nodes_label_01.TabIndex = 3;
+            this.sh_nodes_label_01.Text = "FIXME!!!";
+            this.sh_nodes_label_01.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // SH_Loading_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_nodes_label_01);
             this.Controls.Add(this.sh_l_m_button_exit);
             this.Controls.Add(this.sh_loading_w_p_bar);
             this.Controls.Add(this.sh_name_label01);
@@ -116,6 +130,7 @@ namespace IV_SHIFRATOR_MAIN
         private System.Windows.Forms.Label sh_name_label01;
         private System.Windows.Forms.ProgressBar sh_loading_w_p_bar;
         private Siticone.Desktop.UI.WinForms.SiticoneButton sh_l_m_button_exit;
+        private System.Windows.Forms.Label sh_nodes_label_01;
     }
 }
 
