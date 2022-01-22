@@ -17,6 +17,7 @@ namespace IV_SHIFRATOR_MAIN
         public SH_Loading_Window()
         {
             InitializeComponent();
+            SH_L_W_Init_Styles();
             SH_Realise_Think(sh_time01_fps);
             sh_loading_core = this;
 
@@ -34,11 +35,15 @@ namespace IV_SHIFRATOR_MAIN
 
         public static SH_Main_Menu sh_m_m;
 
+        private readonly Timer sh_color_l_w_anim = new Timer();
         private readonly Timer sh_time_to_next = new Timer();
         private readonly Timer sh_time_close = new Timer();
         private readonly Timer sh_time_text_anim = new Timer();
         private const int sh_time01_fps = 150;
         private const int sh_time_text_fps = 42;
+
+        private static Color sh_def_l_w_color;
+        private Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_l_m_color_style;
 
         public const string sh_logo = "SHIFRATOR";
         public const string sh_logo_warning = sh_logo+" Warning!!!";
@@ -51,6 +56,10 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_Realise_Think(int fps)
         {
+            sh_color_l_w_anim.Interval = 15;
+            sh_color_l_w_anim.Tick += SH_Color_L_M_Anim_Think;
+            sh_color_l_w_anim.Enabled = true;
+
             sh_time_to_next.Interval = fps;
             sh_time_to_next.Tick += SH_Load_Think;
             sh_time_to_next.Enabled = true;
@@ -60,6 +69,12 @@ namespace IV_SHIFRATOR_MAIN
 
             sh_time_text_anim.Interval = sh_time_text_fps;
             sh_time_text_anim.Tick += SH_Text_Anim_Think;
+        }
+
+        private void SH_Color_L_M_Anim_Think(object sender, EventArgs e)
+        {
+            var color_geted = sh_l_m_color_style.Value;
+            this.BackColor = Color.FromArgb(color_geted.R, color_geted.G, color_geted.B);
         }
 
         private void SH_Load_Think(object sender, EventArgs e)
@@ -87,6 +102,7 @@ namespace IV_SHIFRATOR_MAIN
                 sh_loading_w_p_bar.Value += 10;
             else if(sh_node_showed)
             {
+                sh_color_l_w_anim.Enabled = false;
                 sh_time_to_next.Enabled = false;
                 sh_time_text_anim.Enabled = false;
                 sh_node_showed = false;
@@ -94,6 +110,7 @@ namespace IV_SHIFRATOR_MAIN
                 sh_this_node = String.Empty;
                 sh_nodes_label_01.Text = "Launching...";
                 this.Visible = false;
+                this.BackColor = sh_def_l_w_color;
                 sh_m_m = new SH_Main_Menu();
                 if(sh_m_m.sh_m_m_loaded)
                     sh_m_m.Visible = true;
@@ -131,6 +148,19 @@ namespace IV_SHIFRATOR_MAIN
                     sh_node_showed = true;
                 }
             }
+        }
+
+        private void SH_L_W_Init_Styles()
+        {
+            sh_def_l_w_color = this.BackColor;
+
+            sh_l_m_color_style = new Siticone.Desktop.UI.WinForms.SiticoneColorTransition
+            {
+                StartColor = sh_def_l_w_color,
+                EndColor = Color.FromArgb(42, 42, 42),
+                ColorArray = new Color []{ sh_def_l_w_color, Color.FromArgb(80, 80, 80), Color.FromArgb(50, 50, 50), Color.FromArgb(30, 30, 30) },
+                AutoTransition = true
+            };
         }
 
         private string SH_Next_Node(string previous_node)
