@@ -42,6 +42,8 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_b_back_color_change = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.sh_m_m_color_dlg = new System.Windows.Forms.ColorDialog();
             this.sh_cb_color_gradient = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
+            this.sh_p_logo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.sh_p_logo)).BeginInit();
             this.SuspendLayout();
             // 
             // sh_sended_msg_box_01
@@ -230,12 +232,24 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_cb_color_gradient.Visible = false;
             this.sh_cb_color_gradient.CheckedChanged += new System.EventHandler(this.SH_CB_Gradient_State_Hook);
             // 
+            // sh_p_logo
+            // 
+            this.sh_p_logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sh_p_logo.Image = global::IV_SHIFRATOR_MAIN.Properties.Resources.ths_icon;
+            this.sh_p_logo.Location = new System.Drawing.Point(0, 385);
+            this.sh_p_logo.Name = "sh_p_logo";
+            this.sh_p_logo.Size = new System.Drawing.Size(64, 64);
+            this.sh_p_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.sh_p_logo.TabIndex = 10;
+            this.sh_p_logo.TabStop = false;
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_p_logo);
             this.Controls.Add(this.sh_cb_color_gradient);
             this.Controls.Add(this.sh_b_back_color_change);
             this.Controls.Add(this.sh_b_load_signs_from_f);
@@ -253,6 +267,7 @@ namespace IV_SHIFRATOR_MAIN
             this.Text = "SHIFRATOR Menu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SH_M_M_Closed);
             this.Shown += new System.EventHandler(this.SH_M_M_Showed_Hook);
+            ((System.ComponentModel.ISupportInitialize)(this.sh_p_logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,5 +287,6 @@ namespace IV_SHIFRATOR_MAIN
         private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_back_color_change;
         private System.Windows.Forms.ColorDialog sh_m_m_color_dlg;
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox sh_cb_color_gradient;
+        private System.Windows.Forms.PictureBox sh_p_logo;
     }
 }
