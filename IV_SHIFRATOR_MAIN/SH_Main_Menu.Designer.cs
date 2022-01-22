@@ -39,6 +39,8 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_b_write_created_file = new System.Windows.Forms.Button();
             this.sh_cb_num_text_for_file = new System.Windows.Forms.CheckBox();
             this.sh_b_load_signs_from_f = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.sh_b_back_color_change = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.sh_m_m_color_dlg = new System.Windows.Forms.ColorDialog();
             this.SuspendLayout();
             // 
             // sh_sended_msg_box_01
@@ -167,12 +169,47 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_b_load_signs_from_f.Visible = false;
             this.sh_b_load_signs_from_f.Click += new System.EventHandler(this.SH_B_Load_Signs_From_F_Hook);
             // 
+            // sh_b_back_color_change
+            // 
+            this.sh_b_back_color_change.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_b_back_color_change.Animated = true;
+            this.sh_b_back_color_change.AutoRoundedCorners = true;
+            this.sh_b_back_color_change.BackColor = System.Drawing.Color.Transparent;
+            this.sh_b_back_color_change.BorderRadius = 12;
+            this.sh_b_back_color_change.CheckedState.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.CustomImages.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.DefaultAutoSize = true;
+            this.sh_b_back_color_change.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_back_color_change.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_back_color_change.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sh_b_back_color_change.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sh_b_back_color_change.DisabledState.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.FillColor = System.Drawing.Color.Azure;
+            this.sh_b_back_color_change.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.sh_b_back_color_change.ForeColor = System.Drawing.Color.Black;
+            this.sh_b_back_color_change.HoverState.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.Location = new System.Drawing.Point(705, 0);
+            this.sh_b_back_color_change.Name = "sh_b_back_color_change";
+            this.sh_b_back_color_change.ShadowDecoration.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.Size = new System.Drawing.Size(94, 27);
+            this.sh_b_back_color_change.TabIndex = 8;
+            this.sh_b_back_color_change.Text = "Menu Color";
+            this.sh_b_back_color_change.UseTransparentBackground = true;
+            this.sh_b_back_color_change.Visible = false;
+            this.sh_b_back_color_change.Click += new System.EventHandler(this.SH_M_M_Color_B_Click_Hook);
+            // 
+            // sh_m_m_color_dlg
+            // 
+            this.sh_m_m_color_dlg.AnyColor = true;
+            this.sh_m_m_color_dlg.FullOpen = true;
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_b_back_color_change);
             this.Controls.Add(this.sh_b_load_signs_from_f);
             this.Controls.Add(this.sh_cb_num_text_for_file);
             this.Controls.Add(this.sh_b_write_created_file);
@@ -204,5 +241,7 @@ namespace IV_SHIFRATOR_MAIN
         private System.Windows.Forms.Button sh_b_write_created_file;
         private System.Windows.Forms.CheckBox sh_cb_num_text_for_file;
         private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_load_signs_from_f;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_back_color_change;
+        private System.Windows.Forms.ColorDialog sh_m_m_color_dlg;
     }
 }

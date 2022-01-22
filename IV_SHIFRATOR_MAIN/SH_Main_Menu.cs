@@ -17,12 +17,15 @@ namespace IV_SHIFRATOR_MAIN
         public bool sh_m_m_loaded = false;
 
         private static readonly string sh_ds_box_text_empty = "Type TEXT to Here!!!";
+        private readonly Color sh_default_menu_color;
 
         public SH_Main_Menu()
         {
             InitializeComponent();
             sh_m_m_loaded = true;
             sh_sended_msg_box_01.Text = sh_ds_box_text_empty;
+            sh_default_menu_color = this.BackColor;
+            sh_m_m_color_dlg.Color = sh_default_menu_color;
             sh_button_deshifrate.Visible = false;
             sh_button_shifrate.Visible = false;
             sh_b_save_text01.Visible = false;
@@ -274,6 +277,33 @@ namespace IV_SHIFRATOR_MAIN
             this.Icon = this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Mosaic, true);
             SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            SH_Realise_Panels_Anim(sh_b_back_color_change, false, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+        }
+
+        private bool sh_m_m_color_changed = false;
+
+        private void SH_M_M_Color_B_Click_Hook(object sender, EventArgs e)
+        {
+            DialogResult dlg_resset;
+
+            if (sh_m_m_color_changed)
+                dlg_resset = MessageBox.Show("Resset to default Color?", sh_loading_w.sh_logo, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            else dlg_resset = DialogResult.No;
+
+            if (dlg_resset != DialogResult.Yes)
+            {
+                if (sh_m_m_color_dlg.ShowDialog() == DialogResult.OK)
+                {
+                    this.BackColor = sh_m_m_color_dlg.Color;
+                    sh_m_m_color_changed = true;
+                }
+            }
+            else
+            {
+                this.BackColor = sh_default_menu_color;
+                sh_m_m_color_dlg.Color = sh_default_menu_color;
+                sh_m_m_color_changed = false;
+            }
         }
     }
 }
