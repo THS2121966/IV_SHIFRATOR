@@ -323,7 +323,7 @@ namespace IV_SHIFRATOR_MAIN
             }
         }
 
-        private Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_color_main_style;
+        private readonly Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_color_main_style;
         private readonly Timer sh_m_m_color_anim = new Timer();
 
         private void SH_CB_Gradient_State_Hook(object sender, EventArgs e)
@@ -357,8 +357,8 @@ namespace IV_SHIFRATOR_MAIN
                     Color.FromArgb(color_geted.R - 10, color_geted.G - 10, color_geted.B - 10), 
                     Color.FromArgb(color_geted.R - 30, color_geted.G - 30, color_geted.B - 30),
                     Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B - 50),
-                    Color.FromArgb(color_geted.R + 50, color_geted.G + 50, color_geted.B + 10),
-                    Color.FromArgb(color_geted.R + 50, color_geted.G + 50, color_geted.B + 30),
+                    Color.FromArgb(color_geted.R + 10, color_geted.G + 10, color_geted.B + 10),
+                    Color.FromArgb(color_geted.R + 30, color_geted.G + 30, color_geted.B + 30),
                     Color.FromArgb(color_geted.R + 50, color_geted.G + 50, color_geted.B + 50)};
             }
             else
@@ -372,6 +372,19 @@ namespace IV_SHIFRATOR_MAIN
         {
             var next_color = sh_color_main_style.Value;
             this.BackColor = Color.FromArgb(next_color.R, next_color.G, next_color.B);
+        }
+
+        private int sh_logo_click_count = 0;
+
+        private void SH_Logo_Click_Hook(object sender, EventArgs e)
+        {
+            if (sh_logo_click_count < 10)
+                sh_logo_click_count++;
+            else
+            {
+                sh_logo_click_count = 0;
+                SH_Realise_Panels_Anim(sh_p_logo, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
+            }
         }
     }
 }

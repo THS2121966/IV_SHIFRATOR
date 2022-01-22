@@ -242,6 +242,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_p_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.sh_p_logo.TabIndex = 10;
             this.sh_p_logo.TabStop = false;
+            this.sh_p_logo.Click += new System.EventHandler(this.SH_Logo_Click_Hook);
             // 
             // SH_Main_Menu
             // 
