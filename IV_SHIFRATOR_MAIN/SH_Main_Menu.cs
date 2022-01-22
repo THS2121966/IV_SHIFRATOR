@@ -17,11 +17,26 @@ namespace IV_SHIFRATOR_MAIN
         public bool sh_m_m_loaded = false;
 
         private static readonly string sh_ds_box_text_empty = "Type TEXT to Here!!!";
-        private readonly Color sh_default_menu_color;
+        private Color sh_default_menu_color;
 
         public SH_Main_Menu()
         {
             InitializeComponent();
+            SH_INIT_Core();
+            SH_INIT_UI();
+            SH_Think_Create();
+        }
+
+        private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
+        {
+            sh_m_m_color_anim.Enabled = false;
+            sh_cb_color_gradient.Checked = false;
+            sh_m_m_loaded = false;
+            SH_Loading_Window.sh_loading_core.SH_Send_Chose_Command();
+        }
+
+        private void SH_INIT_Core()
+        {
             sh_m_m_loaded = true;
             sh_sended_msg_box_01.Text = sh_ds_box_text_empty;
             sh_default_menu_color = this.BackColor;
@@ -33,7 +48,10 @@ namespace IV_SHIFRATOR_MAIN
             sh_cb_logic_show_signs_op.Visible = false;
 
             SH_Save_Text_To_File_DLG.Filter = "Текстовый документ (*.txt)|*.txt|Все файлы (*.*)|*.*";
+        }
 
+        private void SH_INIT_UI()
+        {
             Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow sh_loading_anim_chose = new Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow
             {
                 AnimationType = Siticone.Desktop.UI.WinForms.SiticoneAnimateWindow.AnimateWindowType.AW_CENTER,
@@ -48,17 +66,12 @@ namespace IV_SHIFRATOR_MAIN
                 ColorArray = new Color[] { sh_default_menu_color, Color.FromArgb(sh_default_menu_color.R - 30, sh_default_menu_color.G - 30, sh_default_menu_color.B - 30) },
                 AutoTransition = true
             };
-
-            sh_m_m_color_anim.Interval = 15;
-            sh_m_m_color_anim.Tick += SH_M_M_Color_Style_Think;
         }
 
-        private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
+        private void SH_Think_Create()
         {
-            sh_m_m_color_anim.Enabled = false;
-            sh_cb_color_gradient.Checked = false;
-            sh_m_m_loaded = false;
-            SH_Loading_Window.sh_loading_core.SH_Send_Chose_Command();
+            sh_m_m_color_anim.Interval = 5;
+            sh_m_m_color_anim.Tick += SH_M_M_Color_Style_Think;
         }
 
         private void SH_B_Shifrate_Hook(object sender, EventArgs e)
@@ -72,16 +85,11 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_B_DEShifrate_Hook(object sender, EventArgs e)
         {
-            /*var dlg_result = MessageBox.Show("If you want to deshifrate correctly, please delete other sign or ' ' for correctly replacing!!!", "Warning!!!", 
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);*/
-            //if (dlg_result == DialogResult.OK)
-            {
-                SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text, true);
-                SH_Realise_Panels_Anim(sh_sended_msg_box_01, true, true, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
-                sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();
-                SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
-                sh_send.Dispose();
-            }
+            SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text, true);
+            SH_Realise_Panels_Anim(sh_sended_msg_box_01, true, true, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();
+            SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            sh_send.Dispose();
         }
 
         private void SH_DES_Bar_Text_Changed_Hook(object sender, EventArgs e)
@@ -323,7 +331,7 @@ namespace IV_SHIFRATOR_MAIN
             }
         }
 
-        private readonly Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_color_main_style;
+        private Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_color_main_style;
         private readonly Timer sh_m_m_color_anim = new Timer();
 
         private void SH_CB_Gradient_State_Hook(object sender, EventArgs e)
