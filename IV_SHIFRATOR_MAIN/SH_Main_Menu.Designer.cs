@@ -236,7 +236,7 @@ namespace IV_SHIFRATOR_MAIN
             // 
             this.sh_p_logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.sh_p_logo.Image = global::IV_SHIFRATOR_MAIN.Properties.Resources.ths_icon;
-            this.sh_p_logo.Location = new System.Drawing.Point(3, 385);
+            this.sh_p_logo.Location = new System.Drawing.Point(5, 385);
             this.sh_p_logo.Name = "sh_p_logo";
             this.sh_p_logo.Size = new System.Drawing.Size(64, 64);
             this.sh_p_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
