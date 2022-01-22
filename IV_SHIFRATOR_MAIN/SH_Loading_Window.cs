@@ -14,12 +14,6 @@ namespace IV_SHIFRATOR_MAIN
     {
         public static SH_Loading_Window sh_loading_core;
 
-        /*public static SH_Loading_Window SH_RELEASE_CORE()
-        {
-            sh_loading_core = new SH_Loading_Window();
-            return sh_loading_core;
-        }*/
-
         public SH_Loading_Window()
         {
             InitializeComponent();
@@ -44,10 +38,11 @@ namespace IV_SHIFRATOR_MAIN
         private readonly Timer sh_time_close = new Timer();
         private readonly Timer sh_time_text_anim = new Timer();
         private const int sh_time01_fps = 150;
+        private const int sh_time_text_fps = 42;
 
-        public static readonly string sh_logo = "SHIFRATOR";
-        public static readonly string sh_logo_warning = sh_logo+" Warning!!!";
-        public static readonly string sh_logo_error = sh_logo + " Error!!!";
+        public const string sh_logo = "SHIFRATOR";
+        public const string sh_logo_warning = sh_logo+" Warning!!!";
+        public const string sh_logo_error = sh_logo + " Error!!!";
 
         private static readonly string[] sh_help_nodes = new string[5] { "For correctly deshifrate, chose correct custom signs;", 
             "For Shifrate - Press 'SHIFRATE' Button;", "For Deshifrate - Press 'DESHIFRATE' Button;", "For Save/Write Files - Press Save/Write Button;", "Have a nice day/night! :D" };
@@ -63,7 +58,7 @@ namespace IV_SHIFRATOR_MAIN
             sh_time_close.Interval = fps - 50;
             sh_time_close.Tick += SH_Close_Think;
 
-            sh_time_text_anim.Interval = 50;
+            sh_time_text_anim.Interval = sh_time_text_fps;
             sh_time_text_anim.Tick += SH_Text_Anim_Think;
         }
 
@@ -95,6 +90,9 @@ namespace IV_SHIFRATOR_MAIN
                 sh_time_to_next.Enabled = false;
                 sh_time_text_anim.Enabled = false;
                 sh_node_showed = false;
+                sh_next_node = String.Empty;
+                sh_this_node = String.Empty;
+                sh_nodes_label_01.Text = "Launching...";
                 this.Visible = false;
                 sh_m_m = new SH_Main_Menu();
                 if(sh_m_m.sh_m_m_loaded)
