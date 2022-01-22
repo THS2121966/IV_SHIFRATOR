@@ -351,15 +351,15 @@ namespace IV_SHIFRATOR_MAIN
                 }
 
                 sh_color_main_style.StartColor = sh_m_m_color_dlg.Color;
-                sh_color_main_style.EndColor = Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B + 50);
+                sh_color_main_style.EndColor = Color.FromArgb(color_geted.R + 50, color_geted.G + 50, color_geted.B + 50);
 
                 sh_color_main_style.ColorArray = new Color[] {sh_m_m_color_dlg.Color, 
                     Color.FromArgb(color_geted.R - 10, color_geted.G - 10, color_geted.B - 10), 
                     Color.FromArgb(color_geted.R - 30, color_geted.G - 30, color_geted.B - 30),
                     Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B - 50),
-                    Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B + 10),
-                    Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B + 30),
-                    Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B + 50)};
+                    Color.FromArgb(color_geted.R + 50, color_geted.G + 50, color_geted.B + 10),
+                    Color.FromArgb(color_geted.R + 50, color_geted.G + 50, color_geted.B + 30),
+                    Color.FromArgb(color_geted.R + 50, color_geted.G + 50, color_geted.B + 50)};
             }
             else
             {
