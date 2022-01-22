@@ -40,10 +40,23 @@ namespace IV_SHIFRATOR_MAIN
                 Interval = 350,
                 TargetForm = this
             };
+
+            sh_color_main_style = new Siticone.Desktop.UI.WinForms.SiticoneColorTransition
+            {
+                StartColor = sh_default_menu_color,
+                EndColor = Color.FromArgb(sh_default_menu_color.R - 30, sh_default_menu_color.G - 30, sh_default_menu_color.B - 30),
+                ColorArray = new Color[] { sh_default_menu_color, Color.FromArgb(sh_default_menu_color.R - 30, sh_default_menu_color.G - 30, sh_default_menu_color.B - 30) },
+                AutoTransition = true
+            };
+
+            sh_m_m_color_anim.Interval = 15;
+            sh_m_m_color_anim.Tick += SH_M_M_Color_Style_Think;
         }
 
         private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
         {
+            sh_m_m_color_anim.Enabled = false;
+            sh_cb_color_gradient.Checked = false;
             sh_m_m_loaded = false;
             SH_Loading_Window.sh_loading_core.SH_Send_Chose_Command();
         }
@@ -295,15 +308,67 @@ namespace IV_SHIFRATOR_MAIN
                 if (sh_m_m_color_dlg.ShowDialog() == DialogResult.OK)
                 {
                     this.BackColor = sh_m_m_color_dlg.Color;
+                    SH_Realise_Panels_Anim(sh_cb_color_gradient, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
                     sh_m_m_color_changed = true;
+                    sh_cb_color_gradient.Checked = false;
                 }
             }
             else
             {
                 this.BackColor = sh_default_menu_color;
                 sh_m_m_color_dlg.Color = sh_default_menu_color;
+                SH_Realise_Panels_Anim(sh_cb_color_gradient, true, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
                 sh_m_m_color_changed = false;
+                sh_cb_color_gradient.Checked = false;
             }
+        }
+
+        private Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_color_main_style;
+        private readonly Timer sh_m_m_color_anim = new Timer();
+
+        private void SH_CB_Gradient_State_Hook(object sender, EventArgs e)
+        {
+            if (sh_cb_color_gradient.Checked)
+            {
+                sh_m_m_color_anim.Enabled = true;
+
+                Color color_geted = sh_m_m_color_dlg.Color;
+
+                if (color_geted.R < 50 || color_geted.G < 50 || color_geted.B < 50 || color_geted.R > 205 || color_geted.G > 205 || color_geted.B > 205)
+                {
+                    if (color_geted.R < 50)
+                        color_geted = Color.FromArgb(50, color_geted.G, color_geted.B);
+                    if (color_geted.G < 50)
+                        color_geted = Color.FromArgb(color_geted.R, 50, color_geted.B);
+                    if (color_geted.B < 50)
+                        color_geted = Color.FromArgb(color_geted.R, color_geted.G, 50);
+                    if (color_geted.R > 205)
+                        color_geted = Color.FromArgb(205, color_geted.G, color_geted.B);
+                    if (color_geted.G > 205)
+                        color_geted = Color.FromArgb(color_geted.R, 205, color_geted.B);
+                    if (color_geted.B > 205)
+                        color_geted = Color.FromArgb(color_geted.R, color_geted.G, 205);
+                }
+
+                sh_color_main_style.ColorArray = new Color[] {sh_m_m_color_dlg.Color, 
+                    Color.FromArgb(color_geted.R - 10, color_geted.G - 10, color_geted.B - 10), 
+                    Color.FromArgb(color_geted.R - 30, color_geted.G - 30, color_geted.B - 30),
+                    Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B - 50),
+                    Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B + 10),
+                    Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B + 30),
+                    Color.FromArgb(color_geted.R - 50, color_geted.G - 50, color_geted.B + 50)};
+            }
+            else
+            {
+                sh_m_m_color_anim.Enabled = false;
+                this.BackColor = sh_m_m_color_dlg.Color;
+            }
+        }
+
+        private void SH_M_M_Color_Style_Think(object sender, EventArgs e)
+        {
+            var next_color = sh_color_main_style.Value;
+            this.BackColor = Color.FromArgb(next_color.R, next_color.G, next_color.B);
         }
     }
 }

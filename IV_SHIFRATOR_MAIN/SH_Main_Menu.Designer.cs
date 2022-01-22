@@ -41,6 +41,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_b_load_signs_from_f = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.sh_b_back_color_change = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.sh_m_m_color_dlg = new System.Windows.Forms.ColorDialog();
+            this.sh_cb_color_gradient = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
             this.SuspendLayout();
             // 
             // sh_sended_msg_box_01
@@ -203,12 +204,39 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_m_m_color_dlg.AnyColor = true;
             this.sh_m_m_color_dlg.FullOpen = true;
             // 
+            // sh_cb_color_gradient
+            // 
+            this.sh_cb_color_gradient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_cb_color_gradient.Animated = true;
+            this.sh_cb_color_gradient.AutoSize = true;
+            this.sh_cb_color_gradient.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.sh_cb_color_gradient.CheckedState.BorderColor = System.Drawing.Color.LightGreen;
+            this.sh_cb_color_gradient.CheckedState.BorderRadius = 0;
+            this.sh_cb_color_gradient.CheckedState.BorderThickness = 0;
+            this.sh_cb_color_gradient.CheckedState.FillColor = System.Drawing.Color.LightGreen;
+            this.sh_cb_color_gradient.CheckMarkColor = System.Drawing.Color.Black;
+            this.sh_cb_color_gradient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sh_cb_color_gradient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.sh_cb_color_gradient.Location = new System.Drawing.Point(592, 0);
+            this.sh_cb_color_gradient.Name = "sh_cb_color_gradient";
+            this.sh_cb_color_gradient.Size = new System.Drawing.Size(106, 17);
+            this.sh_cb_color_gradient.TabIndex = 9;
+            this.sh_cb_color_gradient.Text = "Gradient Colorise";
+            this.sh_cb_color_gradient.UncheckedState.BorderColor = System.Drawing.Color.DarkRed;
+            this.sh_cb_color_gradient.UncheckedState.BorderRadius = 0;
+            this.sh_cb_color_gradient.UncheckedState.BorderThickness = 0;
+            this.sh_cb_color_gradient.UncheckedState.FillColor = System.Drawing.Color.DarkRed;
+            this.sh_cb_color_gradient.UseVisualStyleBackColor = false;
+            this.sh_cb_color_gradient.Visible = false;
+            this.sh_cb_color_gradient.CheckedChanged += new System.EventHandler(this.SH_CB_Gradient_State_Hook);
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_cb_color_gradient);
             this.Controls.Add(this.sh_b_back_color_change);
             this.Controls.Add(this.sh_b_load_signs_from_f);
             this.Controls.Add(this.sh_cb_num_text_for_file);
@@ -243,5 +271,6 @@ namespace IV_SHIFRATOR_MAIN
         private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_load_signs_from_f;
         private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_back_color_change;
         private System.Windows.Forms.ColorDialog sh_m_m_color_dlg;
+        private Siticone.Desktop.UI.WinForms.SiticoneCheckBox sh_cb_color_gradient;
     }
 }
