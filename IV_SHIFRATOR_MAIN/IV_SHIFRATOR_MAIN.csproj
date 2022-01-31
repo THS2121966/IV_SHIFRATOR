@@ -36,11 +36,32 @@
     <ApplicationIcon>ths_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetBrowser, Version=2.11.0.2282, Culture=neutral, PublicKeyToken=b0b5aaca9c95c84e, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetBrowser.2.11.0\lib\net45\DotNetBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetBrowser.Chromium.Win-x64, Version=2.11.0.2282, Culture=neutral, PublicKeyToken=b0b5aaca9c95c84e, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetBrowser.Chromium.Win-x64.2.11.0\lib\net45\DotNetBrowser.Chromium.Win-x64.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetBrowser.Chromium.Win-x86, Version=2.11.0.2282, Culture=neutral, PublicKeyToken=b0b5aaca9c95c84e, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetBrowser.Chromium.Win-x86.2.11.0\lib\net45\DotNetBrowser.Chromium.Win-x86.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetBrowser.Core, Version=2.11.0.2282, Culture=neutral, PublicKeyToken=b0b5aaca9c95c84e, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetBrowser.2.11.0\lib\net45\DotNetBrowser.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetBrowser.Logging, Version=2.11.0.2282, Culture=neutral, PublicKeyToken=b0b5aaca9c95c84e, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetBrowser.2.11.0\lib\net45\DotNetBrowser.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.4.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>packages\protobuf-net.2.4.0\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="Siticone.Desktop.UI, Version=2.0.9.0, Culture=neutral, PublicKeyToken=422d444a8a9fa6db, processorArchitecture=MSIL">
       <HintPath>packages\Siticone.Desktop.UI.2.0.9\lib\net40\Siticone.Desktop.UI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
