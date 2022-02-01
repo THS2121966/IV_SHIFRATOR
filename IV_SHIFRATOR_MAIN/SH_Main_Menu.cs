@@ -75,7 +75,7 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_INIT_Browser()
         {
-            string sh_browser_src_path = "\\thirdparty\\xulrunner\\";
+            string sh_browser_src_path = "thirdparty\\xulrunner\\";
             string sh_programm_dir = Application.StartupPath;
 
 #if !DEBUG
