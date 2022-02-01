@@ -44,6 +44,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_cb_color_gradient = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
             this.sh_p_logo = new System.Windows.Forms.PictureBox();
             this.sh_browser_panel_01 = new System.Windows.Forms.Panel();
+            this.sh_m_m_b_close_advert = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.sh_p_logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -255,12 +256,44 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_browser_panel_01.Size = new System.Drawing.Size(601, 255);
             this.sh_browser_panel_01.TabIndex = 11;
             // 
+            // sh_m_m_b_close_advert
+            // 
+            this.sh_m_m_b_close_advert.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_m_m_b_close_advert.Animated = true;
+            this.sh_m_m_b_close_advert.AutoRoundedCorners = true;
+            this.sh_m_m_b_close_advert.BackColor = System.Drawing.Color.Transparent;
+            this.sh_m_m_b_close_advert.BorderRadius = 12;
+            this.sh_m_m_b_close_advert.CheckedState.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.CustomImages.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.DefaultAutoSize = true;
+            this.sh_m_m_b_close_advert.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sh_m_m_b_close_advert.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sh_m_m_b_close_advert.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sh_m_m_b_close_advert.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sh_m_m_b_close_advert.DisabledState.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.FillColor = System.Drawing.Color.Red;
+            this.sh_m_m_b_close_advert.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.sh_m_m_b_close_advert.ForeColor = System.Drawing.Color.White;
+            this.sh_m_m_b_close_advert.HoverState.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.Location = new System.Drawing.Point(576, 60);
+            this.sh_m_m_b_close_advert.Name = "sh_m_m_b_close_advert";
+            this.sh_m_m_b_close_advert.ShadowDecoration.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.Size = new System.Drawing.Size(37, 27);
+            this.sh_m_m_b_close_advert.TabIndex = 12;
+            this.sh_m_m_b_close_advert.Text = "X";
+            this.sh_m_m_b_close_advert.UseTransparentBackground = true;
+            this.sh_m_m_b_close_advert.Visible = false;
+            this.sh_m_m_b_close_advert.Click += new System.EventHandler(this.SH_B_Advert_Close_Hook);
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_m_m_b_close_advert);
             this.Controls.Add(this.sh_browser_panel_01);
             this.Controls.Add(this.sh_p_logo);
             this.Controls.Add(this.sh_cb_color_gradient);
@@ -302,5 +335,6 @@ namespace IV_SHIFRATOR_MAIN
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox sh_cb_color_gradient;
         private System.Windows.Forms.PictureBox sh_p_logo;
         private System.Windows.Forms.Panel sh_browser_panel_01;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton sh_m_m_b_close_advert;
     }
 }

@@ -75,13 +75,21 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_INIT_Browser()
         {
-            string sh_browser_src_path = "G:\\github_main\\IV_SHIFRATOR\\IV_SHIFRATOR_MAIN\\thirdparty\\xulrunner\\";
+            string sh_browser_src_path = "\\thirdparty\\xulrunner\\";
+            string sh_programm_dir = Application.StartupPath;
 
-            Xpcom.Initialize(sh_browser_src_path);
+#if !DEBUG
+            string sh_dir = Path.Combine(sh_programm_dir, sh_browser_src_path);
+#else
+            string sh_dir = Path.Combine(sh_programm_dir, "..\\..\\"+sh_browser_src_path);
+#endif
+            Xpcom.Initialize(sh_dir);
 
             sh_web_browser = new Skybound.Gecko.GeckoWebBrowser
             {
                 Parent = sh_browser_panel_01,
+                BackColor = Color.Black,
+                Visible = false,
                 Dock = DockStyle.Fill
             };
         }
@@ -98,13 +106,20 @@ namespace IV_SHIFRATOR_MAIN
             sh_advert_timer.Enabled = true;
         }
 
-        private static readonly string sh_advert_link = "https://github.com/Thegood-Choiseworlds-inc";
+        private static readonly string[] sh_advert_link = new string[] { "https://vk.com/id504177837" };
+        private bool sh_advert_inited = false;
 
         private void SH_Advert_Timer_Hook(object sender, EventArgs e)
         {
             sh_advert_timer.Enabled = false;
 
-            sh_web_browser.Navigate(sh_advert_link);
+            Random sh_random = new Random();
+
+            sh_web_browser.Visible = true;
+            SH_Realise_Panels_Anim(sh_web_browser, false, false, 5, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent, true);
+            sh_advert_inited = true;
+            sh_m_m_b_close_advert.Visible = true;
+            sh_web_browser.Navigate(sh_advert_link[sh_random.Next(0, sh_advert_link.Length - 1)]);
         }
 
         private void SH_B_Shifrate_Hook(object sender, EventArgs e)
@@ -349,6 +364,8 @@ namespace IV_SHIFRATOR_MAIN
                 if (sh_m_m_color_dlg.ShowDialog() == DialogResult.OK)
                 {
                     this.BackColor = sh_m_m_color_dlg.Color;
+                    if(sh_advert_inited)
+                        sh_browser_panel_01.BackColor = sh_m_m_color_dlg.Color;
                     SH_Realise_Panels_Anim(sh_cb_color_gradient, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
                     sh_m_m_color_changed = true;
                     sh_cb_color_gradient.Checked = false;
@@ -357,6 +374,7 @@ namespace IV_SHIFRATOR_MAIN
             else
             {
                 this.BackColor = sh_default_menu_color;
+                sh_browser_panel_01.BackColor = sh_default_menu_color;
                 sh_m_m_color_dlg.Color = sh_default_menu_color;
                 SH_Realise_Panels_Anim(sh_cb_color_gradient, true, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
                 sh_m_m_color_changed = false;
@@ -406,6 +424,7 @@ namespace IV_SHIFRATOR_MAIN
             {
                 sh_m_m_color_anim.Enabled = false;
                 this.BackColor = sh_m_m_color_dlg.Color;
+                sh_browser_panel_01.BackColor = sh_m_m_color_dlg.Color;
             }
         }
 
@@ -413,6 +432,8 @@ namespace IV_SHIFRATOR_MAIN
         {
             var next_color = sh_color_main_style.Value;
             this.BackColor = Color.FromArgb(next_color.R, next_color.G, next_color.B);
+            if(sh_advert_inited)
+                sh_browser_panel_01.BackColor = Color.FromArgb(next_color.R, next_color.G, next_color.B);
         }
 
         private int sh_logo_click_count = 0;
@@ -426,6 +447,18 @@ namespace IV_SHIFRATOR_MAIN
                 sh_logo_click_count = 0;
                 SH_Realise_Panels_Anim(sh_p_logo, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
             }
+        }
+
+        private void SH_B_Advert_Close_Hook(object sender, EventArgs e)
+        {
+            var sh_button_this = sender as Siticone.Desktop.UI.WinForms.SiticoneButton;
+            SH_Realise_Panels_Anim(sh_button_this, true, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
+
+            sh_web_browser.Visible = false;
+            sh_web_browser.Dispose();
+            sh_browser_panel_01.Visible = false;
+            sh_advert_inited = false;
+            sh_browser_panel_01.Dispose();
         }
     }
 }
