@@ -43,6 +43,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_m_m_color_dlg = new System.Windows.Forms.ColorDialog();
             this.sh_cb_color_gradient = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
             this.sh_p_logo = new System.Windows.Forms.PictureBox();
+            this.sh_browser_panel_01 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.sh_p_logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -244,12 +245,23 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_p_logo.TabStop = false;
             this.sh_p_logo.Click += new System.EventHandler(this.SH_Logo_Click_Hook);
             // 
+            // sh_browser_panel_01
+            // 
+            this.sh_browser_panel_01.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_browser_panel_01.Location = new System.Drawing.Point(12, 93);
+            this.sh_browser_panel_01.Name = "sh_browser_panel_01";
+            this.sh_browser_panel_01.Size = new System.Drawing.Size(601, 255);
+            this.sh_browser_panel_01.TabIndex = 11;
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_browser_panel_01);
             this.Controls.Add(this.sh_p_logo);
             this.Controls.Add(this.sh_cb_color_gradient);
             this.Controls.Add(this.sh_b_back_color_change);
@@ -289,5 +301,6 @@ namespace IV_SHIFRATOR_MAIN
         private System.Windows.Forms.ColorDialog sh_m_m_color_dlg;
         private Siticone.Desktop.UI.WinForms.SiticoneCheckBox sh_cb_color_gradient;
         private System.Windows.Forms.PictureBox sh_p_logo;
+        private System.Windows.Forms.Panel sh_browser_panel_01;
     }
 }

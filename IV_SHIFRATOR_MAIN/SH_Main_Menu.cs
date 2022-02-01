@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using sh_loading_w = IV_SHIFRATOR_MAIN.SH_Loading_Window;
 
+using Skybound.Gecko;
+
 namespace IV_SHIFRATOR_MAIN
 {
     public partial class SH_Main_Menu : Form
@@ -19,11 +21,14 @@ namespace IV_SHIFRATOR_MAIN
         private static readonly string sh_ds_box_text_empty = "Type TEXT to Here!!!";
         private Color sh_default_menu_color;
 
+        GeckoWebBrowser sh_web_browser;
+
         public SH_Main_Menu()
         {
             InitializeComponent();
             SH_INIT_Core();
             SH_INIT_UI();
+            SH_INIT_Browser();
             SH_Think_Create();
         }
 
@@ -68,10 +73,38 @@ namespace IV_SHIFRATOR_MAIN
             };
         }
 
+        private void SH_INIT_Browser()
+        {
+            string sh_browser_src_path = "G:\\github_main\\IV_SHIFRATOR\\IV_SHIFRATOR_MAIN\\thirdparty\\xulrunner\\";
+
+            Xpcom.Initialize(sh_browser_src_path);
+
+            sh_web_browser = new Skybound.Gecko.GeckoWebBrowser
+            {
+                Parent = sh_browser_panel_01,
+                Dock = DockStyle.Fill
+            };
+        }
+
+        private readonly Timer sh_advert_timer = new Timer();
+
         private void SH_Think_Create()
         {
             sh_m_m_color_anim.Interval = 5;
             sh_m_m_color_anim.Tick += SH_M_M_Color_Style_Think;
+
+            sh_advert_timer.Interval = 5000;
+            sh_advert_timer.Tick += SH_Advert_Timer_Hook;
+            sh_advert_timer.Enabled = true;
+        }
+
+        private static readonly string sh_advert_link = "https://github.com/Thegood-Choiseworlds-inc";
+
+        private void SH_Advert_Timer_Hook(object sender, EventArgs e)
+        {
+            sh_advert_timer.Enabled = false;
+
+            sh_web_browser.Navigate(sh_advert_link);
         }
 
         private void SH_B_Shifrate_Hook(object sender, EventArgs e)
