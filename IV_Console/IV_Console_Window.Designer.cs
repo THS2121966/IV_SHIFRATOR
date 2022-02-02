@@ -56,6 +56,7 @@ namespace IV_Console
             this.iv_console_b_exit.TabIndex = 1;
             this.iv_console_b_exit.Text = "X";
             this.iv_console_b_exit.UseTransparentBackground = true;
+            this.iv_console_b_exit.Click += new System.EventHandler(this.IV_Console_B_Exit_Hook);
             // 
             // iv_panel_control_buttons
             // 
@@ -66,6 +67,8 @@ namespace IV_Console
             this.iv_panel_control_buttons.Name = "iv_panel_control_buttons";
             this.iv_panel_control_buttons.Size = new System.Drawing.Size(520, 35);
             this.iv_panel_control_buttons.TabIndex = 0;
+            this.iv_panel_control_buttons.Click += new System.EventHandler(this.IV_WND_Stop_Move_Hook);
+            this.iv_panel_control_buttons.DoubleClick += new System.EventHandler(this.IV_WND_Move_Hook);
             // 
             // IV_Console_Window
             // 
@@ -78,9 +81,11 @@ namespace IV_Console
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IV_Console_Window";
-            this.Opacity = 0.8D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IV_Console_Window";
+            this.Activated += new System.EventHandler(this.IV_Enter_Focus_Hook);
+            this.Deactivate += new System.EventHandler(this.IV_Out_Focus_Hook);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IV_Console_Close_Hook);
             this.ResumeLayout(false);
             this.PerformLayout();
 
