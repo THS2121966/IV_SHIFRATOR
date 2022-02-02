@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IV_Console
 {
-    public class Class1
+    public class Console_Event
     {
     }
 }
