@@ -34,6 +34,9 @@
     <ApplicationIcon>ths_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Siticone.Desktop.UI">
+      <HintPath>..\IV_SHIFRATOR_MAIN\Siticone.Desktop.UI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
