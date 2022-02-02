@@ -61,5 +61,10 @@
   <ItemGroup>
     <Content Include="ths_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="IV_Console_Window.resx">
+      <DependentUpon>IV_Console_Window.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
