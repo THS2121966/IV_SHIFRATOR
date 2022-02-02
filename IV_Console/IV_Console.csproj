@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Console_Event.cs" />
+    <Compile Include="IV_Console_Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IV_Console_Window.Designer.cs">
+      <DependentUpon>IV_Console_Window.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
