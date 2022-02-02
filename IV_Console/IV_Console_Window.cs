@@ -55,7 +55,12 @@ namespace IV_Console
 
         private void IV_Console_Close_Hook(object sender, FormClosingEventArgs e)
         {
-            var iv_close_dlg = MessageBox.Show("Close that Console?", "IV Console", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult iv_close_dlg;
+
+            if (!iv_wnd_escape_close_check)
+                iv_close_dlg = MessageBox.Show("Close that Console?", "IV Console", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            else
+                iv_close_dlg = DialogResult.Yes;
 
             if (iv_close_dlg != DialogResult.Yes)
             {
