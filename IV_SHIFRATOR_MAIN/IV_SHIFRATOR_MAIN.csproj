@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shared\IVControlAnim_Event.cs" />
     <Compile Include="SH_Loading_Window.cs">
       <SubType>Form</SubType>
     </Compile>

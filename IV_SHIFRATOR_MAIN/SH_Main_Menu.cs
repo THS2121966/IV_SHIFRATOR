@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using sh_loading_w = IV_SHIFRATOR_MAIN.SH_Loading_Window;
 
+using sh_control_anim = IVControlAnim;
 using Skybound.Gecko;
 using IV_Console;
 
@@ -122,36 +123,50 @@ namespace IV_SHIFRATOR_MAIN
 
             Random sh_random = new Random();
 
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             sh_web_browser.Visible = true;
-            SH_Realise_Panels_Anim(sh_web_browser, false, false, 5, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent, true);
+            ANIM.SH_Realise_Panels_Anim(sh_web_browser, false, false, 5, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent, true);
             sh_advert_inited = true;
             sh_m_m_b_close_advert.Visible = true;
             sh_web_browser.Navigate(sh_advert_link[sh_random.Next(0, sh_advert_link.Length - 1)]);
+
+            ANIM.Dispose();
         }
 
         private void SH_B_Shifrate_Hook(object sender, EventArgs e)
         {
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text);
-            SH_Realise_Panels_Anim(sh_sended_msg_box_01, true, true, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            ANIM.SH_Realise_Panels_Anim(sh_sended_msg_box_01, true, true, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
             sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();
-            SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            ANIM.SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
             sh_send.Dispose();
+
+            ANIM.Dispose();
         }
 
         private void SH_B_DEShifrate_Hook(object sender, EventArgs e)
         {
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             SHIFRATOR_Event sh_send = new SHIFRATOR_Event(sh_sended_msg_box_01.Text, true);
-            SH_Realise_Panels_Anim(sh_sended_msg_box_01, true, true, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            ANIM.SH_Realise_Panels_Anim(sh_sended_msg_box_01, true, true, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
             sh_sended_msg_box_01.Text = sh_send.SH_Get_Result();
-            SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            ANIM.SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
             sh_send.Dispose();
+
+            ANIM.Dispose();
         }
 
         private void SH_DES_Bar_Text_Changed_Hook(object sender, EventArgs e)
         {
-            if(sh_sended_msg_box_01.Text != String.Empty && sh_sended_msg_box_01.Text != sh_ds_box_text_empty)
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
+            if (sh_sended_msg_box_01.Text != String.Empty && sh_sended_msg_box_01.Text != sh_ds_box_text_empty)
             {
-                SH_Realise_Panels_Anim(sh_b_load_signs_from_f, true, false, 2);
+                ANIM.SH_Realise_Panels_Anim(sh_b_load_signs_from_f, true, false, 2);
                 sh_button_deshifrate.Visible = true;
                 sh_button_shifrate.Visible = true;
                 sh_b_save_text01.Visible = true;
@@ -169,41 +184,10 @@ namespace IV_SHIFRATOR_MAIN
                 sh_cb_logic_show_signs_op.Visible = false;
                 if(SH_Loading_Window.sh_loading_core.sh_realised_version < 0.15f)
                     sh_cb_num_text_for_file.Visible = false;
-                SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, false, 3);
+                ANIM.SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, false, 3);
             }
-        }
 
-        public void SH_Realise_Panels_Anim(Control chosed_panel, bool anim_hide, bool synced = false, int seconds = 5, 
-            Siticone.Desktop.UI.AnimatorNS.AnimationType anim_type = Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale, bool anim_tip = false)
-        {
-            Siticone.Desktop.UI.WinForms.SiticoneTransition sh_anim_panel = new Siticone.Desktop.UI.WinForms.SiticoneTransition
-            {
-                AnimationType = anim_type,
-                Interval = seconds
-            };
-
-            if (!anim_tip)
-            {
-                if (!anim_hide)
-                {
-                    if(!synced)
-                        sh_anim_panel.Show(chosed_panel);
-                    else
-                        sh_anim_panel.ShowSync(chosed_panel);
-                }
-                else
-                {
-                    if (!synced)
-                        sh_anim_panel.Hide(chosed_panel);
-                    else
-                        sh_anim_panel.HideSync(chosed_panel);
-                }
-            }
-            else
-            {
-                sh_anim_panel.HideSync(chosed_panel);
-                sh_anim_panel.Show(chosed_panel);
-            }
+            ANIM.Dispose();
         }
 
         private void SH_DS_Text_Clicked_Hook(object sender, EventArgs e)
@@ -228,6 +212,8 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_DLG_Text_Saved_Hook(object sender, CancelEventArgs e)
         {
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             StreamWriter sh_write_file = new StreamWriter(SH_Save_Text_To_File_DLG.FileName);
             if(!sh_num_text_f)
                 sh_write_file.WriteLine(sh_sended_msg_box_01.Text);
@@ -239,10 +225,12 @@ namespace IV_SHIFRATOR_MAIN
             sh_write_file.Close();
 
             MessageBox.Show("Current text saved to new file Successfully!!! File Name - "+ SH_Save_Text_To_File_DLG.FileName, sh_loading_w.sh_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            SH_Realise_Panels_Anim(sh_b_save_text01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
+            ANIM.SH_Realise_Panels_Anim(sh_b_save_text01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
 
             var iv_save_dlg = sender as SaveFileDialog;
             iv_save_dlg.Dispose();
+
+            ANIM.Dispose();
         }
 
         private void SH_B_Save_To_File_Hook(object sender, EventArgs e)
@@ -252,6 +240,8 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_B_Write_FIle_Hook(object sender, EventArgs e)
         {
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             OpenFileDialog open_f_dlg = new OpenFileDialog
             {
                 Title = "Shifrator Open File Dialog",
@@ -273,9 +263,11 @@ namespace IV_SHIFRATOR_MAIN
                 sh_write_file.WriteLine(sh_get_text_from_file+sh_sended_msg_box_01.Text);
                 sh_write_file.Close();
                 MessageBox.Show("Current changes are saved Successfully!!! File Name - " + open_f_dlg.FileName, sh_loading_w.sh_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                SH_Realise_Panels_Anim(sh_b_write_created_file, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
+                ANIM.SH_Realise_Panels_Anim(sh_b_write_created_file, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
             }
             open_f_dlg.Dispose();
+
+            ANIM.Dispose();
         }
 
         private bool sh_num_text_f = false;
@@ -348,18 +340,24 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_M_M_Showed_Hook(object sender, EventArgs e)
         {
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SH_Main_Menu));
             this.Icon = this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Mosaic, true);
-            SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
-            SH_Realise_Panels_Anim(sh_b_back_color_change, false, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            ANIM.SH_Realise_Panels_Anim(sh_sended_msg_box_01, false, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Mosaic, true);
+            ANIM.SH_Realise_Panels_Anim(sh_b_load_signs_from_f, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+            ANIM.SH_Realise_Panels_Anim(sh_b_back_color_change, false, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Particles);
+
+            ANIM.Dispose();
         }
 
         private bool sh_m_m_color_changed = false;
 
         private void SH_M_M_Color_B_Click_Hook(object sender, EventArgs e)
         {
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             DialogResult dlg_resset;
 
             if (sh_m_m_color_changed)
@@ -373,7 +371,7 @@ namespace IV_SHIFRATOR_MAIN
                     this.BackColor = sh_m_m_color_dlg.Color;
                     if(sh_advert_inited)
                         sh_browser_panel_01.BackColor = sh_m_m_color_dlg.Color;
-                    SH_Realise_Panels_Anim(sh_cb_color_gradient, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
+                    ANIM.SH_Realise_Panels_Anim(sh_cb_color_gradient, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
                     sh_m_m_color_changed = true;
                     sh_cb_color_gradient.Checked = false;
                 }
@@ -383,10 +381,12 @@ namespace IV_SHIFRATOR_MAIN
                 this.BackColor = sh_default_menu_color;
                 sh_browser_panel_01.BackColor = sh_default_menu_color;
                 sh_m_m_color_dlg.Color = sh_default_menu_color;
-                SH_Realise_Panels_Anim(sh_cb_color_gradient, true, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
+                ANIM.SH_Realise_Panels_Anim(sh_cb_color_gradient, true, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
                 sh_m_m_color_changed = false;
                 sh_cb_color_gradient.Checked = false;
             }
+
+            ANIM.Dispose();
         }
 
         private Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_color_main_style;
@@ -447,25 +447,33 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_Logo_Click_Hook(object sender, EventArgs e)
         {
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             if (sh_logo_click_count < 10)
                 sh_logo_click_count++;
             else
             {
                 sh_logo_click_count = 0;
-                SH_Realise_Panels_Anim(sh_p_logo, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
+                ANIM.SH_Realise_Panels_Anim(sh_p_logo, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
             }
+
+            ANIM.Dispose();
         }
 
         private void SH_B_Advert_Close_Hook(object sender, EventArgs e)
         {
+            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
+
             var sh_button_this = sender as Siticone.Desktop.UI.WinForms.SiticoneButton;
-            SH_Realise_Panels_Anim(sh_button_this, true, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
+            ANIM.SH_Realise_Panels_Anim(sh_button_this, true, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
 
             sh_web_browser.Visible = false;
             sh_web_browser.Dispose();
             sh_browser_panel_01.Visible = false;
             sh_advert_inited = false;
             sh_browser_panel_01.Dispose();
+
+            ANIM.Dispose();
         }
     }
 }

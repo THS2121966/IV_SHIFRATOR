@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Siticone.Desktop.UI.WinForms;
+using IVControlAnim;
 
 namespace IV_Console
 {
     public partial class IV_Console_Window : Form
     {
+        public const string CONSOLE_LOGO = "IV Console";
+
         private bool iv_wnd_inited = false;
         private bool iv_wnd_escape_close_check = false;
 
@@ -30,7 +33,14 @@ namespace IV_Console
 
             iv_wnd_inited = true;
 
-            iv_wnd_move_to_cursor_anim.Interval = 5;
+            IV_Init_Think();
+        }
+
+        private const int MOVE_TO_CURSOR_FPS = 5;
+
+        private void IV_Init_Think()
+        {
+            iv_wnd_move_to_cursor_anim.Interval = MOVE_TO_CURSOR_FPS;
             iv_wnd_move_to_cursor_anim.Tick += IV_WND_Move_Anim_Think;
         }
 
@@ -58,7 +68,7 @@ namespace IV_Console
             DialogResult iv_close_dlg;
 
             if (!iv_wnd_escape_close_check)
-                iv_close_dlg = MessageBox.Show("Close that Console?", "IV Console", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                iv_close_dlg = MessageBox.Show("Close that Console?", CONSOLE_LOGO, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             else
                 iv_close_dlg = DialogResult.Yes;
 
