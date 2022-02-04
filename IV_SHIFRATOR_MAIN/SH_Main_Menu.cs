@@ -38,6 +38,9 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.None;
+            sh_control_anim.IVControlAnim_Event.IV_Animate_Control(this, true, true, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate);
+
             sh_m_m_color_anim.Enabled = false;
             sh_cb_color_gradient.Checked = false;
             sh_m_m_loaded = false;
@@ -127,7 +130,8 @@ namespace IV_SHIFRATOR_MAIN
             sh_control_anim.IVControlAnim_Event.IV_Animate_Control(sh_web_browser, false, false, 5, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent, true);
             sh_advert_inited = true;
             sh_m_m_b_close_advert.Visible = true;
-            sh_web_browser.Navigate(sh_advert_link[sh_random.Next(0, sh_advert_link.Length - 1)]);
+            if(this.Visible)
+                sh_web_browser.Navigate(sh_advert_link[sh_random.Next(0, sh_advert_link.Length - 1)]);
         }
 
         private void SH_B_Shifrate_Hook(object sender, EventArgs e)
