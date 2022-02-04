@@ -63,11 +63,10 @@ namespace IV_Console
         public static void IV_Console_Send_Message(string sended_text, IV_Message_Level message_level, bool send_next = true)
         {
             var iv_text_box = iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel();
-            string send_text;
+            string send_sign = "";
+
             if (send_next)
-                send_text = sended_text + "\n";
-            else
-                send_text = sended_text;
+                send_sign += Environment.NewLine;
 
             Color sended_color;
 
@@ -75,12 +74,12 @@ namespace IV_Console
                 if (apply_color == iv_console_color_palette[(int)message_level])
                     sended_color = iv_console_color_palette[(int)message_level];
 
-            iv_text_box.Text += "["+message_level.ToString()+"] "+send_text;
+            iv_text_box.Text += " [" + message_level.ToString() + "] " + sended_text + send_sign;
 
             if (iv_console_last_messages == null)
                 iv_console_last_messages = new string[1];
 
-            iv_console_last_messages[iv_console_last_messages.Length - 1] = send_text;
+            iv_console_last_messages[iv_console_last_messages.Length - 1] = sended_text + send_sign;
             Array.Resize(ref iv_console_last_messages, iv_console_last_messages.Length + 1);
         }
     }
