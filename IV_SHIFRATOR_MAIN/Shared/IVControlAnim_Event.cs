@@ -17,6 +17,8 @@ namespace IVControlAnim
             Siticone.Desktop.UI.AnimatorNS.AnimationType anim_type = Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale, bool anim_tip = false)
         {
             SH_Realise_Panels_Anim(chosed_panel, anim_hide, synced, seconds, anim_type, anim_tip);
+
+            Dispose();
         }
 
 
@@ -35,6 +37,16 @@ namespace IVControlAnim
         public Siticone.Desktop.UI.AnimatorNS.AnimationType IV_Get_Last_Anim()
         {
             return iv_anim_last_used_animation_type;
+        }
+
+        public static void IV_Animate_Control(Control chosed_panel, bool anim_hide, bool synced = false, int seconds = 5,
+            Siticone.Desktop.UI.AnimatorNS.AnimationType anim_type = Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale, bool anim_tip = false)
+        {
+            var ANIM = new IVControlAnim_Event();
+
+            ANIM.SH_Realise_Panels_Anim(chosed_panel, anim_hide, synced, seconds, anim_type, anim_tip);
+
+            ANIM.Dispose();
         }
 
         public void SH_Realise_Panels_Anim(Control chosed_panel, bool anim_hide, bool synced = false, int seconds = 5,

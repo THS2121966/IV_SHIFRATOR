@@ -123,15 +123,11 @@ namespace IV_SHIFRATOR_MAIN
 
             Random sh_random = new Random();
 
-            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
-
             sh_web_browser.Visible = true;
-            ANIM.SH_Realise_Panels_Anim(sh_web_browser, false, false, 5, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent, true);
+            sh_control_anim.IVControlAnim_Event.IV_Animate_Control(sh_web_browser, false, false, 5, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent, true);
             sh_advert_inited = true;
             sh_m_m_b_close_advert.Visible = true;
             sh_web_browser.Navigate(sh_advert_link[sh_random.Next(0, sh_advert_link.Length - 1)]);
-
-            ANIM.Dispose();
         }
 
         private void SH_B_Shifrate_Hook(object sender, EventArgs e)
