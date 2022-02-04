@@ -35,6 +35,7 @@ namespace IV_Console
             this.iv_console_panel = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.iv_console_send_panel = new System.Windows.Forms.TextBox();
             this.iv_b_send_to_console = new System.Windows.Forms.Button();
+            this.iv_console_text_helper = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // iv_console_b_exit
@@ -120,12 +121,28 @@ namespace IV_Console
             this.iv_b_send_to_console.UseVisualStyleBackColor = true;
             this.iv_b_send_to_console.Click += new System.EventHandler(this.IV_B_Console_Send_Hook);
             // 
+            // iv_console_text_helper
+            // 
+            this.iv_console_text_helper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.iv_console_text_helper.AutoSize = true;
+            this.iv_console_text_helper.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iv_console_text_helper.Location = new System.Drawing.Point(12, 522);
+            this.iv_console_text_helper.Name = "iv_console_text_helper";
+            this.iv_console_text_helper.Size = new System.Drawing.Size(48, 13);
+            this.iv_console_text_helper.TabIndex = 5;
+            this.iv_console_text_helper.Text = "FIXME!!!";
+            this.iv_console_text_helper.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iv_console_text_helper.Visible = false;
+            this.iv_console_text_helper.Click += new System.EventHandler(this.IV_Console_Helper_Click_Hook);
+            this.iv_console_text_helper.DoubleClick += new System.EventHandler(this.IV_Console_Helper_DClick_Hook);
+            // 
             // IV_Console_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(520, 605);
+            this.Controls.Add(this.iv_console_text_helper);
             this.Controls.Add(this.iv_b_send_to_console);
             this.Controls.Add(this.iv_console_send_panel);
             this.Controls.Add(this.iv_console_panel);
@@ -151,5 +168,6 @@ namespace IV_Console
         private Siticone.Desktop.UI.WinForms.SiticoneTextBox iv_console_panel;
         private System.Windows.Forms.TextBox iv_console_send_panel;
         private System.Windows.Forms.Button iv_b_send_to_console;
+        private System.Windows.Forms.Label iv_console_text_helper;
     }
 }

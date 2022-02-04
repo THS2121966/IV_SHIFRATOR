@@ -13,6 +13,8 @@ namespace IV_Console
         private static readonly Color[] iv_console_color_palette = new Color[(int)IV_Message_Level.All] {Color.FromArgb(45, 45, 45), 
             Color.FromArgb(50, 50, 150), Color.FromArgb(150, 150, 0), Color.FromArgb(250, 30, 0), Color.FromArgb(30, 250, 30), Color.FromArgb(250, 80, 80)};
 
+        private static readonly string[] iv_console_commands = new string[] {"iv_command_hello" };
+
         private static IV_Console_Window iv_graph_console;
         private static bool iv_console_graph_inited = false;
 
@@ -35,6 +37,11 @@ namespace IV_Console
             Logic_Shutdown = 5,
 
             All = 6
+        }
+
+        public static string[] IV_Console_Get_Commands_List()
+        {
+            return iv_console_commands;
         }
 
         public static bool IV_Console_Get_Console_State()

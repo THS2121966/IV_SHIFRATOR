@@ -32,6 +32,7 @@ namespace IV_Console
             };
 
             iv_wnd_inited = true;
+            iv_console_text_helper.Text = String.Empty;
 
             Console_Event.IV_Console_Send_Console_State(true);
 
@@ -135,9 +136,47 @@ namespace IV_Console
             }
         }
 
+        private static string[] IV_Console_Command_Check(string sended_text)
+        {
+            var last_created_commands = Console_Event.IV_Console_Get_Commands_List();
+            string[] iv_defined_commands = new string[1] { String.Empty };
+
+            foreach(string chosed_command in last_created_commands)
+            {
+                if (chosed_command.Substring(1, 1) == sended_text)
+                {
+                    iv_defined_commands[iv_defined_commands.Length - 1] = chosed_command;
+                    Array.Resize(ref iv_defined_commands, iv_defined_commands.Length + 1);
+                }
+            }
+
+            if (iv_defined_commands[iv_defined_commands.Length - 1] == null)
+                Array.Resize(ref iv_defined_commands, iv_defined_commands.Length - 1);
+
+            if (iv_defined_commands[0] != null && iv_defined_commands[0] != String.Empty)
+                return iv_defined_commands;
+            else
+                return null;
+        }
+
+        private string[] iv_commands_list_defined;
+
         private void IV_Console_Send_Text_Hook(object sender, EventArgs e)
         {
+            if(iv_console_send_panel.Text != null && iv_console_send_panel.Text != String.Empty)
+                iv_commands_list_defined = IV_Console_Command_Check(iv_console_send_panel.Text);
 
+            if(iv_commands_list_defined != null)
+            {
+                iv_console_text_helper.Text = iv_commands_list_defined[0];
+                IVControlAnim_Event.IV_Animate_Control(iv_console_text_helper, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale);
+            }
+            else
+            {
+                iv_commands_list_defined = null;
+                iv_console_text_helper.Text = String.Empty;
+                iv_console_text_helper.Visible = false;
+            }
         }
 
         private void IV_B_Console_Send_Hook(object sender, EventArgs e)
@@ -146,6 +185,34 @@ namespace IV_Console
             {
                 Console_Event.IV_Console_Send_Message(iv_console_send_panel.Text, 0);
                 iv_console_send_panel.Text = String.Empty;
+            }
+        }
+
+        private void IV_Console_Helper_Click_Hook(object sender, EventArgs e)
+        {
+            int command_next = 0;
+
+            if(iv_commands_list_defined != null)
+            {
+                for (int next = 0; next < iv_commands_list_defined.Length; next++)
+                    if (iv_commands_list_defined[next] == iv_console_text_helper.Text)
+                        if (next != iv_commands_list_defined.Length - 1)
+                            command_next = next + 1;
+                        else
+                            command_next = 0;
+
+                iv_console_text_helper.Text = iv_commands_list_defined[command_next];
+            }
+        }
+
+        private void IV_Console_Helper_DClick_Hook(object sender, EventArgs e)
+        {
+            if (iv_console_text_helper.Text != null && iv_console_text_helper.Text != String.Empty)
+            {
+                iv_commands_list_defined = null;
+                iv_console_send_panel.Text = iv_console_text_helper.Text;
+                iv_console_text_helper.Text = String.Empty;
+                iv_console_text_helper.Visible = false;
             }
         }
     }
