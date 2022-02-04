@@ -208,8 +208,6 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_DLG_Text_Saved_Hook(object sender, CancelEventArgs e)
         {
-            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
-
             StreamWriter sh_write_file = new StreamWriter(SH_Save_Text_To_File_DLG.FileName);
             if(!sh_num_text_f)
                 sh_write_file.WriteLine(sh_sended_msg_box_01.Text);
@@ -221,12 +219,10 @@ namespace IV_SHIFRATOR_MAIN
             sh_write_file.Close();
 
             MessageBox.Show("Current text saved to new file Successfully!!! File Name - "+ SH_Save_Text_To_File_DLG.FileName, sh_loading_w.sh_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ANIM.SH_Realise_Panels_Anim(sh_b_save_text01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
+            sh_control_anim.IVControlAnim_Event.IV_Animate_Control(sh_b_save_text01, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
 
             var iv_save_dlg = sender as SaveFileDialog;
             iv_save_dlg.Dispose();
-
-            ANIM.Dispose();
         }
 
         private void SH_B_Save_To_File_Hook(object sender, EventArgs e)
@@ -236,8 +232,6 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_B_Write_FIle_Hook(object sender, EventArgs e)
         {
-            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
-
             OpenFileDialog open_f_dlg = new OpenFileDialog
             {
                 Title = "Shifrator Open File Dialog",
@@ -259,11 +253,9 @@ namespace IV_SHIFRATOR_MAIN
                 sh_write_file.WriteLine(sh_get_text_from_file+sh_sended_msg_box_01.Text);
                 sh_write_file.Close();
                 MessageBox.Show("Current changes are saved Successfully!!! File Name - " + open_f_dlg.FileName, sh_loading_w.sh_logo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ANIM.SH_Realise_Panels_Anim(sh_b_write_created_file, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
+                sh_control_anim.IVControlAnim_Event.IV_Animate_Control(sh_b_write_created_file, false, false, 1, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
             }
             open_f_dlg.Dispose();
-
-            ANIM.Dispose();
         }
 
         private bool sh_num_text_f = false;
@@ -443,33 +435,25 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_Logo_Click_Hook(object sender, EventArgs e)
         {
-            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
-
             if (sh_logo_click_count < 10)
                 sh_logo_click_count++;
             else
             {
                 sh_logo_click_count = 0;
-                ANIM.SH_Realise_Panels_Anim(sh_p_logo, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
+                sh_control_anim.IVControlAnim_Event.IV_Animate_Control(sh_p_logo, false, false, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate, true);
             }
-
-            ANIM.Dispose();
         }
 
         private void SH_B_Advert_Close_Hook(object sender, EventArgs e)
         {
-            sh_control_anim.IVControlAnim_Event ANIM = new sh_control_anim.IVControlAnim_Event();
-
             var sh_button_this = sender as Siticone.Desktop.UI.WinForms.SiticoneButton;
-            ANIM.SH_Realise_Panels_Anim(sh_button_this, true, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
+            sh_control_anim.IVControlAnim_Event.IV_Animate_Control(sh_button_this, true, false, 2, Siticone.Desktop.UI.AnimatorNS.AnimationType.Transparent);
 
             sh_web_browser.Visible = false;
             sh_web_browser.Dispose();
             sh_browser_panel_01.Visible = false;
             sh_advert_inited = false;
             sh_browser_panel_01.Dispose();
-
-            ANIM.Dispose();
         }
     }
 }
