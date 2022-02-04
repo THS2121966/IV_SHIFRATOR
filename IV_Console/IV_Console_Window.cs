@@ -35,7 +35,7 @@ namespace IV_Console
 
             iv_wnd_inited = true;
 
-            iv_console_logic = new Console_Event();
+            Console_Event.IV_Console_Send_Console_State(true);
 
             IV_Init_Think();
         }
@@ -83,6 +83,8 @@ namespace IV_Console
             }
             else
             {
+                Console_Event.IV_Console_Send_Console_State(false);
+
                 iv_wnd_inited = false;
                 e.Cancel = false;
             }
@@ -91,6 +93,11 @@ namespace IV_Console
         private void IV_WND_Move_Anim_Think(object sender, EventArgs e)
         {
             this.Location = Cursor.Position;
+        }
+
+        public SiticoneTextBox IV_Console_Get_Console_Text_Graph_Panel()
+        {
+            return iv_console_panel;
         }
 
         private void IV_Enter_Focus_Hook(object sender, EventArgs e)

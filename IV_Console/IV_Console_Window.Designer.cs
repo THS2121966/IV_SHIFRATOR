@@ -32,7 +32,7 @@ namespace IV_Console
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IV_Console_Window));
             this.iv_console_b_exit = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.iv_panel_control_buttons = new System.Windows.Forms.Panel();
-            this.iv_console_panel = new System.Windows.Forms.TextBox();
+            this.iv_console_panel = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
             this.iv_console_send_panel = new System.Windows.Forms.TextBox();
             this.iv_b_send_to_console = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -78,12 +78,22 @@ namespace IV_Console
             this.iv_console_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.iv_console_panel.Animated = true;
             this.iv_console_panel.BackColor = System.Drawing.SystemColors.Menu;
+            this.iv_console_panel.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.iv_console_panel.DefaultText = "";
+            this.iv_console_panel.DisabledState.Parent = this.iv_console_panel;
+            this.iv_console_panel.FocusedState.Parent = this.iv_console_panel;
+            this.iv_console_panel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.iv_console_panel.HoverState.Parent = this.iv_console_panel;
             this.iv_console_panel.Location = new System.Drawing.Point(12, 41);
             this.iv_console_panel.Multiline = true;
             this.iv_console_panel.Name = "iv_console_panel";
+            this.iv_console_panel.PasswordChar = '\0';
+            this.iv_console_panel.PlaceholderText = "";
             this.iv_console_panel.ReadOnly = true;
-            this.iv_console_panel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.iv_console_panel.SelectedText = "";
+            this.iv_console_panel.ShadowDecoration.Parent = this.iv_console_panel;
             this.iv_console_panel.Size = new System.Drawing.Size(496, 522);
             this.iv_console_panel.TabIndex = 2;
             // 
@@ -138,7 +148,7 @@ namespace IV_Console
 
         private Siticone.Desktop.UI.WinForms.SiticoneButton iv_console_b_exit;
         private System.Windows.Forms.Panel iv_panel_control_buttons;
-        private System.Windows.Forms.TextBox iv_console_panel;
+        private Siticone.Desktop.UI.WinForms.SiticoneTextBox iv_console_panel;
         private System.Windows.Forms.TextBox iv_console_send_panel;
         private System.Windows.Forms.Button iv_b_send_to_console;
     }
