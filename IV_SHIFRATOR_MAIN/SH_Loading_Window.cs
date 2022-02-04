@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using IV_Console;
+
 namespace IV_SHIFRATOR_MAIN
 {
     public partial class SH_Loading_Window : Form
@@ -19,6 +21,8 @@ namespace IV_SHIFRATOR_MAIN
             InitializeComponent();
             SH_L_W_Init_Styles();
             SH_Realise_Think(sh_time01_fps);
+            SH_Realise_Console();
+
             sh_loading_core = this;
 
             Random i_random = new Random();
@@ -41,6 +45,8 @@ namespace IV_SHIFRATOR_MAIN
         private readonly Timer sh_time_text_anim = new Timer();
         private const int sh_time01_fps = 150;
         private const int sh_time_text_fps = 42;
+
+        private static IV_Console_Window sh_console_main;
 
         private static Color sh_def_l_w_color;
         private Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_l_m_color_style;
@@ -69,6 +75,16 @@ namespace IV_SHIFRATOR_MAIN
 
             sh_time_text_anim.Interval = sh_time_text_fps;
             sh_time_text_anim.Tick += SH_Text_Anim_Think;
+        }
+
+        private void SH_Realise_Console()
+        {
+            sh_console_main = new IV_Console_Window();
+        }
+
+        public static IV_Console_Window SH_Get_Console()
+        {
+            return sh_console_main;
         }
 
         private void SH_Color_L_M_Anim_Think(object sender, EventArgs e)

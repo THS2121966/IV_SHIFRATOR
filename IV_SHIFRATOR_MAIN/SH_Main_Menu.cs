@@ -25,7 +25,7 @@ namespace IV_SHIFRATOR_MAIN
 
         GeckoWebBrowser sh_web_browser;
 
-        private static readonly IV_Console_Window sh_console_main = new IV_Console_Window();
+        private static readonly IV_Console_Window sh_console_hook = SH_Loading_Window.SH_Get_Console();
 
         public SH_Main_Menu()
         {
@@ -41,7 +41,7 @@ namespace IV_SHIFRATOR_MAIN
             sh_m_m_color_anim.Enabled = false;
             sh_cb_color_gradient.Checked = false;
             sh_m_m_loaded = false;
-            sh_console_main.IV_WND_Force_Close();
+            sh_console_hook.IV_WND_Force_Close();
             SH_Loading_Window.sh_loading_core.SH_Send_Chose_Command();
         }
 
@@ -77,8 +77,8 @@ namespace IV_SHIFRATOR_MAIN
                 AutoTransition = true
             };
 
-            if(sh_console_main.IV_Get_Window_State())
-                sh_console_main.Visible = true;
+            if(sh_console_hook.IV_Get_Window_State())
+                sh_console_hook.Visible = true;
         }
 
         private void SH_INIT_Browser()
