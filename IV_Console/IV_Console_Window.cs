@@ -20,6 +20,8 @@ namespace IV_Console
         private bool iv_wnd_inited = false;
         private bool iv_wnd_escape_close_check = false;
 
+        private Console_Event iv_console_logic;
+
         public IV_Console_Window()
         {
             InitializeComponent();
@@ -32,6 +34,8 @@ namespace IV_Console
             };
 
             iv_wnd_inited = true;
+
+            iv_console_logic = new Console_Event();
 
             IV_Init_Think();
         }
@@ -124,6 +128,16 @@ namespace IV_Console
 
                 iv_wnd_move_to_cursor_anim.Enabled = false;
             }
+        }
+
+        private void IV_Console_Send_Text_Hook(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IV_B_Console_Send_Hook(object sender, EventArgs e)
+        {
+
         }
     }
 }

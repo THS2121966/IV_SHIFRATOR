@@ -32,6 +32,9 @@ namespace IV_Console
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IV_Console_Window));
             this.iv_console_b_exit = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.iv_panel_control_buttons = new System.Windows.Forms.Panel();
+            this.iv_console_panel = new System.Windows.Forms.TextBox();
+            this.iv_console_send_panel = new System.Windows.Forms.TextBox();
+            this.iv_b_send_to_console = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // iv_console_b_exit
@@ -70,12 +73,52 @@ namespace IV_Console
             this.iv_panel_control_buttons.Click += new System.EventHandler(this.IV_WND_Stop_Move_Hook);
             this.iv_panel_control_buttons.DoubleClick += new System.EventHandler(this.IV_WND_Move_Hook);
             // 
+            // iv_console_panel
+            // 
+            this.iv_console_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iv_console_panel.BackColor = System.Drawing.SystemColors.Menu;
+            this.iv_console_panel.Location = new System.Drawing.Point(12, 41);
+            this.iv_console_panel.Multiline = true;
+            this.iv_console_panel.Name = "iv_console_panel";
+            this.iv_console_panel.ReadOnly = true;
+            this.iv_console_panel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.iv_console_panel.Size = new System.Drawing.Size(496, 522);
+            this.iv_console_panel.TabIndex = 2;
+            // 
+            // iv_console_send_panel
+            // 
+            this.iv_console_send_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iv_console_send_panel.Location = new System.Drawing.Point(12, 573);
+            this.iv_console_send_panel.Multiline = true;
+            this.iv_console_send_panel.Name = "iv_console_send_panel";
+            this.iv_console_send_panel.Size = new System.Drawing.Size(395, 20);
+            this.iv_console_send_panel.TabIndex = 3;
+            this.iv_console_send_panel.TextChanged += new System.EventHandler(this.IV_Console_Send_Text_Hook);
+            // 
+            // iv_b_send_to_console
+            // 
+            this.iv_b_send_to_console.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.iv_b_send_to_console.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iv_b_send_to_console.Location = new System.Drawing.Point(433, 573);
+            this.iv_b_send_to_console.Name = "iv_b_send_to_console";
+            this.iv_b_send_to_console.Size = new System.Drawing.Size(75, 23);
+            this.iv_b_send_to_console.TabIndex = 4;
+            this.iv_b_send_to_console.Text = "Send";
+            this.iv_b_send_to_console.UseVisualStyleBackColor = true;
+            this.iv_b_send_to_console.Click += new System.EventHandler(this.IV_B_Console_Send_Hook);
+            // 
             // IV_Console_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(520, 605);
+            this.Controls.Add(this.iv_b_send_to_console);
+            this.Controls.Add(this.iv_console_send_panel);
+            this.Controls.Add(this.iv_console_panel);
             this.Controls.Add(this.iv_console_b_exit);
             this.Controls.Add(this.iv_panel_control_buttons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -95,5 +138,8 @@ namespace IV_Console
 
         private Siticone.Desktop.UI.WinForms.SiticoneButton iv_console_b_exit;
         private System.Windows.Forms.Panel iv_panel_control_buttons;
+        private System.Windows.Forms.TextBox iv_console_panel;
+        private System.Windows.Forms.TextBox iv_console_send_panel;
+        private System.Windows.Forms.Button iv_b_send_to_console;
     }
 }
