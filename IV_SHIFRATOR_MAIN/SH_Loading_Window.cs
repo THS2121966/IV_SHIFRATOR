@@ -46,7 +46,7 @@ namespace IV_SHIFRATOR_MAIN
         private const int sh_time01_fps = 150;
         private const int sh_time_text_fps = 42;
 
-        private static IV_Console_Window sh_console_main;
+        private static Console_Event sh_console_main;
 
         private static Color sh_def_l_w_color;
         private Siticone.Desktop.UI.WinForms.SiticoneColorTransition sh_l_m_color_style;
@@ -79,10 +79,10 @@ namespace IV_SHIFRATOR_MAIN
 
         private void SH_Realise_Console()
         {
-            sh_console_main = new IV_Console_Window();
+            sh_console_main = new Console_Event();
         }
 
-        public static IV_Console_Window SH_Get_Console()
+        public static Console_Event SH_Get_Console()
         {
             return sh_console_main;
         }

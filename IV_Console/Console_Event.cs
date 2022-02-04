@@ -10,7 +10,7 @@ namespace IV_Console
     public class Console_Event
     {
         private static string[] iv_console_last_messages;
-        private readonly Color[] iv_console_color_palette = new Color[(int)IV_Message_Level.All] {Color.FromArgb(45, 45, 45), 
+        private static readonly Color[] iv_console_color_palette = new Color[(int)IV_Message_Level.All] {Color.FromArgb(45, 45, 45), 
             Color.FromArgb(50, 50, 150), Color.FromArgb(150, 150, 0), Color.FromArgb(250, 30, 0), Color.FromArgb(30, 250, 30), Color.FromArgb(250, 80, 80)};
 
         private static IV_Console_Window iv_graph_console;
@@ -55,7 +55,12 @@ namespace IV_Console
                 return null;
         }
 
-        public void IV_Console_Send_Message(string sended_text, IV_Message_Level message_level, bool send_next = true)
+        public IV_Console_Window IV_Get_Console_Graph_WND()
+        {
+            return iv_graph_console;
+        }
+
+        public static void IV_Console_Send_Message(string sended_text, IV_Message_Level message_level, bool send_next = true)
         {
             var iv_text_box = iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel();
             string send_text;
@@ -70,7 +75,13 @@ namespace IV_Console
                 if (apply_color == iv_console_color_palette[(int)message_level])
                     sended_color = iv_console_color_palette[(int)message_level];
 
-            iv_text_box.Text = send_text;
+            iv_text_box.Text += "["+message_level.ToString()+"] "+send_text;
+
+            if (iv_console_last_messages == null)
+                iv_console_last_messages = new string[1];
+
+            iv_console_last_messages[iv_console_last_messages.Length - 1] = send_text;
+            Array.Resize(ref iv_console_last_messages, iv_console_last_messages.Length + 1);
         }
     }
 }

@@ -20,8 +20,6 @@ namespace IV_Console
         private bool iv_wnd_inited = false;
         private bool iv_wnd_escape_close_check = false;
 
-        private Console_Event iv_console_logic;
-
         public IV_Console_Window()
         {
             InitializeComponent();
@@ -144,7 +142,11 @@ namespace IV_Console
 
         private void IV_B_Console_Send_Hook(object sender, EventArgs e)
         {
-
+            if(iv_console_send_panel.Text != null && iv_console_send_panel.Text != String.Empty)
+            {
+                Console_Event.IV_Console_Send_Message(iv_console_send_panel.Text, 0);
+                iv_console_send_panel.Text = String.Empty;
+            }
         }
     }
 }

@@ -25,7 +25,8 @@ namespace IV_SHIFRATOR_MAIN
 
         GeckoWebBrowser sh_web_browser;
 
-        private static readonly IV_Console_Window sh_console_hook = SH_Loading_Window.SH_Get_Console();
+        private static readonly Console_Event sh_console_logic_hook = SH_Loading_Window.SH_Get_Console();
+        private static readonly IV_Console_Window sh_console_hook = sh_console_logic_hook.IV_Get_Console_Graph_WND();
 
         public SH_Main_Menu()
         {
