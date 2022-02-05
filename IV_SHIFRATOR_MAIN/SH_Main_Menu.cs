@@ -25,8 +25,8 @@ namespace IV_SHIFRATOR_MAIN
 
         GeckoWebBrowser sh_web_browser;
 
-        private static readonly Console_Event sh_console_logic_hook = SH_Loading_Window.SH_Get_Console();
-        private static readonly IV_Console_Window sh_console_hook = sh_console_logic_hook.IV_Get_Console_Graph_WND();
+        private static Console_Event sh_console_logic_hook = SH_Loading_Window.SH_Get_Console();
+        private static IV_Console_Window sh_console_hook = sh_console_logic_hook.IV_Get_Console_Graph_WND();
 
         public SH_Main_Menu()
         {
@@ -80,9 +80,6 @@ namespace IV_SHIFRATOR_MAIN
                 ColorArray = new Color[] { sh_default_menu_color, Color.FromArgb(sh_default_menu_color.R - 30, sh_default_menu_color.G - 30, sh_default_menu_color.B - 30) },
                 AutoTransition = true
             };
-
-            if(sh_console_hook.IV_Get_Window_State())
-                sh_console_hook.Visible = true;
         }
 
         private void SH_INIT_Browser()
@@ -459,6 +456,23 @@ namespace IV_SHIFRATOR_MAIN
             sh_browser_panel_01.Visible = false;
             sh_advert_inited = false;
             sh_browser_panel_01.Dispose();
+        }
+
+        private void SH_B_Open_Console_Hook(object sender, EventArgs e)
+        {
+            if (sh_console_hook.IV_Get_Window_State() && !sh_console_hook.Visible)
+                sh_console_hook.Visible = true;
+            else if (sh_console_hook.IV_Get_Window_State() && sh_console_hook.Visible)
+                sh_console_hook.Visible = false;
+            else if (!sh_console_hook.IV_Get_Window_State())
+            {
+                SH_Loading_Window.SH_Realise_Console();
+
+                sh_console_logic_hook = SH_Loading_Window.SH_Get_Console();
+                sh_console_hook = sh_console_logic_hook.IV_Get_Console_Graph_WND();
+
+                sh_console_hook.Visible = true;
+            }
         }
     }
 }

@@ -22,8 +22,8 @@ namespace IV_Console
         {
             if (!iv_console_graph_inited)
                 iv_graph_console = new IV_Console_Window();
-            else if (!iv_graph_console.Visible && iv_console_graph_inited)
-                iv_graph_console.Visible = true;
+
+            IV_Console_Restore_Messages();
         }
 
         public enum IV_Message_Level
@@ -103,12 +103,14 @@ namespace IV_Console
                 if (apply_color == iv_console_color_palette[(int)message_level])
                     sended_color = iv_console_color_palette[(int)message_level];
 
-            iv_text_box.Text += " [" + message_level.ToString() + "] " + sended_text + send_sign;
+            string send_text = " [" + message_level.ToString() + "] " + sended_text + send_sign;
+
+            iv_text_box.Text += send_text;
 
             if (iv_console_last_messages == null)
                 iv_console_last_messages = new string[1];
 
-            iv_console_last_messages[iv_console_last_messages.Length - 1] = sended_text + send_sign;
+            iv_console_last_messages[iv_console_last_messages.Length - 1] = send_text;
             Array.Resize(ref iv_console_last_messages, iv_console_last_messages.Length + 1);
         }
     }

@@ -45,6 +45,7 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_p_logo = new System.Windows.Forms.PictureBox();
             this.sh_browser_panel_01 = new System.Windows.Forms.Panel();
             this.sh_m_m_b_close_advert = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.sh_b_open_console = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             ((System.ComponentModel.ISupportInitialize)(this.sh_p_logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -287,12 +288,38 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_m_m_b_close_advert.Visible = false;
             this.sh_m_m_b_close_advert.Click += new System.EventHandler(this.SH_B_Advert_Close_Hook);
             // 
+            // sh_b_open_console
+            // 
+            this.sh_b_open_console.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sh_b_open_console.Animated = true;
+            this.sh_b_open_console.CheckedState.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.CustomImages.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.DefaultAutoSize = true;
+            this.sh_b_open_console.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_open_console.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_open_console.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sh_b_open_console.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sh_b_open_console.DisabledState.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.sh_b_open_console.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.sh_b_open_console.ForeColor = System.Drawing.Color.White;
+            this.sh_b_open_console.HoverState.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.IndicateFocus = true;
+            this.sh_b_open_console.Location = new System.Drawing.Point(75, 415);
+            this.sh_b_open_console.Name = "sh_b_open_console";
+            this.sh_b_open_console.ShadowDecoration.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.Size = new System.Drawing.Size(107, 27);
+            this.sh_b_open_console.TabIndex = 13;
+            this.sh_b_open_console.Text = "Open Console";
+            this.sh_b_open_console.Click += new System.EventHandler(this.SH_B_Open_Console_Hook);
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_b_open_console);
             this.Controls.Add(this.sh_m_m_b_close_advert);
             this.Controls.Add(this.sh_browser_panel_01);
             this.Controls.Add(this.sh_p_logo);
@@ -336,5 +363,6 @@ namespace IV_SHIFRATOR_MAIN
         private System.Windows.Forms.PictureBox sh_p_logo;
         private System.Windows.Forms.Panel sh_browser_panel_01;
         private Siticone.Desktop.UI.WinForms.SiticoneButton sh_m_m_b_close_advert;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_open_console;
     }
 }

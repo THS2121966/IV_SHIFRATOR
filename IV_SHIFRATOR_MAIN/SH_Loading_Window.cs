@@ -77,7 +77,7 @@ namespace IV_SHIFRATOR_MAIN
             sh_time_text_anim.Tick += SH_Text_Anim_Think;
         }
 
-        private void SH_Realise_Console()
+        public static void SH_Realise_Console()
         {
             sh_console_main = new Console_Event();
         }
