@@ -29,6 +29,7 @@ namespace IV_Console
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IV_Console_Window));
             this.iv_console_b_exit = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.iv_panel_control_buttons = new System.Windows.Forms.Panel();
@@ -36,6 +37,9 @@ namespace IV_Console
             this.iv_console_send_panel = new System.Windows.Forms.TextBox();
             this.iv_b_send_to_console = new System.Windows.Forms.Button();
             this.iv_console_text_helper = new System.Windows.Forms.Label();
+            this.iv_console_text_resiser_bar = new Siticone.Desktop.UI.WinForms.SiticoneTrackBar();
+            this.iv_console_scroll_tip = new System.Windows.Forms.ToolTip(this.components);
+            this.iv_panel_control_buttons.SuspendLayout();
             this.SuspendLayout();
             // 
             // iv_console_b_exit
@@ -67,6 +71,7 @@ namespace IV_Console
             this.iv_panel_control_buttons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.iv_panel_control_buttons.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.iv_panel_control_buttons.Controls.Add(this.iv_console_text_resiser_bar);
             this.iv_panel_control_buttons.Location = new System.Drawing.Point(0, 0);
             this.iv_panel_control_buttons.Name = "iv_panel_control_buttons";
             this.iv_panel_control_buttons.Size = new System.Drawing.Size(520, 35);
@@ -128,6 +133,28 @@ namespace IV_Console
             this.iv_console_text_helper.Click += new System.EventHandler(this.IV_Console_Helper_Click_Hook);
             this.iv_console_text_helper.DoubleClick += new System.EventHandler(this.IV_Console_Helper_DClick_Hook);
             // 
+            // iv_console_text_resiser_bar
+            // 
+            this.iv_console_text_resiser_bar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iv_console_text_resiser_bar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iv_console_text_resiser_bar.HoverState.Parent = this.iv_console_text_resiser_bar;
+            this.iv_console_text_resiser_bar.LargeChange = 2;
+            this.iv_console_text_resiser_bar.Location = new System.Drawing.Point(105, 7);
+            this.iv_console_text_resiser_bar.Maximum = 72;
+            this.iv_console_text_resiser_bar.Minimum = 9;
+            this.iv_console_text_resiser_bar.Name = "iv_console_text_resiser_bar";
+            this.iv_console_text_resiser_bar.Size = new System.Drawing.Size(300, 23);
+            this.iv_console_text_resiser_bar.TabIndex = 6;
+            this.iv_console_text_resiser_bar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.iv_console_text_resiser_bar.Value = 9;
+            this.iv_console_text_resiser_bar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.IV_Console_Text_Scale_Hook);
+            // 
+            // iv_console_scroll_tip
+            // 
+            this.iv_console_scroll_tip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.iv_console_scroll_tip.ToolTipTitle = "Font Size:";
+            // 
             // IV_Console_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,6 +175,7 @@ namespace IV_Console
             this.Activated += new System.EventHandler(this.IV_Enter_Focus_Hook);
             this.Deactivate += new System.EventHandler(this.IV_Out_Focus_Hook);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IV_Console_Close_Hook);
+            this.iv_panel_control_buttons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,5 +189,7 @@ namespace IV_Console
         private System.Windows.Forms.TextBox iv_console_send_panel;
         private System.Windows.Forms.Button iv_b_send_to_console;
         private System.Windows.Forms.Label iv_console_text_helper;
+        private Siticone.Desktop.UI.WinForms.SiticoneTrackBar iv_console_text_resiser_bar;
+        private System.Windows.Forms.ToolTip iv_console_scroll_tip;
     }
 }

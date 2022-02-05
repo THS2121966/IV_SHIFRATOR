@@ -34,6 +34,8 @@ namespace IV_Console
             iv_wnd_inited = true;
             iv_console_text_helper.Text = String.Empty;
 
+            iv_console_scroll_tip.SetToolTip(iv_console_text_resiser_bar, iv_console_text_resiser_bar.Value + "");
+
             Console_Event.IV_Console_Send_Console_State(true);
 
             IV_Init_Think();
@@ -309,6 +311,14 @@ namespace IV_Console
                 iv_console_text_helper.Text = String.Empty;
                 iv_console_text_helper.Visible = false;
             }
+        }
+
+        private void IV_Console_Text_Scale_Hook(object sender, ScrollEventArgs e)
+        {
+            Font iv_new_font = new Font(iv_console_panel.Font.FontFamily.Name, e.NewValue);
+
+            iv_console_scroll_tip.SetToolTip(iv_console_text_resiser_bar, iv_console_text_resiser_bar.Value + "");
+            iv_console_panel.Font = iv_new_font;
         }
     }
 }
