@@ -13,7 +13,7 @@ namespace IV_Console
         private static readonly Color[] iv_console_color_palette = new Color[(int)IV_Message_Level.All] {Color.FromArgb(45, 45, 45), 
             Color.FromArgb(50, 50, 150), Color.FromArgb(150, 150, 0), Color.FromArgb(250, 30, 0), Color.FromArgb(30, 250, 30), Color.FromArgb(250, 80, 80)};
 
-        private static readonly string[] iv_console_commands = new string[] {"iv_command_hello" };
+        private static readonly string[] iv_console_commands = new string[] {"iv_command_hello", "iv_command_test", "clear" };
 
         private static IV_Console_Window iv_graph_console;
         private static bool iv_console_graph_inited = false;
@@ -60,6 +60,28 @@ namespace IV_Console
                 return iv_console_last_messages;
             else
                 return null;
+        }
+
+        private static void IV_Console_Restore_Messages()
+        {
+            if(iv_console_last_messages != null)
+                if(iv_console_last_messages[0] != String.Empty)
+                {
+                    foreach(string message in iv_console_last_messages)
+                    {
+                        iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel().Text += message;
+                    }
+                }
+        }
+
+        public static void IV_Console_Clear_Messages()
+        {
+            var iv_text_table = iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel();
+
+            iv_console_last_messages = null;
+
+            if (iv_text_table.Text != null && iv_text_table.Text != String.Empty)
+                iv_text_table.Text = String.Empty;
         }
 
         public IV_Console_Window IV_Get_Console_Graph_WND()

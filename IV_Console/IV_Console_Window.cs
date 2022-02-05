@@ -143,7 +143,7 @@ namespace IV_Console
 
             foreach(string chosed_command in last_created_commands)
             {
-                if (chosed_command.Substring(1, 1) == sended_text)
+                if (chosed_command.Substring(0, 1) == sended_text)
                 {
                     iv_defined_commands[iv_defined_commands.Length - 1] = chosed_command;
                     Array.Resize(ref iv_defined_commands, iv_defined_commands.Length + 1);
@@ -163,7 +163,7 @@ namespace IV_Console
 
         private void IV_Console_Send_Text_Hook(object sender, EventArgs e)
         {
-            if(iv_console_send_panel.Text != null && iv_console_send_panel.Text != String.Empty)
+            if(iv_console_send_panel.Text != null /*&& iv_console_send_panel.Text != String.Empty*/)
                 iv_commands_list_defined = IV_Console_Command_Check(iv_console_send_panel.Text);
 
             if(iv_commands_list_defined != null)
@@ -183,9 +183,103 @@ namespace IV_Console
         {
             if(iv_console_send_panel.Text != null && iv_console_send_panel.Text != String.Empty)
             {
-                Console_Event.IV_Console_Send_Message(iv_console_send_panel.Text, 0);
-                iv_console_send_panel.Text = String.Empty;
+                var iv_active_commands = Console_Event.IV_Console_Get_Commands_List();
+                bool valid_command = false;
+
+                for (int check = 0; check < iv_active_commands.Length; check++)
+                {
+                    if (iv_console_send_panel.Text == iv_active_commands[check])
+                    {
+                        valid_command = true;
+
+                        if (iv_console_send_panel.Text == iv_active_commands[0])
+                            IV_Con_Command_Hello();
+                        else if (iv_console_send_panel.Text == iv_active_commands[1])
+                            IV_Con_Command_Test_Count();
+                        else if (iv_console_send_panel.Text == iv_active_commands[2])
+                            IV_Con_Command_Clear();
+                        else
+                        {
+                            valid_command = false;
+                            MessageBox.Show("Command Function Not Created yet!!! Tell a programmer!!!", CONSOLE_LOGO, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+
+                if (!valid_command)
+                {
+                    Console_Event.IV_Console_Send_Message(iv_console_send_panel.Text, Console_Event.IV_Message_Level.Nope);
+                    iv_console_send_panel.Text = String.Empty;
+                }
             }
+        }
+
+        private void IV_Con_Command_Hello()
+        {
+            Console_Event.IV_Console_Send_Message("Hello World!!!", Console_Event.IV_Message_Level.Info);
+            iv_console_send_panel.Text = String.Empty;
+        }
+
+        private Timer iv_con_command_count_think;
+        private bool iv_con_command_count_active = false;
+
+        private void IV_Con_Command_Test_Count(bool exit = false)
+        {
+            iv_console_send_panel.Text = String.Empty;
+
+            if (!exit && !iv_con_command_count_active)
+            {
+                iv_con_command_count_active = true;
+
+                iv_con_command_count_think = new Timer
+                {
+                    Interval = 500
+                };
+
+                iv_con_command_count_think.Tick += IV_Con_Command_Count_Think;
+
+                iv_con_command_count_think.Enabled = true;
+            }
+            else if(exit && iv_con_command_count_active)
+            {
+                iv_con_command_count_active = false;
+
+                Console_Event.IV_Console_Send_Message("Done!!!", Console_Event.IV_Message_Level.Logic_Shutdown);
+            }
+            else if(iv_con_command_count_active)
+            {
+                Console_Event.IV_Console_Send_Message("Wait, until counting is done!!!", Console_Event.IV_Message_Level.Warning);
+            }
+        }
+
+        private int iv_con_command_count = 0;
+
+        private void IV_Con_Command_Count_Think(object sender, EventArgs e)
+        {
+            if(iv_con_command_count != 6)
+            {
+                if (iv_con_command_count == 0)
+                    Console_Event.IV_Console_Send_Message("Starting test count...", Console_Event.IV_Message_Level.Logic_Init);
+                else
+                    Console_Event.IV_Console_Send_Message(iv_con_command_count+"", Console_Event.IV_Message_Level.Info);
+
+                iv_con_command_count++;
+            }
+            else
+            {
+                iv_con_command_count = 0;
+                iv_con_command_count_think.Enabled = false;
+                iv_con_command_count_think.Dispose();
+
+                IV_Con_Command_Test_Count(true);
+            }
+        }
+
+        private void IV_Con_Command_Clear()
+        {
+            iv_console_send_panel.Text = String.Empty;
+
+            Console_Event.IV_Console_Clear_Messages();
         }
 
         private void IV_Console_Helper_Click_Hook(object sender, EventArgs e)
