@@ -39,6 +39,14 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_b_write_created_file = new System.Windows.Forms.Button();
             this.sh_cb_num_text_for_file = new System.Windows.Forms.CheckBox();
             this.sh_b_load_signs_from_f = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.sh_b_back_color_change = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.sh_m_m_color_dlg = new System.Windows.Forms.ColorDialog();
+            this.sh_cb_color_gradient = new Siticone.Desktop.UI.WinForms.SiticoneCheckBox();
+            this.sh_p_logo = new System.Windows.Forms.PictureBox();
+            this.sh_browser_panel_01 = new System.Windows.Forms.Panel();
+            this.sh_m_m_b_close_advert = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            this.sh_b_open_console = new Siticone.Desktop.UI.WinForms.SiticoneButton();
+            ((System.ComponentModel.ISupportInitialize)(this.sh_p_logo)).BeginInit();
             this.SuspendLayout();
             // 
             // sh_sended_msg_box_01
@@ -167,12 +175,156 @@ namespace IV_SHIFRATOR_MAIN
             this.sh_b_load_signs_from_f.Visible = false;
             this.sh_b_load_signs_from_f.Click += new System.EventHandler(this.SH_B_Load_Signs_From_F_Hook);
             // 
+            // sh_b_back_color_change
+            // 
+            this.sh_b_back_color_change.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_b_back_color_change.Animated = true;
+            this.sh_b_back_color_change.AutoRoundedCorners = true;
+            this.sh_b_back_color_change.BackColor = System.Drawing.Color.Transparent;
+            this.sh_b_back_color_change.BorderRadius = 12;
+            this.sh_b_back_color_change.CheckedState.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.CustomImages.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.DefaultAutoSize = true;
+            this.sh_b_back_color_change.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_back_color_change.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_back_color_change.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sh_b_back_color_change.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sh_b_back_color_change.DisabledState.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.FillColor = System.Drawing.Color.Azure;
+            this.sh_b_back_color_change.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.sh_b_back_color_change.ForeColor = System.Drawing.Color.Black;
+            this.sh_b_back_color_change.HoverState.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.Location = new System.Drawing.Point(705, 0);
+            this.sh_b_back_color_change.Name = "sh_b_back_color_change";
+            this.sh_b_back_color_change.ShadowDecoration.Parent = this.sh_b_back_color_change;
+            this.sh_b_back_color_change.Size = new System.Drawing.Size(94, 27);
+            this.sh_b_back_color_change.TabIndex = 8;
+            this.sh_b_back_color_change.Text = "Menu Color";
+            this.sh_b_back_color_change.UseTransparentBackground = true;
+            this.sh_b_back_color_change.Visible = false;
+            this.sh_b_back_color_change.Click += new System.EventHandler(this.SH_M_M_Color_B_Click_Hook);
+            // 
+            // sh_m_m_color_dlg
+            // 
+            this.sh_m_m_color_dlg.AnyColor = true;
+            this.sh_m_m_color_dlg.FullOpen = true;
+            // 
+            // sh_cb_color_gradient
+            // 
+            this.sh_cb_color_gradient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_cb_color_gradient.Animated = true;
+            this.sh_cb_color_gradient.AutoSize = true;
+            this.sh_cb_color_gradient.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.sh_cb_color_gradient.CheckedState.BorderColor = System.Drawing.Color.LightGreen;
+            this.sh_cb_color_gradient.CheckedState.BorderRadius = 0;
+            this.sh_cb_color_gradient.CheckedState.BorderThickness = 0;
+            this.sh_cb_color_gradient.CheckedState.FillColor = System.Drawing.Color.LightGreen;
+            this.sh_cb_color_gradient.CheckMarkColor = System.Drawing.Color.Black;
+            this.sh_cb_color_gradient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sh_cb_color_gradient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.sh_cb_color_gradient.Location = new System.Drawing.Point(592, 0);
+            this.sh_cb_color_gradient.Name = "sh_cb_color_gradient";
+            this.sh_cb_color_gradient.Size = new System.Drawing.Size(106, 17);
+            this.sh_cb_color_gradient.TabIndex = 9;
+            this.sh_cb_color_gradient.Text = "Gradient Colorise";
+            this.sh_cb_color_gradient.UncheckedState.BorderColor = System.Drawing.Color.DarkRed;
+            this.sh_cb_color_gradient.UncheckedState.BorderRadius = 0;
+            this.sh_cb_color_gradient.UncheckedState.BorderThickness = 0;
+            this.sh_cb_color_gradient.UncheckedState.FillColor = System.Drawing.Color.DarkRed;
+            this.sh_cb_color_gradient.UseVisualStyleBackColor = false;
+            this.sh_cb_color_gradient.Visible = false;
+            this.sh_cb_color_gradient.CheckedChanged += new System.EventHandler(this.SH_CB_Gradient_State_Hook);
+            // 
+            // sh_p_logo
+            // 
+            this.sh_p_logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sh_p_logo.Image = global::IV_SHIFRATOR_MAIN.Properties.Resources.ths_icon;
+            this.sh_p_logo.Location = new System.Drawing.Point(5, 385);
+            this.sh_p_logo.Name = "sh_p_logo";
+            this.sh_p_logo.Size = new System.Drawing.Size(64, 64);
+            this.sh_p_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.sh_p_logo.TabIndex = 10;
+            this.sh_p_logo.TabStop = false;
+            this.sh_p_logo.Click += new System.EventHandler(this.SH_Logo_Click_Hook);
+            // 
+            // sh_browser_panel_01
+            // 
+            this.sh_browser_panel_01.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_browser_panel_01.Location = new System.Drawing.Point(12, 93);
+            this.sh_browser_panel_01.Name = "sh_browser_panel_01";
+            this.sh_browser_panel_01.Size = new System.Drawing.Size(601, 255);
+            this.sh_browser_panel_01.TabIndex = 11;
+            // 
+            // sh_m_m_b_close_advert
+            // 
+            this.sh_m_m_b_close_advert.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sh_m_m_b_close_advert.Animated = true;
+            this.sh_m_m_b_close_advert.AutoRoundedCorners = true;
+            this.sh_m_m_b_close_advert.BackColor = System.Drawing.Color.Transparent;
+            this.sh_m_m_b_close_advert.BorderRadius = 12;
+            this.sh_m_m_b_close_advert.CheckedState.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.CustomImages.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.DefaultAutoSize = true;
+            this.sh_m_m_b_close_advert.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sh_m_m_b_close_advert.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sh_m_m_b_close_advert.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sh_m_m_b_close_advert.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sh_m_m_b_close_advert.DisabledState.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.FillColor = System.Drawing.Color.Red;
+            this.sh_m_m_b_close_advert.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.sh_m_m_b_close_advert.ForeColor = System.Drawing.Color.White;
+            this.sh_m_m_b_close_advert.HoverState.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.Location = new System.Drawing.Point(576, 60);
+            this.sh_m_m_b_close_advert.Name = "sh_m_m_b_close_advert";
+            this.sh_m_m_b_close_advert.ShadowDecoration.Parent = this.sh_m_m_b_close_advert;
+            this.sh_m_m_b_close_advert.Size = new System.Drawing.Size(37, 27);
+            this.sh_m_m_b_close_advert.TabIndex = 12;
+            this.sh_m_m_b_close_advert.Text = "X";
+            this.sh_m_m_b_close_advert.UseTransparentBackground = true;
+            this.sh_m_m_b_close_advert.Visible = false;
+            this.sh_m_m_b_close_advert.Click += new System.EventHandler(this.SH_B_Advert_Close_Hook);
+            // 
+            // sh_b_open_console
+            // 
+            this.sh_b_open_console.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sh_b_open_console.Animated = true;
+            this.sh_b_open_console.CheckedState.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.CustomImages.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.DefaultAutoSize = true;
+            this.sh_b_open_console.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_open_console.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.sh_b_open_console.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.sh_b_open_console.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.sh_b_open_console.DisabledState.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.sh_b_open_console.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.sh_b_open_console.ForeColor = System.Drawing.Color.White;
+            this.sh_b_open_console.HoverState.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.IndicateFocus = true;
+            this.sh_b_open_console.Location = new System.Drawing.Point(75, 415);
+            this.sh_b_open_console.Name = "sh_b_open_console";
+            this.sh_b_open_console.ShadowDecoration.Parent = this.sh_b_open_console;
+            this.sh_b_open_console.Size = new System.Drawing.Size(107, 27);
+            this.sh_b_open_console.TabIndex = 13;
+            this.sh_b_open_console.Text = "Open Console";
+            this.sh_b_open_console.Click += new System.EventHandler(this.SH_B_Open_Console_Hook);
+            // 
             // SH_Main_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.sh_b_open_console);
+            this.Controls.Add(this.sh_m_m_b_close_advert);
+            this.Controls.Add(this.sh_browser_panel_01);
+            this.Controls.Add(this.sh_p_logo);
+            this.Controls.Add(this.sh_cb_color_gradient);
+            this.Controls.Add(this.sh_b_back_color_change);
             this.Controls.Add(this.sh_b_load_signs_from_f);
             this.Controls.Add(this.sh_cb_num_text_for_file);
             this.Controls.Add(this.sh_b_write_created_file);
@@ -188,6 +340,7 @@ namespace IV_SHIFRATOR_MAIN
             this.Text = "SHIFRATOR Menu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SH_M_M_Closed);
             this.Shown += new System.EventHandler(this.SH_M_M_Showed_Hook);
+            ((System.ComponentModel.ISupportInitialize)(this.sh_p_logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +357,12 @@ namespace IV_SHIFRATOR_MAIN
         private System.Windows.Forms.Button sh_b_write_created_file;
         private System.Windows.Forms.CheckBox sh_cb_num_text_for_file;
         private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_load_signs_from_f;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_back_color_change;
+        private System.Windows.Forms.ColorDialog sh_m_m_color_dlg;
+        private Siticone.Desktop.UI.WinForms.SiticoneCheckBox sh_cb_color_gradient;
+        private System.Windows.Forms.PictureBox sh_p_logo;
+        private System.Windows.Forms.Panel sh_browser_panel_01;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton sh_m_m_b_close_advert;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton sh_b_open_console;
     }
 }
