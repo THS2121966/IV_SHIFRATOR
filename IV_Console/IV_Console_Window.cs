@@ -143,11 +143,12 @@ namespace IV_Console
 
             foreach(string chosed_command in last_created_commands)
             {
-                if (chosed_command.Substring(0, 1) == sended_text)
-                {
-                    iv_defined_commands[iv_defined_commands.Length - 1] = chosed_command;
-                    Array.Resize(ref iv_defined_commands, iv_defined_commands.Length + 1);
-                }
+                for(int next = 0; next < chosed_command.Length; next++)
+                    if (chosed_command.Substring(0, next) == sended_text && sended_text != String.Empty)
+                    {
+                        iv_defined_commands[iv_defined_commands.Length - 1] = chosed_command;
+                        Array.Resize(ref iv_defined_commands, iv_defined_commands.Length + 1);
+                    }
             }
 
             if (iv_defined_commands[iv_defined_commands.Length - 1] == null)
