@@ -94,7 +94,7 @@ namespace IV_Console
             this.Location = Cursor.Position;
         }
 
-        public SiticoneTextBox IV_Console_Get_Console_Text_Graph_Panel()
+        public TextBox IV_Console_Get_Console_Text_Graph_Panel()
         {
             return iv_console_panel;
         }
@@ -226,10 +226,10 @@ namespace IV_Console
 
         private void IV_Con_Command_Test_Count(bool exit = false)
         {
-            iv_console_send_panel.Text = String.Empty;
-
             if (!exit && !iv_con_command_count_active)
             {
+                iv_console_send_panel.Text = String.Empty;
+
                 iv_con_command_count_active = true;
 
                 iv_con_command_count_think = new Timer
