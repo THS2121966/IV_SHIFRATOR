@@ -39,6 +39,8 @@ namespace IV_Console
             Console_Event.IV_Console_Send_Console_State(true);
 
             IV_Init_Think();
+
+            IV_Console_Generate_Fonts_By_Size();
         }
 
         private const int MOVE_TO_CURSOR_FPS = 5;
@@ -313,11 +315,21 @@ namespace IV_Console
             }
         }
 
+        private readonly Font[] iv_console_fonts_sized = new Font[72];
+
+        private void IV_Console_Generate_Fonts_By_Size()
+        {
+            for(int next = 0; next < iv_console_fonts_sized.Length; next++)
+            {
+                iv_console_fonts_sized[next] = new Font(iv_console_panel.Font.FontFamily.Name, next + 1);
+            }
+        }
+
         private void IV_Console_Text_Scale_Hook(object sender, ScrollEventArgs e)
         {
-            Font iv_new_font = new Font(iv_console_panel.Font.FontFamily.Name, e.NewValue);
+            Font iv_new_font = iv_console_fonts_sized[e.NewValue - 1];
 
-            iv_console_scroll_tip.SetToolTip(iv_console_text_resiser_bar, iv_console_text_resiser_bar.Value + "");
+            iv_console_scroll_tip.SetToolTip(iv_console_text_resiser_bar, iv_console_fonts_sized[e.NewValue - 1].Size + "");
             iv_console_panel.Font = iv_new_font;
         }
     }
