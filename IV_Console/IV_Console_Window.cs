@@ -40,7 +40,8 @@ namespace IV_Console
 
             IV_Init_Think();
 
-            IV_Console_Generate_Fonts_By_Size();
+            if(iv_console_fonts_sized[0] == null)
+                IV_Console_Generate_Fonts_By_Size();
         }
 
         private const int MOVE_TO_CURSOR_FPS = 5;
@@ -315,13 +316,21 @@ namespace IV_Console
             }
         }
 
-        private readonly Font[] iv_console_fonts_sized = new Font[72];
+        private static readonly Font[] iv_console_fonts_sized = new Font[72];
 
         private void IV_Console_Generate_Fonts_By_Size()
         {
+            Console_Event.IV_Console_Send_Message("[Font Manager] Generating Fonts by size. MinValue = "+ 0 + "; MaxValue = " + iv_console_fonts_sized.Length + ".", 
+                Console_Event.IV_Message_Level.Logic_Init);
+
             for(int next = 0; next < iv_console_fonts_sized.Length; next++)
             {
                 iv_console_fonts_sized[next] = new Font(iv_console_panel.Font.FontFamily.Name, next + 1);
+
+#if DEBUG
+                Console_Event.IV_Console_Send_Message("[Font Manager] Generated Font named - " + iv_console_fonts_sized[next].Name + ", with size = " +
+                    iv_console_fonts_sized[next].Size, Console_Event.IV_Message_Level.Info);
+#endif
             }
         }
 

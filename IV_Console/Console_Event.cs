@@ -91,7 +91,11 @@ namespace IV_Console
 
         public static void IV_Console_Send_Message(string sended_text, IV_Message_Level message_level, bool send_next = true)
         {
-            var iv_text_box = iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel();
+            System.Windows.Forms.TextBox iv_text_box = null;
+
+            if (iv_console_graph_inited && iv_graph_console != null)
+                iv_text_box = iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel();
+
             string send_sign = "";
 
             if (send_next)
@@ -105,7 +109,8 @@ namespace IV_Console
 
             string send_text = " [" + message_level.ToString() + "] " + sended_text + send_sign;
 
-            iv_text_box.Text += send_text;
+            if (iv_console_graph_inited && iv_graph_console != null)
+                iv_text_box.Text += send_text;
 
             if (iv_console_last_messages == null)
                 iv_console_last_messages = new string[1];
