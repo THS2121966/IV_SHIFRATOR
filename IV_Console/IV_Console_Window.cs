@@ -31,17 +31,19 @@ namespace IV_Console
                 TargetForm = this
             };
 
+            Console_Event.IV_Console_Send_Message("["+CONSOLE_LOGO+"] Initialising Console Grapth Window...", Console_Event.IV_Message_Level.Logic_Init);
+
             iv_wnd_inited = true;
             iv_console_text_helper.Text = String.Empty;
 
             iv_console_scroll_tip.SetToolTip(iv_console_text_resiser_bar, iv_console_text_resiser_bar.Value + "");
 
-            Console_Event.IV_Console_Send_Console_State(true);
-
             IV_Init_Think();
 
             if(iv_console_fonts_sized[0] == null)
                 IV_Console_Generate_Fonts_By_Size();
+
+            Console_Event.IV_Console_Send_Console_State(true);
         }
 
         private const int MOVE_TO_CURSOR_FPS = 5;

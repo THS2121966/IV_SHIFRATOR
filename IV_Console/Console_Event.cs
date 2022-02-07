@@ -52,6 +52,11 @@ namespace IV_Console
         public static void IV_Console_Send_Console_State(bool state)
         {
             iv_console_graph_inited = state;
+
+            if(state)
+            {
+                Console_Event.IV_Console_Send_Message("[" + IV_Console_Window.CONSOLE_LOGO + "] Initialising Console Grapth Window - Done!!!", Console_Event.IV_Message_Level.Info);
+            }
         }
 
         public static string[] IV_Console_Get_Messages()
