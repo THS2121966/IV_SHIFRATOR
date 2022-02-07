@@ -10,6 +10,8 @@ namespace IV_Console
     public class Console_Event
     {
         private static string[] iv_console_last_messages;
+        private static Color[] iv_console_last_m_colors;
+
         private static readonly Color[] iv_console_color_palette = new Color[(int)IV_Message_Level.All] {Color.FromArgb(45, 45, 45), 
             Color.FromArgb(50, 50, 150), Color.FromArgb(150, 150, 0), Color.FromArgb(250, 30, 0), Color.FromArgb(30, 250, 30), Color.FromArgb(250, 80, 80)};
 
@@ -59,13 +61,13 @@ namespace IV_Console
             }
         }
 
-        public static string[] IV_Console_Get_Messages()
+        /*public static string[] IV_Console_Get_Messages()
         {
             if (iv_console_last_messages != null)
                 return iv_console_last_messages;
             else
                 return null;
-        }
+        }*/
 
         private static void IV_Console_Restore_Messages()
         {
@@ -84,6 +86,7 @@ namespace IV_Console
             var iv_text_table = iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel();
 
             iv_console_last_messages = null;
+            iv_console_last_m_colors = null;
 
             if (iv_text_table.Text != null && iv_text_table.Text != String.Empty)
                 iv_text_table.Text = String.Empty;
@@ -106,7 +109,7 @@ namespace IV_Console
             if (send_next)
                 send_sign += Environment.NewLine;
 
-            Color sended_color;
+            Color sended_color = Color.Black;
 
             foreach (Color apply_color in iv_console_color_palette)
                 if (apply_color == iv_console_color_palette[(int)message_level])
@@ -119,9 +122,14 @@ namespace IV_Console
 
             if (iv_console_last_messages == null)
                 iv_console_last_messages = new string[1];
+            if (iv_console_last_m_colors == null)
+                iv_console_last_m_colors = new Color[1];
 
             iv_console_last_messages[iv_console_last_messages.Length - 1] = send_text;
             Array.Resize(ref iv_console_last_messages, iv_console_last_messages.Length + 1);
+
+            iv_console_last_m_colors[iv_console_last_m_colors.Length - 1] = sended_color;
+            Array.Resize(ref iv_console_last_m_colors, iv_console_last_m_colors.Length + 1);
         }
     }
 }
