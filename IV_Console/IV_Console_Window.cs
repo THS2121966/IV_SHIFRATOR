@@ -40,8 +40,8 @@ namespace IV_Console
 
             IV_Init_Think();
 
-            if(iv_console_fonts_sized[0] == null)
-                IV_Console_Generate_Fonts_By_Size();
+            if(iv_console_fonts_sized[0] == null || !iv_console_font_was_def)
+                IV_Console_Generate_Fonts_By_Size(false);
 
             Console_Event.IV_Console_Send_Console_State(true);
         }
@@ -128,6 +128,8 @@ namespace IV_Console
                 iv_wnd_moved = true;
                 iv_panel_control_buttons.Cursor = Cursors.SizeAll;
 
+                iv_console_b_chose_font.Visible = false;
+
                 iv_wnd_move_to_cursor_anim.Enabled = true;
             }
         }
@@ -138,6 +140,8 @@ namespace IV_Console
             {
                 iv_wnd_moved = false;
                 iv_panel_control_buttons.Cursor = this.Cursor;
+
+                iv_console_b_chose_font.Visible = true;
 
                 iv_wnd_move_to_cursor_anim.Enabled = false;
             }
@@ -319,29 +323,114 @@ namespace IV_Console
         }
 
         private static readonly Font[] iv_console_fonts_sized = new Font[72];
+        private static Font iv_console_default_font;
+        private static Color iv_console_def_font_color;
 
-        private void IV_Console_Generate_Fonts_By_Size()
+        private static Color iv_console_last_font_color;
+
+        private static bool iv_font_generate_first_inited = true;
+
+        private void IV_Console_Generate_Fonts_By_Size(bool send_new_font, Font sended_font = null)
         {
             Console_Event.IV_Console_Send_Message("[Font Manager] Generating Fonts by size. MinValue = "+ 0 + "; MaxValue = " + iv_console_fonts_sized.Length + ".", 
                 Console_Event.IV_Message_Level.Logic_Init);
 
             for(int next = 0; next < iv_console_fonts_sized.Length; next++)
             {
-                iv_console_fonts_sized[next] = new Font(iv_console_panel.Font.FontFamily.Name, next + 1);
+                if (!send_new_font && iv_console_font_was_def)
+                    iv_console_fonts_sized[next] = new Font(iv_console_panel.Font.FontFamily.Name, next + 1);
+                else if (!send_new_font && iv_console_fonts_sized[8] != null && !iv_font_generate_first_inited)
+                    iv_console_fonts_sized[next] = new Font(iv_console_fonts_sized[8].FontFamily.Name, next + 1);
+                else if (send_new_font)
+                    iv_console_fonts_sized[next] = new Font(sended_font.FontFamily, next + 1, sended_font.Style);
 
 #if DEBUG
                 Console_Event.IV_Console_Send_Message("[Font Manager] Generated Font named - " + iv_console_fonts_sized[next].Name + ", with size = " +
                     iv_console_fonts_sized[next].Size, Console_Event.IV_Message_Level.Info);
 #endif
             }
+
+            if(!send_new_font)
+            {
+                if (iv_console_default_font == null)
+                    iv_console_default_font = iv_console_fonts_sized[8];
+                if (iv_console_def_font_color == null)
+                    iv_console_def_font_color = iv_console_panel.ForeColor;
+
+                if(iv_font_generate_first_inited)
+                    iv_console_font_dlg.Font = iv_console_panel.Font = iv_console_default_font;
+                else
+                {
+                    iv_console_panel.Font = iv_console_fonts_sized[iv_console_text_resiser_bar.Value - 1];
+                    iv_console_font_dlg.Font = iv_console_panel.Font;
+                }
+
+                if (iv_console_last_font_color == null)
+                    iv_console_font_dlg.Color = iv_console_panel.ForeColor;
+                else
+                    iv_console_font_dlg.Color = iv_console_panel.ForeColor = iv_console_last_font_color;
+
+                if (iv_font_generate_first_inited)
+                    iv_font_generate_first_inited = false;
+            }
         }
 
         private void IV_Console_Text_Scale_Hook(object sender, ScrollEventArgs e)
         {
-            Font iv_new_font = iv_console_fonts_sized[e.NewValue - 1];
+            IV_Console_Text_Scale(e.NewValue);
+        }
 
-            iv_console_scroll_tip.SetToolTip(iv_console_text_resiser_bar, iv_console_fonts_sized[e.NewValue - 1].Size + "");
+        private void IV_Console_Text_Scale(int size_value)
+        {
+            Font iv_new_font = iv_console_fonts_sized[size_value - 1];
+
+            iv_console_scroll_tip.SetToolTip(iv_console_text_resiser_bar, iv_console_fonts_sized[size_value - 1].Size + "");
             iv_console_panel.Font = iv_new_font;
+        }
+
+        private static bool iv_console_font_was_def = true;
+
+        private void IV_Console_B_Chose_Font_Hook(object sender, EventArgs e)
+        {
+            DialogResult iv_resset_def_dlg = DialogResult.No;
+
+            if (!iv_console_font_was_def)
+                iv_resset_def_dlg = MessageBox.Show("Resset Font to Default Value?", CONSOLE_LOGO, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if(iv_resset_def_dlg == DialogResult.Yes)
+            {
+                iv_console_font_was_def = true;
+
+                iv_console_last_font_color = iv_console_panel.ForeColor = iv_console_def_font_color;
+                iv_console_panel.Font = iv_console_font_dlg.Font = iv_console_default_font;
+
+                IV_Console_Generate_Fonts_By_Size(false);
+
+                iv_console_text_resiser_bar.Value = ((int)iv_console_font_dlg.Font.Size);
+                IV_Console_Text_Scale(iv_console_text_resiser_bar.Value);
+            }
+
+            if(iv_resset_def_dlg != DialogResult.Yes)
+                if (iv_console_font_dlg.ShowDialog() == DialogResult.OK)
+                    IV_Console_Font_Apply_New();
+        }
+
+        private void IV_Console_Font_Apply_New()
+        {
+            IV_Console_Generate_Fonts_By_Size(true, iv_console_font_dlg.Font);
+
+            iv_console_panel.Font = iv_console_fonts_sized[iv_console_text_resiser_bar.Value - 1];
+
+            iv_console_text_resiser_bar.Value = ((int)iv_console_font_dlg.Font.Size);
+            IV_Console_Text_Scale(iv_console_text_resiser_bar.Value);
+            iv_console_last_font_color = iv_console_panel.ForeColor = iv_console_font_dlg.Color;
+
+            iv_console_font_was_def = false;
+        }
+
+        private void IV_Console_Font_DLG_Applied_Hook(object sender, EventArgs e)
+        {
+            IV_Console_Font_Apply_New();
         }
     }
 }

@@ -33,12 +33,14 @@ namespace IV_Console
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IV_Console_Window));
             this.iv_console_b_exit = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.iv_panel_control_buttons = new System.Windows.Forms.Panel();
+            this.iv_console_text_resiser_bar = new Siticone.Desktop.UI.WinForms.SiticoneTrackBar();
             this.iv_console_panel = new System.Windows.Forms.TextBox();
             this.iv_console_send_panel = new System.Windows.Forms.TextBox();
             this.iv_b_send_to_console = new System.Windows.Forms.Button();
             this.iv_console_text_helper = new System.Windows.Forms.Label();
-            this.iv_console_text_resiser_bar = new Siticone.Desktop.UI.WinForms.SiticoneTrackBar();
             this.iv_console_scroll_tip = new System.Windows.Forms.ToolTip(this.components);
+            this.iv_console_font_dlg = new System.Windows.Forms.FontDialog();
+            this.iv_console_b_chose_font = new Siticone.Desktop.UI.WinForms.SiticoneButton();
             this.iv_panel_control_buttons.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +73,7 @@ namespace IV_Console
             this.iv_panel_control_buttons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.iv_panel_control_buttons.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.iv_panel_control_buttons.Controls.Add(this.iv_console_b_chose_font);
             this.iv_panel_control_buttons.Controls.Add(this.iv_console_text_resiser_bar);
             this.iv_panel_control_buttons.Location = new System.Drawing.Point(0, 0);
             this.iv_panel_control_buttons.Name = "iv_panel_control_buttons";
@@ -78,6 +81,23 @@ namespace IV_Console
             this.iv_panel_control_buttons.TabIndex = 0;
             this.iv_panel_control_buttons.Click += new System.EventHandler(this.IV_WND_Stop_Move_Hook);
             this.iv_panel_control_buttons.DoubleClick += new System.EventHandler(this.IV_WND_Move_Hook);
+            // 
+            // iv_console_text_resiser_bar
+            // 
+            this.iv_console_text_resiser_bar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iv_console_text_resiser_bar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iv_console_text_resiser_bar.HoverState.Parent = this.iv_console_text_resiser_bar;
+            this.iv_console_text_resiser_bar.LargeChange = 2;
+            this.iv_console_text_resiser_bar.Location = new System.Drawing.Point(105, 7);
+            this.iv_console_text_resiser_bar.Maximum = 72;
+            this.iv_console_text_resiser_bar.Minimum = 9;
+            this.iv_console_text_resiser_bar.Name = "iv_console_text_resiser_bar";
+            this.iv_console_text_resiser_bar.Size = new System.Drawing.Size(300, 23);
+            this.iv_console_text_resiser_bar.TabIndex = 6;
+            this.iv_console_text_resiser_bar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.iv_console_text_resiser_bar.Value = 9;
+            this.iv_console_text_resiser_bar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.IV_Console_Text_Scale_Hook);
             // 
             // iv_console_panel
             // 
@@ -133,27 +153,47 @@ namespace IV_Console
             this.iv_console_text_helper.Click += new System.EventHandler(this.IV_Console_Helper_Click_Hook);
             this.iv_console_text_helper.DoubleClick += new System.EventHandler(this.IV_Console_Helper_DClick_Hook);
             // 
-            // iv_console_text_resiser_bar
-            // 
-            this.iv_console_text_resiser_bar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.iv_console_text_resiser_bar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iv_console_text_resiser_bar.HoverState.Parent = this.iv_console_text_resiser_bar;
-            this.iv_console_text_resiser_bar.LargeChange = 2;
-            this.iv_console_text_resiser_bar.Location = new System.Drawing.Point(105, 7);
-            this.iv_console_text_resiser_bar.Maximum = 72;
-            this.iv_console_text_resiser_bar.Minimum = 9;
-            this.iv_console_text_resiser_bar.Name = "iv_console_text_resiser_bar";
-            this.iv_console_text_resiser_bar.Size = new System.Drawing.Size(300, 23);
-            this.iv_console_text_resiser_bar.TabIndex = 6;
-            this.iv_console_text_resiser_bar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.iv_console_text_resiser_bar.Value = 9;
-            this.iv_console_text_resiser_bar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.IV_Console_Text_Scale_Hook);
-            // 
             // iv_console_scroll_tip
             // 
             this.iv_console_scroll_tip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.iv_console_scroll_tip.ToolTipTitle = "Font Size:";
+            // 
+            // iv_console_font_dlg
+            // 
+            this.iv_console_font_dlg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.iv_console_font_dlg.FontMustExist = true;
+            this.iv_console_font_dlg.MaxSize = 72;
+            this.iv_console_font_dlg.MinSize = 9;
+            this.iv_console_font_dlg.ShowApply = true;
+            this.iv_console_font_dlg.ShowHelp = true;
+            this.iv_console_font_dlg.Apply += new System.EventHandler(this.IV_Console_Font_DLG_Applied_Hook);
+            // 
+            // iv_console_b_chose_font
+            // 
+            this.iv_console_b_chose_font.Animated = true;
+            this.iv_console_b_chose_font.AutoRoundedCorners = true;
+            this.iv_console_b_chose_font.BackColor = System.Drawing.Color.Transparent;
+            this.iv_console_b_chose_font.BorderRadius = 10;
+            this.iv_console_b_chose_font.CheckedState.Parent = this.iv_console_b_chose_font;
+            this.iv_console_b_chose_font.CustomImages.Parent = this.iv_console_b_chose_font;
+            this.iv_console_b_chose_font.DefaultAutoSize = true;
+            this.iv_console_b_chose_font.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.iv_console_b_chose_font.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.iv_console_b_chose_font.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.iv_console_b_chose_font.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.iv_console_b_chose_font.DisabledState.Parent = this.iv_console_b_chose_font;
+            this.iv_console_b_chose_font.FillColor = System.Drawing.Color.Ivory;
+            this.iv_console_b_chose_font.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.iv_console_b_chose_font.ForeColor = System.Drawing.Color.Black;
+            this.iv_console_b_chose_font.HoverState.Parent = this.iv_console_b_chose_font;
+            this.iv_console_b_chose_font.Location = new System.Drawing.Point(0, 0);
+            this.iv_console_b_chose_font.Name = "iv_console_b_chose_font";
+            this.iv_console_b_chose_font.ShadowDecoration.Parent = this.iv_console_b_chose_font;
+            this.iv_console_b_chose_font.Size = new System.Drawing.Size(75, 23);
+            this.iv_console_b_chose_font.TabIndex = 7;
+            this.iv_console_b_chose_font.Text = "Chose Font";
+            this.iv_console_b_chose_font.UseTransparentBackground = true;
+            this.iv_console_b_chose_font.Click += new System.EventHandler(this.IV_Console_B_Chose_Font_Hook);
             // 
             // IV_Console_Window
             // 
@@ -176,6 +216,7 @@ namespace IV_Console
             this.Deactivate += new System.EventHandler(this.IV_Out_Focus_Hook);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IV_Console_Close_Hook);
             this.iv_panel_control_buttons.ResumeLayout(false);
+            this.iv_panel_control_buttons.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +232,7 @@ namespace IV_Console
         private System.Windows.Forms.Label iv_console_text_helper;
         private Siticone.Desktop.UI.WinForms.SiticoneTrackBar iv_console_text_resiser_bar;
         private System.Windows.Forms.ToolTip iv_console_scroll_tip;
+        private System.Windows.Forms.FontDialog iv_console_font_dlg;
+        private Siticone.Desktop.UI.WinForms.SiticoneButton iv_console_b_chose_font;
     }
 }
