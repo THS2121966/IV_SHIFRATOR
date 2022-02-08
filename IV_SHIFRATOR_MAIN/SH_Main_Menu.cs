@@ -30,11 +30,15 @@ namespace IV_SHIFRATOR_MAIN
 
         public SH_Main_Menu()
         {
+            Console_Event.IV_Console_Send_Message("[" + SH_Loading_Window.sh_logo + "] Initialising Main Menu...", Console_Event.IV_Message_Level.Logic_Init);
+
             InitializeComponent();
             SH_INIT_Core();
             SH_INIT_UI();
             SH_INIT_Browser();
             SH_Think_Create();
+
+            Console_Event.IV_Console_Send_Message("[" + SH_Loading_Window.sh_logo + "] Main Menu was Inited!!!", Console_Event.IV_Message_Level.Info);
         }
 
         private void SH_M_M_Closed(object sender, FormClosedEventArgs e)
@@ -42,6 +46,9 @@ namespace IV_SHIFRATOR_MAIN
             this.FormBorderStyle = FormBorderStyle.None;
             sh_control_anim.IVControlAnim_Event.IV_Animate_Control(this, true, true, 3, Siticone.Desktop.UI.AnimatorNS.AnimationType.Rotate);
 
+            Console_Event.IV_Console_Send_Message("["+SH_Loading_Window.sh_logo+"] Closing Main Menu...", Console_Event.IV_Message_Level.Logic_Shutdown);
+
+            sh_commands_check_timer.Enabled = false;
             sh_m_m_color_anim.Enabled = false;
             sh_cb_color_gradient.Checked = false;
             sh_m_m_loaded = false;
