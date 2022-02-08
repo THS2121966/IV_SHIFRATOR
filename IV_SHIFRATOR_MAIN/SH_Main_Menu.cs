@@ -61,6 +61,8 @@ namespace IV_SHIFRATOR_MAIN
             sh_b_write_created_file.Visible = false;
             sh_cb_logic_show_signs_op.Visible = false;
 
+            Console_Event.IV_Con_Commands_Set_New_Command("exit", Console_Event.IV_Con_Command_Index.Programm_Added);
+
             SH_Save_Text_To_File_DLG.Filter = "Текстовый документ (*.txt)|*.txt|Все файлы (*.*)|*.*";
         }
 
@@ -104,6 +106,7 @@ namespace IV_SHIFRATOR_MAIN
         }
 
         private readonly Timer sh_advert_timer = new Timer();
+        private readonly Timer sh_commands_check_timer = new Timer();
 
         private void SH_Think_Create()
         {
@@ -113,6 +116,24 @@ namespace IV_SHIFRATOR_MAIN
             sh_advert_timer.Interval = 5000;
             sh_advert_timer.Tick += SH_Advert_Timer_Hook;
             sh_advert_timer.Enabled = true;
+
+            sh_commands_check_timer.Interval = 15;
+            sh_commands_check_timer.Tick += SH_Con_Command_Check_Commands_Think;
+            sh_commands_check_timer.Enabled = true;
+        }
+
+        private void SH_Con_Command_Check_Commands_Think(object sender, EventArgs e)
+        {
+            if(IV_Console_Window.IV_Con_Command_Get_Programm_Sended_State())
+            {
+                var sended_command = IV_Console_Window.IV_Con_Command_Get_Programm_Command();
+
+                if(sended_command.iv_con_command_index == Console_Event.IV_Con_Command_Index.Programm_Added)
+                {
+                    if (sended_command.iv_con_command == "exit")
+                        this.Close();
+                }
+            }
         }
 
         private static readonly string[] sh_advert_link = new string[] { "https://vk.com/id504177837" };

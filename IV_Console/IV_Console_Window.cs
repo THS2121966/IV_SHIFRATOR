@@ -196,6 +196,7 @@ namespace IV_Console
             if(iv_console_send_panel.Text != null && iv_console_send_panel.Text != String.Empty)
             {
                 var iv_active_commands = Console_Event.IV_Console_Get_Commands_List();
+                var iv_active_commands_index = Console_Event.IV_Con_Commands_Get_Commands_Index();
                 bool valid_command = false;
 
                 for (int check = 0; check < iv_active_commands.Length; check++)
@@ -210,10 +211,14 @@ namespace IV_Console
                             IV_Con_Command_Test_Count();
                         else if (iv_console_send_panel.Text == iv_active_commands[2])
                             IV_Con_Command_Clear();
-                        else
+                        else if(iv_active_commands_index[check] == 0)
                         {
                             valid_command = false;
                             MessageBox.Show("Command Function Not Created yet!!! Tell a programmer!!!", CONSOLE_LOGO, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            IV_Con_Command_Programm_Send(iv_active_commands[check], iv_active_commands_index[check]);
                         }
                     }
                 }
@@ -224,6 +229,34 @@ namespace IV_Console
                     iv_console_send_panel.Text = String.Empty;
                 }
             }
+        }
+
+        private static bool iv_console_command_to_programm_sended = false;
+        private static IV_Con_Command_Parms iv_sended_command_parms;
+
+        public struct IV_Con_Command_Parms
+        {
+            public string iv_con_command;
+            public Console_Event.IV_Con_Command_Index iv_con_command_index;
+        }
+
+        public static bool IV_Con_Command_Get_Programm_Sended_State()
+        {
+            return iv_console_command_to_programm_sended;
+        }
+
+        private void IV_Con_Command_Programm_Send(string command_name, Console_Event.IV_Con_Command_Index command_index)
+        {
+            iv_sended_command_parms.iv_con_command = command_name;
+            iv_sended_command_parms.iv_con_command_index = command_index;
+            iv_console_command_to_programm_sended = true;
+        }
+
+        public static IV_Con_Command_Parms IV_Con_Command_Get_Programm_Command()
+        {
+            iv_console_command_to_programm_sended = false;
+
+            return iv_sended_command_parms;
         }
 
         private void IV_Con_Command_Hello()
