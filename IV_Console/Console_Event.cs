@@ -112,7 +112,7 @@ namespace IV_Console
                 {
                     foreach(string message in iv_console_last_messages)
                     {
-                        iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel().Text += message;
+                        iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel().graph_text_panel.Text += message;
                     }
                 }
         }
@@ -124,8 +124,8 @@ namespace IV_Console
             iv_console_last_messages = null;
             iv_console_last_m_colors = null;
 
-            if (iv_text_table.Text != null && iv_text_table.Text != String.Empty)
-                iv_text_table.Text = String.Empty;
+            if (iv_text_table.graph_text_panel.Text != null && iv_text_table.graph_text_panel.Text != String.Empty)
+                iv_text_table.graph_text_panel.Text = String.Empty;
         }
 
         public IV_Console_Window IV_Get_Console_Graph_WND()
@@ -138,7 +138,7 @@ namespace IV_Console
             System.Windows.Forms.TextBox iv_text_box = null;
 
             if (iv_console_graph_inited && iv_graph_console != null)
-                iv_text_box = iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel();
+                iv_text_box = iv_graph_console.IV_Console_Get_Console_Text_Graph_Panel().graph_text_panel;
 
             string send_sign = "";
 

@@ -101,9 +101,19 @@ namespace IV_Console
             this.Location = Cursor.Position;
         }
 
-        public TextBox IV_Console_Get_Console_Text_Graph_Panel()
+        public struct IV_Console_Graph_Elements
         {
-            return iv_console_panel;
+            public TextBox graph_text_panel;
+            public TextBox graph_text_enter_panel;
+        }
+
+        public IV_Console_Graph_Elements IV_Console_Get_Console_Text_Graph_Panel()
+        {
+            IV_Console_Graph_Elements send_graph_elements;
+            send_graph_elements.graph_text_panel = iv_console_panel;
+            send_graph_elements.graph_text_enter_panel = iv_console_send_panel;
+
+            return send_graph_elements;
         }
 
         private void IV_Enter_Focus_Hook(object sender, EventArgs e)
