@@ -49,10 +49,12 @@ namespace IVControlAnim
             ANIM.Dispose();
         }
 
+        private Siticone.Desktop.UI.WinForms.SiticoneTransition sh_anim_panel;
+
         public void SH_Realise_Panels_Anim(Control chosed_panel, bool anim_hide, bool synced = false, int seconds = 5,
             Siticone.Desktop.UI.AnimatorNS.AnimationType anim_type = Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale, bool anim_tip = false)
         {
-            Siticone.Desktop.UI.WinForms.SiticoneTransition sh_anim_panel = new Siticone.Desktop.UI.WinForms.SiticoneTransition
+            sh_anim_panel = new Siticone.Desktop.UI.WinForms.SiticoneTransition
             {
                 AnimationType = anim_type,
                 Interval = seconds
@@ -87,6 +89,8 @@ namespace IVControlAnim
 
         public void Dispose()
         {
+            sh_anim_panel.Dispose();
+
             iv_anim_last_realised_control = null;
             iv_anim_last_used_animation_type = Siticone.Desktop.UI.AnimatorNS.AnimationType.Scale;
         }

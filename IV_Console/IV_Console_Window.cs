@@ -255,6 +255,11 @@ namespace IV_Console
             return iv_console_command_to_programm_sended;
         }
 
+        public static void IV_Con_Command_Set_Programm_Sended_State(bool state)
+        {
+            iv_console_command_to_programm_sended = state;
+        }
+
         private void IV_Con_Command_Programm_Send(string command_name, Console_Event.IV_Con_Command_Index command_index)
         {
             iv_sended_command_parms.iv_con_command = command_name;
